@@ -1,0 +1,16 @@
+.older, .younger {
+  border: 1px solid black;
+  margin: 60px;
+  padding: 10px;
+  width: 350px;
+  border-radius: 8px;
+  color: #333;
+}
+
+.older {
+  background-color: #a8e6a1; /* أخضر فاتح */
+}
+
+.younger {
+  background-color: #fff9b1; /* أصفر فاتح */
+}
