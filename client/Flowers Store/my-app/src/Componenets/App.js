@@ -1,12 +1,6 @@
 import React from 'react';
 import "./App.css"; 
-import {
-  FaFacebookF,
-  FaXTwitter,
-  FaPinterestP,
-  FaInstagram,
-  FaYoutube,
-} from "react-icons/fa6";
+
 
 
 function App() {

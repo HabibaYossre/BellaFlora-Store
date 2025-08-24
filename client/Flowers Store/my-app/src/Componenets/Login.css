@@ -5,7 +5,7 @@
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #270030, #5c2782); 
- 
+ display: flexbox;
  
   background-size:contain;  
 
@@ -21,7 +21,7 @@ body {
 .login-container form {
   background: #fff;
   padding: 30px 40px;
-  border-radius: 5 px;
+  border-radius: 20 px;
   box-shadow: 0 6px 20px rgba(205, 205, 205, 0.15);
   width: 350px;
 
@@ -43,7 +43,7 @@ body {
 }
 
 .login-container input {
-  width: 100%;
+  width: 93%;
   padding: 10px;
   margin-bottom: 18px;
   border-radius: 8px;
@@ -264,6 +264,16 @@ body {
 .footer-lang {
   display: flex;
   gap: 20px;
+}
+.signup-link {
+margin: 40px;
+  color: #020202;
+  text-decoration: none;
+  text-align: center;
+}
+.signup-link a{
+  color: #6a0dad;
+ 
 }
 
 @media (min-width: 768px) {

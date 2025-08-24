@@ -1,10 +1,18 @@
 import React from 'react';
 import "./Login.css"; 
+import { useNavigate } from "react-router-dom";
 function SignUp() {
+   const navigate = useNavigate();
+  
+    const handleSignUp = (e) => {
+      e.preventDefault();
+     
+      navigate("/App");
+      };
   return (
     <div className="login-container">
         
-      <form>
+      <form onSubmit={handleSignUp}>
         <div>
           <label htmlFor="username">Username</label>
           <input type="text" id="username" name="username" />
@@ -25,6 +33,10 @@ function SignUp() {
         </div>
        
         <button type="submit" >SignUp</button>
+          <span className="signup-link">
+              Already have an account?{" "} 
+              <a href="/Login">Login here</a>
+            </span>
       </form>
     </div>
   );
