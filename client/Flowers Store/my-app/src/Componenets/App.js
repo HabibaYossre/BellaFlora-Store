@@ -51,6 +51,112 @@ function App() {
           <a href="#"><i className="far fa-user"></i></a>
         </div>
       </nav>
+       <div className="marquee-container">
+      <div className="marquee">
+        <div className="marquee-content">
+          <span>Birthday</span>
+          <span className="separator">✿</span>
+          <span>Weddings</span>
+          <span className="separator">✿</span>
+          <span>Thank You</span>
+          <span className="separator">✿</span>
+          <span>Graduation</span>
+          <span className="separator">✿</span>
+          
+      
+          <span>Birthday</span>
+          <span className="separator">✿</span>
+          <span>Weddings</span>
+          <span className="separator">✿</span>
+          <span>Thank You</span>
+          <span className="separator">✿</span>
+          <span>Graduation</span>
+          <span className="separator">✿</span>
+        </div>
+      </div>
+    </div>
+    <div className="FAQs">
+      <h2 className='faq'>FAQs</h2>
+      <p className='look'>Question?<span>Look here.</span></p>
+       </div>
+<div className="container">
+
+      <div className="sitem">
+
+     <div className="item">
+      <div className="question">
+         <p>Do you offer international shipping?</p>
+        </div>
+        <div className="answer">
+        <p>we ship to most countries worldwide. Shipping fees  vary based on location.</p>
+      </div>
+     </div>
+
+
+     <div className="item">
+      <div className="question">
+         <p>How can I track my order?</p>
+        </div>
+        <div className="answer">
+        <p>Once your order is shipped, you will receive a tracking number via email.</p>
+      </div>
+     </div>
+
+     <div className="item">
+      <div className="question">
+         <p>What payment methods do you accept?</p>
+        </div>
+        <div className="answer">
+        <p>We accept all major credit cards, PayPal, and Apple Pay.</p>
+      </div>
+     </div>
+     
+     
+     </div>
+  <div className="container-faq">
+  <p className='fre'>you have different questions?</p>
+  <span className='ans'>our team will answer all your questions we ensure aquick response</span>
+  <br />
+ <button className='btn-faq'>Contact Us</button>
+  </div>
+ </div>
+  
+ <div className="shipping-info">
+      <div className="containershipping-info">
+        <div className="info-card">
+          <div className="icon">
+            <i className="fas fa-truck"></i>
+          </div>
+         < div className="text">
+          <h3>Free Shipping</h3>
+          <p>Free shipping for order above $50</p>
+          </div>
+        </div>
+        
+        <div className="info-card">
+          <div className="icon">
+            <i className="fas fa-credit-card"></i>
+          </div>
+          < div className="text">
+             <h3>Flexible Payment</h3>
+          <p>Multiple secure payment options</p>
+          </div>
+       
+        </div>
+        
+        <div className="info-card">
+          <div className="icon">
+            <i className="fas fa-headset"></i>
+          </div>
+          < div className="text">
+          <h3>24x7 Support</h3>
+          <p>We support online all days</p>
+          </div>
+        </div>
+      </div>
+    </div>
+ 
+
    <section className="hero">
         <div className="hero-content">      
             <h1 className='letters-header'> our new letters </h1>
