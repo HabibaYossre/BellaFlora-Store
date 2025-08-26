@@ -5,6 +5,8 @@ import SignUp from "./components/registration/SignUp";
 import Home from './components/home/Home';
 import Search from "./components/search/Search";
 import Allproducts from "./components/allProducts/Allproducts";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+
 
 function App() {
   return (
@@ -16,7 +18,7 @@ function App() {
     
     // </Routes>
   <>
-<Allproducts></Allproducts>
+<Home></Home>
   </>
   
   );
