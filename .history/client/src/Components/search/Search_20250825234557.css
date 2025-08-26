@@ -1,0 +1,8 @@
+.search-nav{
+    display: flex;
+    padding: 10px 20px;
+    z-index: 999;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(red, green, blue, alpha);
+}

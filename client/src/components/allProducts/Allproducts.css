@@ -1,0 +1,10 @@
+.products-container{
+    display: grid;
+    grid-template-columns: 1fr 5fr;
+}
+
+.right-column{
+  display: grid;
+  grid-template-rows: 0.5fr 0.5fr 5fr;
+  gap: 10px; 
+}

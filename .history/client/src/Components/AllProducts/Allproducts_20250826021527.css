@@ -1,0 +1,13 @@
+.products-container{
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+}
+.left-column{
+  background: lightblue;
+}
+.right-column {
+  display: grid;
+  grid-template-rows: 1fr 5fr; 
+  gap: 10px;
+}

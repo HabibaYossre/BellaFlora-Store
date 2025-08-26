@@ -1,0 +1,31 @@
+.search-nav{
+    width: 30%;
+    display: flex;
+    padding: 5px 10px;
+    z-index: 999;
+    border-radius: 30px;
+    align-items: center;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+.search-nav input{
+    width: 15rem;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+.search-nav:hover input{
+    width: 25rem;
+}
+.search-nav button{
+    position: relative;
+
+}
+.search-nav button svg{
+    color: var(--primary-color);
+    font-size: 2rem;
+    position: absolute;
+    left: 0;
+}
+

@@ -1,0 +1,30 @@
+:root {
+  --primary-color: #5e00a6;
+  --secondary-color: #FE91E8;
+  --text-color: #323232;
+  --background-color: #F6F6F6;
+  --stars-color: #FAB125;
+}
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+a{
+  text-decoration: none;
+}
+li{
+  list-style: none;
+}
+
+.btns{
+  padding: 10px 20px;
+  margin-right: 6px;
+  background: transparent;
+  border: none;
+  border-radius: 5px;
+  color:white ;
+  background-color: #5e00a6;
+  cursor: pointer;
+}
