@@ -6,6 +6,7 @@ import Home from './components/home/Home';
 import Search from "./components/search/Search";
 import Allproducts from "./components/allProducts/Allproducts";
 import "@fortawesome/fontawesome-free/css/all.min.css";
+import Cart from "./components/Cart/Cart";
 
 
 function App() {
@@ -18,7 +19,7 @@ function App() {
     
     // </Routes>
   <>
-<Home></Home>
+<Cart></Cart>
   </>
   
   );
