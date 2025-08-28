@@ -7,20 +7,27 @@ import Search from "./components/search/Search";
 import Allproducts from "./components/allProducts/Allproducts";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Cart from "./components/Cart/Cart";
+import Wishlist from "./components/Wishlist/Wishlist";
 
 
 function App() {
   return (
-    // <Routes>
-    //   <Route path="/" element={<Home />}/>
-    //   <Route path="/Login" element={<Login />} />         
-    //   <Route path="/Home" element={<Home />} />      
-    //   <Route path="/SignUp" element={<SignUp />} />   
+    <Routes>
+      <Route path="/" element={<Home />}/>
+      <Route path="/Login" element={<Login />} />         
+      <Route path="/Home" element={<Home />} />      
+      <Route path="/SignUp" element={<SignUp />} /> 
+      <Route path="/S" element={<Search />} />
+      <Route path="/Allproducts" element={<Allproducts />} /> 
+      <Route path="/Cart" element={<Cart />} />
+      <Route path="/Wishlist" element={<Wishlist />} />
+
     
-    // </Routes>
-  <>
-<Cart></Cart>
-  </>
+    
+    </Routes>
+//   <>
+// <Home></Home>
+//   </>
   
   );
 }

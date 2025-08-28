@@ -47,7 +47,7 @@ const Cart=() => {
         </div>
 
     <div className="cart-container">
-      {/* Left Side - Cart Items */}
+    
       <div className="cart-items">
         <div className="cart-header">
           <span>Product</span>
@@ -76,7 +76,7 @@ const Cart=() => {
         ))}
       </div>
 
-      {/* Right Side - Order Summary */}
+      
       <div className="order-summary">
       
         <h3>Order Summary</h3>
