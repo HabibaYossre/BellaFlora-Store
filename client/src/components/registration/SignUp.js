@@ -13,21 +13,41 @@ function SignUp() {
   
    const handleSubmit = (e) => {
        e.preventDefault();
-   
-       axios
-         .post("http://localhost:3001/login", { name,email, password })
+      
+       /*axios
+         .post("http://localhost:3000/auth/signup", { name,email, password })
          .then((result) => {
            console.log(result);
-           if (result.data === "Success") {
+           navigate("/Home");
+
+           /*if (result.data === "Success") {
              navigate("/Home");
-           } else {
+           }else {
              alert("Invalid email or password");
            }
          })
          .catch((err) => {
            console.log(err);
            alert("Something went wrong");
+         });*/
+
+         axios
+         .post("/auth/signup", { name, email, password })
+         .then((res) => {
+           console.log(res.data); // see backend response
+           if (res.data.token) {
+             // save token for authentication
+             localStorage.setItem("token", res.data.token);
+             navigate("/Home");
+           } else {
+             alert(res.data.message || "Signup failed");
+           }
+         })
+         .catch((err) => {
+           console.error(err.response ? err.response.data : err.message);
+           alert(err.response?.data?.message || "Something went wrong");
          });
+       
      }
        
   return (
