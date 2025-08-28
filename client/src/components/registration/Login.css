@@ -15,9 +15,9 @@ background-size:contain;
 .login-container form {
   background: #fff;
   padding: 30px 40px;
-  border-radius: 20 px;
+  border-radius: 50 px;
   box-shadow: 0 6px 20px rgba(205, 205, 205, 0.15);
-  width: 350px;
+  width: 450px;
 
 }
 

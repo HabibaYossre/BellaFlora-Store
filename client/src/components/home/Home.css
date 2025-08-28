@@ -29,7 +29,7 @@
   width: 600px;
   margin: 20px 5px;
  padding: 10px;
-  background-color: #f7f7f7;
+  background-color: #ffffff;
    border-radius: 10px;
   
    height: auto;
@@ -90,9 +90,10 @@ margin-right: 10px;
 margin-bottom: 50px;
 
 }
+
 .container{
   display: flex;
-   background-color: #f8f9fa;
+   background-color: #ffffff;
   
 }
 .faq-item p{
@@ -102,10 +103,91 @@ margin-bottom: 50px;
 
 
 }
+.contact-card {
+  background: #6a0dad; /* Purple */
+  color: white;
+  border-radius: 20px;
+  padding: 40px 20px;
+  text-align: center;
+  width: 320px;
+  margin: auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Chat Icon */
+.chat-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 15px;
+  position: relative;
+  height: 70px;
+}
+
+.bubble {
+  width: 50px;
+  height: 40px;
+  border-radius: 50% 50% 50% 50%;
+  position: absolute;
+}
+
+.white {
+  background: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+.white .dots {
+  color: #6a0dad;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.pink {
+  background: #ff6ec7;
+right: 15px;
+  top: 15px;
+  left: 95px;
+    z-index: 1;
+ 
+}
+
+/* Text */
+.contact-card h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin: 10px 0;
+}
+
+.contact-card p {
+  font-size: 14px;
+  color: #e0d4f7;
+  margin-bottom: 20px;
+  line-height: 1.4;
+}
+
+/* Button */
+.contact-btn {
+  background: #ff6ec7;
+  border: none;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.contact-btn:hover {
+  background: #ff4eb6;
+}
+
 
 .shipping-info {
   padding: 40px 0;
-  background-color: #f8f9fa;
+  background-color: #ffffff;
 
 }
 
@@ -120,11 +202,11 @@ margin-bottom: 50px;
 
 
 
-.icon {
+.icon-shipping {
   font-size: 2.5rem;
   color: #5b0cae;
-  margin-bottom: 15px;
-  margin-top: 20px;
+  margin-bottom: 10px;
+  margin-top: 5px;
   margin-right: 10px;
 }
 .info-card{
@@ -179,7 +261,7 @@ font-size: large;
     transform: translateX(0);
   }
   100% {
-    transform: translateX(-100%);
+    transform: translateX(100%);
   }
 }
 

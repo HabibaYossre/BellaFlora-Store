@@ -83,18 +83,32 @@ function Home() {
      
      
      </div>
-  <div className="container-faq">
-  <p className='fre'>you have different questions?</p>
-  <span className='ans'>our team will answer all your questions we ensure aquick response</span>
-  <br />
- <button className='btn-faq'>Contact Us</button>
-  </div>
+  <div className="contact-card">
+      {/* Chat Icon */}
+      <div className="chat-icon">
+        <div className="bubble white">
+          <span className="dots">•••</span>
+        </div>
+        <div className="bubble pink"></div>
+      </div>
+
+      {/* Text */}
+      <h2>You have different questions?</h2>
+      <p>
+        Our team will answer all your questions.
+        <br />
+        We ensure a quick response.
+      </p>
+
+      {/* Button */}
+      <button className="contact-btn">Contact Us</button>
+    </div>
  </div>
   
  <div className="shipping-info">
       <div className="containershipping-info">
         <div className="info-card">
-          <div className="icon">
+          <div className="icon-shipping">
             <i className="fas fa-truck"></i>
           </div>
          < div className="text">
@@ -104,7 +118,7 @@ function Home() {
         </div>
         
         <div className="info-card">
-          <div className="icon">
+          <div className="icon-shipping">
             <i className="fas fa-credit-card"></i>
           </div>
           < div className="text">
@@ -115,7 +129,7 @@ function Home() {
         </div>
         
         <div className="info-card">
-          <div className="icon">
+          <div className="icon-shipping">
             <i className="fas fa-headset"></i>
           </div>
           < div className="text">
