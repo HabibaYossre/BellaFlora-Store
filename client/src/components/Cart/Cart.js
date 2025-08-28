@@ -4,6 +4,7 @@ import "./Cart.css";
 import Header from '../Header/Header';
 import Subscribe from '../Subscribe/Subscribe';
 import Footer from '../Footer/Footer';
+import Shipping from '../Shipping/Shipping';
 import  { useState } from "react";
 
 
@@ -100,7 +101,7 @@ const Cart=() => {
     </div>
  
     
-
+<Shipping />
     <Subscribe />
     <Footer />
  
