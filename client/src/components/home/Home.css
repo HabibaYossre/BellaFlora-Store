@@ -256,14 +256,7 @@ font-size: large;
   align-items: center;
 }
 
-@keyframes scrolling {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
+
 
 /* Pause animation on hover */
 .marquee-container:hover .marquee-content {
