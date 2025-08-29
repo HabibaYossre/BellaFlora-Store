@@ -13,6 +13,7 @@ import Order from "./components/Order/Order";
 
 import Resetpass from "./components/registration/Resetpass";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
+import ContactUs from "./components/ContactUs/ContactUs";
 
 
 
@@ -32,6 +33,8 @@ function App() {
       <Route path="/Reset" element={<Resetpass />} />
       <Route path="/Checkmail" element={<Checkmail />} />
       <Route path="/*" element={<ErrorPage />} />
+         <Route path="/ContactUs" element={<ContactUs />} />
+
 
 
 
