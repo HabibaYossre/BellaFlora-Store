@@ -8,6 +8,7 @@ import Allproducts from "./components/allProducts/Allproducts";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import Cart from "./components/Cart/Cart";
 import Wishlist from "./components/Wishlist/Wishlist";
+import Order from "./components/Order/Order";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route path="/Allproducts" element={<Allproducts />} /> 
       <Route path="/Cart" element={<Cart />} />
       <Route path="/Wishlist" element={<Wishlist />} />
+      <Route path="/Order" element={<Order />} />
 
     
     
