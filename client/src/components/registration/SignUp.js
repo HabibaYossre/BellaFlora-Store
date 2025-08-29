@@ -76,7 +76,7 @@ function SignUp() {
         <button type="submit" >SignUp</button>
           <span className="signup-link">
               Already have an account?{" "} 
-              <a href="/Login">Login here</a>
+              <a href="/auth/login">Login here</a>
             </span>
       </form>
     </div>
