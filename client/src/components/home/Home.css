@@ -19,6 +19,25 @@
 .look span{
   color: #5b0cae;
 }
+.image-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.image-grid img{
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+.image-item{
+  width: 400px;
+  height: 340px;
+ 
+  border-radius: 20px;
+}
+
 .faq2{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -223,6 +242,28 @@ right: 15px;
   color: #6b7280;
   line-height: 1.5;
   margin: 0;
+}
+.insta-follow{
+  font-size: 20px;
+  color: #141414;
+  margin-top: 30px;
+ 
+}
+.follow-insta{
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  font-size: 20px;
+}
+.insta-p{
+  font-size: 30px;
+  color: #141414;
+  margin-top: 0;
+  font-weight: bold;
+}
+.insta-span{
+  color: #5b0cae;
+  font-weight: bold;
 }
 
 
