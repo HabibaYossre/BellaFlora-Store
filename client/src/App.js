@@ -2,6 +2,7 @@
 import {Routes, Route } from "react-router-dom";
 import Login from "./components/registration/Login";
 import SignUp from "./components/registration/SignUp";
+import Checkmail from "./components/registration/Checkmail";
 import Home from './components/home/Home';
 import Search from "./components/search/Search";
 import Allproducts from "./components/allProducts/Allproducts";
@@ -9,6 +10,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Cart from "./components/Cart/Cart";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Order from "./components/Order/Order";
+import Resetpass from "./components/registration/Resetpass";
+
+
 
 
 function App() {
@@ -23,6 +27,9 @@ function App() {
       <Route path="/Cart" element={<Cart />} />
       <Route path="/Wishlist" element={<Wishlist />} />
       <Route path="/Order" element={<Order />} />
+       <Route path="/Reset" element={<Resetpass />} />
+        <Route path="/Checkmail" element={<Checkmail />} />
+
 
     
     
