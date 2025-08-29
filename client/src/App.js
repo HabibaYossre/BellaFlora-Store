@@ -10,7 +10,9 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Cart from "./components/Cart/Cart";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Order from "./components/Order/Order";
+
 import Resetpass from "./components/registration/Resetpass";
+import ErrorPage from "./components/ErrorPage/ErrorPage";
 
 
 
@@ -29,6 +31,8 @@ function App() {
       <Route path="/Order" element={<Order />} />
        <Route path="/Reset" element={<Resetpass />} />
         <Route path="/Checkmail" element={<Checkmail />} />
+                <Route path="/*" element={<ErrorPage />} />
+
 
 
     

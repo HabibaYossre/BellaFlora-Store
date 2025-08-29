@@ -58,7 +58,7 @@ function Login() {
          <span className="signup-link">
             Don't have an account?{" "} 
             {/* <Link to="/SignUp">Sign up now</Link> */}
-            <a href="/SignUp">Sign up now</a>
+            <a href="/auth/signup">Sign up now</a>
           </span>
       </form>
      

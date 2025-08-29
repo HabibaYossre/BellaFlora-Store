@@ -23,7 +23,7 @@ function Resetpass() {
           <label htmlFor="password">Confirm Password</label>
           <input type="password" id="password" name="password"  />
         </div>
-        <button type="submit" >Submit</button>
+        <button type="submit" >Update Password</button>
         
       </form>
      
