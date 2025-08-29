@@ -1,0 +1,137 @@
+.order-container{
+background-color: rgb(233, 233, 233);
+text-align: center;
+
+}
+.line{    
+    display: flex;
+   
+}
+h5{
+    text-align: left;
+    margin-left: 50px;
+   
+    font-size: 20px;
+    color: #130021;
+    font-weight: bold;
+}
+.order-form{
+
+    flex: 1;
+    text-align: left;
+    margin-right: 50px;
+    margin-left: 50px;
+    margin-top: 5px;
+}
+.order-page input{
+     flex: 1;
+  padding: 12px 18px;
+  border: 1px solid #dbdbdb;
+  outline: none;
+  border-radius: 50px  50px;
+  font-size: 15px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-weight: 400;
+
+}
+.order-page label{
+    font-weight: 500;
+    font-size: 16px;
+    color: #130021;
+   
+   
+}
+.billing-options {
+  display: flex;
+  gap: 16px;
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  border: 1px solid #ccc;
+  border-radius: 9999px; /* pill shape */
+  cursor: pointer;
+  transition: border 0.3s;
+}
+
+.option input {
+  display: none; /* hide native radio */
+}
+
+.option .custom-radio {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #aaa;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.option .custom-radio::after {
+  content: "";
+  width: 8px;
+  height: 8px;
+  background: transparent;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+.option.selected {
+  border-color: #6a0dad; /* purple border */
+}
+
+.option.selected .custom-radio {
+  border-color: #6a0dad;
+}
+
+.option.selected .custom-radio::after {
+  background: #6a0dad; /* purple dot */
+}
+
+.text {
+  font-size: 14px;
+  color: #333;
+}
+
+.order-summary {
+  background: #fff;
+  padding: 0px;
+  border-radius: 12px;
+    width: 300px;
+    margin-left: 100px;
+    height: fit-content;
+    margin-top: 15px;
+
+  /* border: 1px solid #eee; */
+}
+
+.order-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+}
+
+.order-summary .total {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.checkout-btn {
+
+  padding: 12px 24px;
+  border: none;
+  background: #6a0dad;
+  margin-left: 50px;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 15px;
+   border-radius:  50px 50px ;
+  font-size: 14px;
+  font-weight: bold;
+}
