@@ -16,10 +16,16 @@ function App() {
     //   <Route path="/SignUp" element={<SignUp />} />
 
     // </Routes>
+<<<<<<< HEAD
+    <>
+      <Allproducts></Allproducts>
+    </>
+=======
   <>
 <Home></Home>
   </>
   
+>>>>>>> 8da0e560fa19e83513467dba2beae0d98d53453f
   );
 }
 
