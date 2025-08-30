@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link, NavLink, useNavigate } from "react-router-dom"; 
 import  { useState } from "react";
 import axios from "axios";
 
@@ -58,7 +58,7 @@ function Login() {
          <span className="signup-link">
             Don't have an account?{" "} 
             {/* <Link to="/SignUp">Sign up now</Link> */}
-            <a href="/auth/signup">Sign up now</a>
+          <NavLink to="/auth/signup">Sign up now</NavLink>
           </span>
       </form>
      

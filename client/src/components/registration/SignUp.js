@@ -1,6 +1,6 @@
 import React from 'react';
 import "./Login.css"; 
-import { useNavigate } from "react-router-dom"; 
+import { NavLink, useNavigate } from "react-router-dom"; 
 import  { useState } from "react";
 import axios from "axios";
 
@@ -76,7 +76,8 @@ function SignUp() {
         <button type="submit" >SignUp</button>
           <span className="signup-link">
               Already have an account?{" "} 
-              <a href="/auth/login">Login here</a>
+            
+              <NavLink to="/auth/login">Login here</NavLink>
             </span>
       </form>
     </div>
