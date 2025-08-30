@@ -1,17 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import "./Header.css";
 import { NavLink } from 'react-router-dom';
 
 
-
-
 function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
 
-    
   return (
-
     <header>
-   
+      {/* ---------- Top Bar ---------- */}
       <div className="top-bar">
         <div className="left">
           <span>Call Us : +123-456-789</span>
@@ -19,7 +16,6 @@ function Header() {
         <div className="center">
           <span>
             Sign up and <b>GET 20% OFF</b> for your first order.{" "}
-            {/* <a href="#signup">Sign up now</a> */}
             <NavLink to="/auth/signup">Sign up now</NavLink>
           </span>
         </div>
@@ -32,14 +28,20 @@ function Header() {
         </div>
       </div>
 
-   
+      {/* ---------- Navbar ---------- */}
       <nav className="navbar">
         <div className="logo">
           <span className="logo-icon">🌸</span>
           <span className="logo-text">Flower Shop.</span>
         </div>
 
-        <ul className="nav-links">
+        {/* Hamburger Icon */}
+        <div className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)}>
+          <i className={menuOpen ? "fas fa-times" : "fas fa-bars"}></i>
+        </div>
+
+        {/* Nav Links */}
+        <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
           <li><NavLink to="/Home">Home</NavLink></li>
           <li><NavLink to="/Shop">Shop</NavLink></li>
           <li><NavLink to="/Ossions">Occasions</NavLink></li>
@@ -48,19 +50,16 @@ function Header() {
           <li><NavLink to="/Blogs">Blogs</NavLink></li>
         </ul>
 
+        {/* Icons */}
         <div className="icons">
           <NavLink to="/search"><i className="fas fa-search"></i></NavLink>
           <NavLink to="/Wishlist"><i className="far fa-heart"></i></NavLink>
-         <NavLink to="/Cart"><i className="fas fa-shopping-bag"></i></NavLink>
-         <NavLink to="/User"><i className="far fa-user"></i></NavLink>
+          <NavLink to="/Cart"><i className="fas fa-shopping-bag"></i></NavLink>
+          <NavLink to="/User"><i className="far fa-user"></i></NavLink>
         </div>
       </nav>
-      </header>
-
-      );
-};
-
-    
- 
+    </header>
+  );
+}
 
 export default Header;
