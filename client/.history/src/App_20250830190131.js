@@ -4,6 +4,7 @@ import SignUp from "./components/registration/SignUp";
 import Home from "./components/home/Home";
 
 import Checkmail from "./components/registration/Checkmail";
+import Home from './components/home/Home';
 import Search from "./components/search/Search";
 import Allproducts from "./components/allProducts/Allproducts";
 import "@fortawesome/fontawesome-free/css/all.min.css";

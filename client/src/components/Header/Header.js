@@ -37,7 +37,7 @@ function Header() {
         </div>
 
         <ul className="nav-links">
-          <li><a href="#">Home</a></li>
+          <li><a href="/Home">Home</a></li>
           <li><a href="#">Shop</a></li>
           <li><a href="#">Occasions</a></li>
           <li><a href="#">About Us</a></li>
@@ -47,8 +47,8 @@ function Header() {
 
         <div className="icons">
           <a href="#"><i className="fas fa-search"></i></a>
-          <a href="#"><i className="far fa-heart"></i></a>
-          <a href="#"><i className="fas fa-shopping-bag"></i></a>
+          <a href="/Wishlist"><i className="far fa-heart"></i></a>
+          <a href="/Cart"><i className="fas fa-shopping-bag"></i></a>
           <a href="#"><i className="far fa-user"></i></a>
         </div>
       </nav>
