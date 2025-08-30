@@ -1,10 +1,12 @@
 import React from 'react';
 import "./Header.css";
+import { NavLink } from 'react-router-dom';
 
 
 
 
 function Header() {
+
     
   return (
 
@@ -17,7 +19,8 @@ function Header() {
         <div className="center">
           <span>
             Sign up and <b>GET 20% OFF</b> for your first order.{" "}
-            <a href="#signup">Sign up now</a>
+            {/* <a href="#signup">Sign up now</a> */}
+            <NavLink to="/auth/signup">Sign up now</NavLink>
           </span>
         </div>
         <div className="right">
@@ -37,19 +40,19 @@ function Header() {
         </div>
 
         <ul className="nav-links">
-          <li><a href="/Home">Home</a></li>
-          <li><a href="#">Shop</a></li>
-          <li><a href="#">Occasions</a></li>
-          <li><a href="#">About Us</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Blogs</a></li>
+          <li><NavLink to="/Home">Home</NavLink></li>
+          <li><NavLink to="/Shop">Shop</NavLink></li>
+          <li><NavLink to="/Ossions">Occasions</NavLink></li>
+          <li><NavLink to="/AboutUs">About Us</NavLink></li>
+          <li><NavLink to="/ContactUs">Contact Us</NavLink></li>
+          <li><NavLink to="/Blogs">Blogs</NavLink></li>
         </ul>
 
         <div className="icons">
-          <a href="#"><i className="fas fa-search"></i></a>
-          <a href="/Wishlist"><i className="far fa-heart"></i></a>
-          <a href="/Cart"><i className="fas fa-shopping-bag"></i></a>
-          <a href="#"><i className="far fa-user"></i></a>
+          <NavLink to="/search"><i className="fas fa-search"></i></NavLink>
+          <NavLink to="/Wishlist"><i className="far fa-heart"></i></NavLink>
+         <NavLink to="/Cart"><i className="fas fa-shopping-bag"></i></NavLink>
+         <NavLink to="/User"><i className="far fa-user"></i></NavLink>
         </div>
       </nav>
       </header>
