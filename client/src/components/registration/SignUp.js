@@ -32,7 +32,7 @@ function SignUp() {
          });*/
 
          axios
-         .post("/auth/signup", { name, email, password })
+         .post("http://localhost:3000/auth/signup", { name, email, password })
          .then((res) => {
            console.log(res.data); // see backend response
            if (res.data.token) {

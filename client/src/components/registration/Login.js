@@ -26,8 +26,8 @@ function Login() {
     axios
       .post("http://localhost:3000/auth/login", { email, password })
       .then((result) => {
-        console.log(result);
-        if (result.data === "Success") {
+        //console.log(result);
+        if (result.status===200) {
           navigate("/Home");
         } else {
           alert("Invalid email or password");

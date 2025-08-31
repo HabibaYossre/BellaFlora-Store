@@ -1,0 +1,6 @@
+.main-container{
+    background-image: url("../../../public/images/mainBackground.jb");
+    background-size: cover;
+    background-color: aqua;
+    height: 100vh;
+}
