@@ -3,10 +3,14 @@ import { Link } from "react-router-dom";
 import "./Main.css";
 import { GiFlowers } from "react-icons/gi";
 import { FaArrowRight } from "react-icons/fa";
+import Header from "../Header/Header";
 
 function Main() {
   return (
+    <>   
+   
       <div className="main-container">
+     
           <div className="layout">
       <div className="left-section">
         {/* slogan begin */}
@@ -45,7 +49,7 @@ function Main() {
       </div>
       </div>
     </div>
-   
+   </>
   
   );
 }

@@ -23,11 +23,12 @@ import Marquee from "./components/Marquee/Marquee";
 import FollowUs from "./components/followUs/FollowUs";
 import Shipping from "./components/Shipping/Shipping";
 import Subscribe from "./components/Subscribe/Subscribe";
-
+=======
 import TrackOrder from "./components/TrackOrder/TrackOrder";
 
 
 
+>>>>>>> 295c9d3b45a5ad6eb7e0c5079a83a719546dea0b
 
 
 
