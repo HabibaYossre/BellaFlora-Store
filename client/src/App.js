@@ -18,6 +18,10 @@ import ContactUs from "./components/ContactUs/ContactUs";
 import Main from "./components/main/Main"
 import Footer from "./components/Footer/Footer";
 import Ocassions from "./components/occasions/Ocassions";
+import TrackOrder from "./components/TrackOrder/TrackOrder";
+
+
+
 
 
 
@@ -39,6 +43,7 @@ function App() {
       <Route path="/Checkmail" element={<Checkmail />} />
       <Route path="/*" element={<ErrorPage />} />
       <Route path="/ContactUs" element={<ContactUs />} />
+      <Route path="/TrackOrder" element={<TrackOrder />} />
 
     
     </Routes>
