@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import Marquee from '../Marquee/Marquee';
 import Shipping from '../Shipping/Shipping';
 import FAQ from '../FAQ/FAQ';
+import Main from '../main/Main';
 
 
 
@@ -25,6 +26,8 @@ function Home() {
    <>
      <Header />
      {/* <Occassions></Occassions> */}
+     <Main></Main>
+     
 <Marquee></Marquee>
 <div className="follow-insta">
   <span className='insta-follow'>Follow us </span>

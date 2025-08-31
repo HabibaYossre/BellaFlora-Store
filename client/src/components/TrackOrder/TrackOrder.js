@@ -38,9 +38,13 @@ const TrackOrder=() => {
             <p>To track your order Enter your Order ID and Billing Email to track your order.</p>
             <div className="order-info">
                 <label htmlFor="order-id">Order ID*</label>
+               
                 <input type="text" id="order-id" name="order-id" placeholder="Enter Order ID" />
+               
                 <label htmlFor="email">Billing Email*</label>
+             
                 <input type="email" id="email" name="email" placeholder="Your Billing Email" />
+             
                 <button type="submit">Track Order</button>
                 
                
