@@ -20,6 +20,7 @@ import Footer from "./components/Footer/Footer";
 import Ocassions from "./components/occasions/Ocassions";
 
 
+
 function App() {
   return (
     <>

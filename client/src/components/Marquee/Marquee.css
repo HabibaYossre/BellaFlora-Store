@@ -36,6 +36,14 @@ font-size: large;
 .marquee-container:hover .marquee-content {
   animation-play-state: paused;
 }
+@keyframes scrolling {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
 
 /* Responsive design */
 @media (max-width: 768px) {
