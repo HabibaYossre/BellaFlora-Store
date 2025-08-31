@@ -1,0 +1,111 @@
+.ocassions-container {
+  padding: 5rem 6rem;
+
+}
+.headers {
+  margin: 0 auto;
+  max-width: 450px;
+  text-align: center;
+}
+.headers .subheader {
+  font-size: 1.5rem;
+}
+.ocassions-mainHeader {
+  font-size: 3rem;
+  margin-top: 10px;
+}
+.ocassions-mainHeader span {
+  color: var(--primary-color);
+}
+.ocassions-types {
+display: grid;
+  grid-template-columns: repeat(6, 1fr); /* 6 in a row for large screens */
+  gap: 2rem;
+  margin-top: 30px;
+  
+}
+.icon-container {
+  width: 120px;
+  height: 120px;
+  background-color: #f6f6f6;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-container svg {
+  stroke-width: 5;
+  font-size: 3.4rem;
+  color: var(--primary-color);
+}
+.ocasssion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.ocasssion-name {
+  text-align: center;
+  font-weight: 500;
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+@media (max-width: 1200px) {
+  .ocassions-types {
+    
+    grid-template-columns: repeat(3,1fr);
+  }
+}
+@media (max-width: 768px) {
+  .ocassions-types {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+/* @media (max-width: 480px) {
+  .ocassions-types {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  
+  }
+} */
+
+.collection-cards{
+  display: flex;
+  gap: 20px;
+  margin-top: 5rem;
+}
+.collection{
+height: 300px;
+border-radius: 20px;
+padding: 2rem;
+}
+.card1{
+  background-color: var(--background-color);
+  background-image: url("../../../public/images/little-girl1.png");
+  background-size: cover;
+  background-position: top;
+}
+.card1 .discount{
+  background-color: #FFFFFF;
+}
+.discount{
+  max-width: 190px;
+  border-radius: 20px;
+  padding: 0.5rem;
+  font-weight: 500;
+}
+.collection h3{
+  font-size: 2rem;
+  max-width: 200px;
+  margin: 0.7rem 0;
+}
+.collection-text{
+  
+}
+
+
+ @media (max-width: 480px) {
+  .collection-cards{
+    flex-direction: column;
+  }
+ }

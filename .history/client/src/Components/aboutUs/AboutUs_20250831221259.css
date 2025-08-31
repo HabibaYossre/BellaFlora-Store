@@ -1,0 +1,14 @@
+.aboutUs-container{
+      padding: 5rem 6rem;
+background-color: var(--background-color);
+display: flex;
+align-items: center;
+gap: 20px;
+}
+.aboutUs-img{
+    background-image: url(../../../public/images/aboutUs.avif);
+   
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+}

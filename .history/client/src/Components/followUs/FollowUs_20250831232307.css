@@ -1,0 +1,23 @@
+.follow-insta{
+      padding: 5rem 6rem 0rem;
+
+}
+
+.image-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 50px;
+}
+.image-grid img{
+  width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+.image-item{
+  width: 400px;
+  height: 340px;
+
+  border-radius: 20px;
+}
