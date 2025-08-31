@@ -1,0 +1,42 @@
+.ocassions-container{
+    padding: 5rem 6rem ;
+
+}
+.headers{
+    margin: 0 auto;
+    max-width: 450px;
+    text-align: center;
+}
+.headers .subheader{
+    font-size: 1.5rem;
+}
+.ocassions-mainHeader{
+    font-size: 3rem;
+   margin-top: 10px;
+}
+.ocassions-mainHeader span{
+    color: var(--primary-color);
+}
+.ocassions-types{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.icon-container{
+    width: 120px;
+    height: 120px;
+    background-color: #F6F6F6;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.icon-container svg{
+      stroke-width: 6;
+   font-size: 4rem;
+   color: var(--primary-color);
+}
+.ocasssion-name{
+text-align: center;
+font-weight: ;
+}

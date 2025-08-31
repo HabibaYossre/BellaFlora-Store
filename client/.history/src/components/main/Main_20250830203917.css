@@ -1,0 +1,6 @@
+.main-container{
+    background-image: url("../../../public/images/mainBackground.jpg");
+    background-size: cover;
+    background-color: aqua;
+    height: calc(100vh - 50px - 72px);
+}

@@ -1,0 +1,9 @@
+.main-container{
+    background-image: url("../../../public/images/mainBackground.jpg");
+    background-size: cover;
+    height: calc(100vh - 50px - 67px);
+    background-position:top;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 70px;
+}
