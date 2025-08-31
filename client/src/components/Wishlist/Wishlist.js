@@ -6,6 +6,7 @@ import Subscribe from "../Subscribe/Subscribe";
 import Shipping from "../Shipping/Shipping";
 import { useState } from "react";
 
+
 const Wishlist=() => {
       const [cartItems, setCartItems] = useState([
         { id: 1, name: "Blue White Bouquets", type: "Bouquet", price: 45, qty: 4, img: "/blue.png" },
@@ -17,6 +18,7 @@ const Wishlist=() => {
     //     return <div>Loading...</div>;
 
     //   }
+
     
       const updateQty = (id, delta) => {
         setCartItems((prev) =>
@@ -51,6 +53,7 @@ const Wishlist=() => {
           <span>Price</span>
           <span>Date Added</span>
           <span>Stock Status</span>
+
         </div>
 
         {cartItems.map((item) => (
@@ -64,6 +67,8 @@ const Wishlist=() => {
             <span>${item.price.toFixed(2)}</span>
             <span>Aug 15, 2023</span>
             <span className="in-stock">In Stock</span>
+            <button className="add-cart-btn" >Add to Cart</button>
+           
           
            
            
@@ -71,9 +76,26 @@ const Wishlist=() => {
           
           
         ))}
+      
       </div>
 
+            
+        </div>
+        {/* <div className="wishlist-link">
+            <span className="link-wishlist" onClick={() => setCartItems([])}> Wishlist Link</span>
+          <input type="text" id="link-wishlist" name="link-wishlist" placeholder="https://localhost3000/Wishlist" />
+          <button className="apply-copy-btn">Copy Link</button>
+        </div> */}
+        <div className="wishlist-actions">
+         < div className="one">  
           
+          <input type="text" id="link-wishlist" name="link-wishlist" placeholder="https://localhost3000/Wishlist"  />
+          <button className="apply-copy-btn">Copy Link</button>
+          </div>
+          <div className="two">
+        <span className="clear-wishlist" onClick={() => setCartItems([])}>Clear Wishlist</span>
+         <button className="add-to-cart-btn">Add All to Cart</button>
+          </div>
         </div>
           <Shipping />
           

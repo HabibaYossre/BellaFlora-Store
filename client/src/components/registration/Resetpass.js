@@ -9,7 +9,7 @@ function Resetpass() {
     e.preventDefault();
     // Add your password reset logic here
     alert("Password has been reset!");
-    navigate("/Login");
+    navigate("/auth/login");
   }
   return (
     <div>

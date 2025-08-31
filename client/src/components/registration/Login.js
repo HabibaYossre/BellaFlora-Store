@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Link, useNavigate } from "react-router-dom"; 
+import { Link, NavLink, useNavigate } from "react-router-dom"; 
 import  { useState } from "react";
 import axios from "axios";
 
@@ -26,8 +26,8 @@ function Login() {
     axios
       .post("http://localhost:3000/auth/login", { email, password })
       .then((result) => {
-        console.log(result);
-        if (result.data === "Success") {
+        //console.log(result);
+        if (result.status===200) {
           navigate("/Home");
         } else {
           alert("Invalid email or password");
@@ -58,7 +58,7 @@ function Login() {
          <span className="signup-link">
             Don't have an account?{" "} 
             {/* <Link to="/SignUp">Sign up now</Link> */}
-            <a href="/auth/signup">Sign up now</a>
+          <NavLink to="/auth/signup">Sign up now</NavLink>
           </span>
       </form>
      
