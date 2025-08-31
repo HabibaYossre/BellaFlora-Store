@@ -31,6 +31,14 @@ app.use("/users", userRoutes);
 // Error Handler
 //app.use(errorHandler);
 
+import router from "./routes/productRoutes.js"; // ◀️ استخدم import
+app.use('/product',router)
+
+// app.listen(port,()=>{
+//     console.log("server Running on http://localhost "+port)
+// })
+
+
 
 
 const PORT = process.env.PORT ;

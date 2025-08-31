@@ -188,7 +188,12 @@
 }
 
 /* ---------- Responsive ---------- */
-
+/* Hide hamburger on desktop */
+.menu-toggle {
+  margin-left: 0px;
+  display: none;
+  
+}
 /* Tablet and smaller (still show nav normally) */
 @media (max-width: 992px) {
   .navbar {
@@ -223,7 +228,7 @@
 
   /* Show hamburger button */
   .menu-toggle {
-    display: block;
+    display: flex; /* hidden by default */
     font-size: 22px;
     cursor: pointer;
   }
@@ -237,8 +242,4 @@
   }
 }
 
-/* Hide hamburger on desktop */
-.menu-toggle {
-  display: flex;
-  
-}
+

@@ -25,6 +25,8 @@ function Marquee() {
           <span className="separator">✿</span>
           <span>Birthday</span>
           <span className="separator">✿</span>
+          <span>Weddings</span>
+          <span className="separator">✿</span>
           
         </div>
       </div>

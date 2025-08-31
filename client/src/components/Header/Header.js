@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 
 function Header() {
+
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
@@ -16,7 +17,7 @@ function Header() {
         <div className="center">
           <span>
             Sign up and <b>GET 20% OFF</b> for your first order.{" "}
-            <NavLink to="/auth/signup">Sign up now</NavLink>
+            {/* <NavLink to="/auth/signup">SignUp</NavLink> */}
           </span>
         </div>
         <div className="right">

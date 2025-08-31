@@ -23,6 +23,10 @@ function Home() {
 
  
    <>
+<<<<<<< HEAD
+     
+=======
+     <Header />
      {/* <Occassions></Occassions> */}
 <Marquee></Marquee>
 <div className="follow-insta">
@@ -52,7 +56,6 @@ function Home() {
   </div>
  
 </div>
-
     <div className="FAQs">
       <h2 className='faq'>FAQs</h2>
       <p className='look'>Question?<span>Look here.</span></p>
