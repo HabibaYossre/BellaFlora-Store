@@ -60,13 +60,13 @@ function App() {
     
     </Routes>
     {/* home ordering: */}
-    <Ocassions></Ocassions>
+    {/* <Ocassions></Ocassions>
     <AboutUs></AboutUs>
     <Marquee></Marquee>
     <FollowUs></FollowUs>
     <Shipping></Shipping>
     <Subscribe></Subscribe>
-    <Footer></Footer>
+    <Footer></Footer> */}
 
   </>
 );
