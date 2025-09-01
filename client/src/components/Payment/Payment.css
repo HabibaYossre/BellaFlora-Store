@@ -34,21 +34,47 @@
 }
 .payment-container {
   max-width: 500px;
-  margin: 20px auto;
-  padding: 10px;
- 
+  margin: 40px auto;
+  padding: 20px;
   font-family: Arial, sans-serif;
 }
 
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
 .methods {
-display: flex;
-  gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.method {
+  display: flex;
+  align-items: center;
+  gap: 12px;
   border: 1px solid #ddd;
   border-radius: 12px;
   padding: 14px;
   cursor: pointer;
   transition: border-color 0.2s ease;
 }
+
+.method input {
+  accent-color: #7b3dff; /* purple radio button */
+}
+
+.method .icon {
+  display: flex;
+  align-items: center;
+}
+
+.method.selected {
+  border-color: #7b3dff;
+}
+
 
 .methods input {
   accent-color: #7b3dff;
