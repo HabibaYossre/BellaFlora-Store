@@ -11,6 +11,7 @@ import Cart from "./components/Cart/Cart";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Order from "./components/Order/Order";
 
+
 import Resetpass from "./components/registration/Resetpass";
 import ErrorPage from "./components/ErrorPage/ErrorPage";
 import ContactUs from "./components/ContactUs/ContactUs";
@@ -26,6 +27,7 @@ import Subscribe from "./components/Subscribe/Subscribe";
 import Payment from "./components/Payment/Payment";
 
 import TrackOrder from "./components/TrackOrder/TrackOrder";
+import Invoice from "./components/Invoice/Invoice";
 
 
 
@@ -52,6 +54,7 @@ function App() {
       <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/TrackOrder" element={<TrackOrder />} />
       <Route path="/Payment" element={<Payment />} />
+      <Route path="/Invoice" element={<Invoice />} />
 
 
     
@@ -64,6 +67,7 @@ function App() {
     <Shipping></Shipping>
     <Subscribe></Subscribe>
     <Footer></Footer>
+
   </>
 );
 {/* <>

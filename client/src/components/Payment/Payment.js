@@ -46,10 +46,10 @@ function Payment() {
   ];
  
 
-  const paymentprocee=()=>{
+  const paymentroute=()=>{
     // alert("Proceeding to payment gateway...");
     // Here you can add your payment gateway integration logic
-    navigate('/Home');
+    navigate('/Invoice');
   }
   return (
 
@@ -76,7 +76,7 @@ function Payment() {
         <p className="total">Total 100$</p>
       
            
-            <button className="checkout-btn" onClick={paymentprocee}>Proceed to Checkout</button>
+            <button className="checkout-btn" onClick={paymentroute}>Proceed to Checkout</button>
            
       </div>
            <div className="payment-container">
