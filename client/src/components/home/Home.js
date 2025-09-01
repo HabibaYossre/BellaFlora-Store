@@ -25,10 +25,11 @@ function Home() {
  
    <>
      {/* <Occassions></Occassions> */}
+     <Header />
      <Main></Main>
      
 <Marquee></Marquee>
-<div className="follow-insta">
+{/* <div className="follow-insta">
   <span className='insta-follow'>Follow us </span>
   <p className='insta-p'> Follow Us on <span className='insta-span'> Instagram</span></p>
   
@@ -58,7 +59,7 @@ function Home() {
 
   </div>
  
-</div>
+</div> */}
 
     <div className="FAQs">
       <h2 className='faq'>FAQs</h2>
