@@ -20,7 +20,7 @@ function Login() {
       return;
     }
      axios
-      .post("http://localhost:3000/auth/forgetpassword", { email})
+      .post("http://localhost:3000/auth/forgot-password", { email})
       .then((result) => {
          if (result.status===200) {
          navigate("/Checkmail")

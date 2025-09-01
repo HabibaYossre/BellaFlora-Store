@@ -37,12 +37,13 @@
   margin: 40px auto;
   padding: 20px;
   font-family: Arial, sans-serif;
+  gap: 20px;
 }
 
 .title {
-  font-size: 20px;
+  font-size: 17px;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin-bottom: 10px;
 }
 
 .methods {
@@ -117,11 +118,10 @@
   padding: 0px;
   border-radius: 12px;
     width: 300px;
-    margin-left: 300px;
+    margin-left: 50px;
     height: fit-content;
-    margin-top: 100px;
+    margin-top: 180px;
 
-  /* border: 1px solid #eee; */
 }
 
 .order-summary p {
@@ -135,19 +135,21 @@
   font-size: 18px;
 }
 
-.checkout-btn {
 
-  padding: 12px 24px;
-  border: none;
-  background: #6a0dad;
-  margin-left: 50px;
-  color: white;
+.Addcard-btn{
+   width: 100%;
+   padding: 12px 24px;
+   background: #6a0dad;
+     color: white;
   border-radius: 20px;
   cursor: pointer;
   margin-top: 15px;
    border-radius:  50px 50px ;
   font-size: 14px;
   font-weight: bold;
+  border: none;
+  margin-left: 15px;
+
 }
 @media (max-width: 768px) {
     .order-container{

@@ -6,8 +6,9 @@ import Subscribe from "../Subscribe/Subscribe";
 import Shipping from "../Shipping/Shipping";
 import { useNavigate } from 'react-router-dom';
 import { FaPaypal, FaGooglePay, FaMoneyBillWave } from "react-icons/fa";
-import { SiVisa } from "react-icons/si";
-import { CardSim } from "lucide-react";
+import { SiVisa} from "react-icons/si";
+import { SiVodafone } from "react-icons/si";
+// import { CardSim } from "lucide-react";
 
 function Payment() {
   const [selected,setSelected]=useState("paypal");
@@ -35,19 +36,15 @@ function Payment() {
       label: "Cash On Delivery",
       icon: <FaMoneyBillWave className="text-purple-600 text-2xl" />,
     },
-    
-  ];
-  const another=[
-    {
+     {
        
       id:"add-card",
       label:"Add New Card/Debit Card",
-      icon:<CardSim className="text-purple-600 text-2xl"/>
+      icon:<SiVodafone className="text-purple-600 text-2xl"/>
     }
     
-
   ];
-
+ 
 
   const paymentprocee=()=>{
     // alert("Proceeding to payment gateway...");
@@ -63,7 +60,25 @@ function Payment() {
         <h2>Payment Page</h2> <br />
         <span className='cart-items'>Home / Shopping Cart / Checkout</span>
         </div>
+     
         <div className="line payment-line">
+               <div className="order-summary">
+      
+        <h3>Order Summary</h3>
+        <p>Items<span>$10.00</span></p>
+        <p>Sub Total <span>$300.00</span></p>
+        <p>Shipping <span>$0.00</span></p>
+        <p>Taxes <span>$0.00</span></p>
+        <p>Coupon Discount <span>-200$</span></p>
+
+        <hr />
+        
+        <p className="total">Total 100$</p>
+      
+           
+            <button className="checkout-btn" onClick={paymentprocee}>Proceed to Checkout</button>
+           
+      </div>
            <div className="payment-container">
       <h2 className="title">Select Payment Method</h2>
       <div className="methods">
@@ -85,11 +100,7 @@ function Payment() {
           </label>
         ))}
       </div>
-    </div>
-
-
-        <div className="payment-container">
-            <div className="methods">
+      {/* <div className="methods">
         {another.map((method) => (
           <label
             key={method.id}
@@ -110,8 +121,13 @@ function Payment() {
         ))}
         <br />
         
-      </div>
-      <form className="payment-form">
+      </div> */}
+      
+    </div>
+
+
+        <div className="payment-container">
+          <form className="payment-form">
         <label for="cardname">Name on Card *</label><br />
         <input type="text" id="cardname" name="cardname" placeholder="John More Doe" /><br />
         <label for="cardnumber">Credit card number *</label><br />
@@ -122,33 +138,11 @@ function Payment() {
         <input type="text" id="expyear" name="expyear" placeholder="2024" />
         <label for="cvv">CVV *</label><br />
         <input type="text" id="cvv" name="cvv" placeholder="352" /><br />
-     
-        
-                
-      
- 
-      
-
       </form>
-        <button className="checkout-btn" >Add Card</button>
+      
+        <button className="Addcard-btn" >Add Card</button>
     </div>
-        <div className="order-summary">
       
-        <h3>Order Summary</h3>
-        <p>Items 12</p>
-        <p>Sub Total 300$</p>
-        <p>Shipping <span>$0.00</span></p>
-        <p>Taxes <span>$0.00</span></p>
-        <p>Coupon Discount -200$</p>
-
-        <hr />
-        
-        <p className="total">Total 100$</p>
-      
-           
-            <button className="checkout-btn" onClick={paymentprocee}>Proceed to Checkout</button>
-           
-      </div>
       </div>
             <Shipping />
         <Subscribe />

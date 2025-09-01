@@ -13,17 +13,18 @@ function Resetpass() {
       const { token } = useParams(); // get token from URL
     const handleReset = (e) => {
     e.preventDefault();
+     {/* Habiba Reset Password Route Here!*/}
     axios
-      .post("http://localhost:3000/auth/resetpassword", { pass})
+      .post("http://localhost:3000/api/auth/reset-password/:token", { pass}) 
       .then((result) => {
          if (result.status===200) {
-       
- if (!password || !confirmPassword) {
+        {/* Habiba Reset Password Route Here!*/}
+ if (!pass || !confirmPass) {
       alert("Both fields are required!");
       return;
     }
 
-    if (password !== confirmPassword) {
+    if (pass !== confirmPass) {
       alert("Passwords do not match!");
       return;
     }
