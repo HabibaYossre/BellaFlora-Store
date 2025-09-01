@@ -12,6 +12,31 @@ function Login() {
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  const forgetpassword=(e)=>{
+    e.preventDefault();
+ if (!email) {
+      alert("Email is required!");
+      return;
+    }
+     axios
+      .post("http://localhost:3000/auth/forgetpassword", { email})
+      .then((result) => {
+         if (result.status===200) {
+         console.log("Check Your Mail")
+
+        }
+         else {
+
+          alert("Invalid email");
+        }
+      })
+       .catch((err) => {
+        console.log(err);
+        alert("Something went wrong");
+      });
+
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
  if (!email) {
@@ -52,7 +77,7 @@ function Login() {
         <div>
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" value={password}  onChange={(e) => setPassword(e.target.value)} />
-           <a href="/Checkmail" className="forgetpass">forget password?</a>
+           <a href="/Checkmail" className="forgetpass" onClick={forgetpassword}>forget password?</a>
         </div>
         <button type="submit" >Login</button>
          <span className="signup-link">
