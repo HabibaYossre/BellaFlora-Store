@@ -5,7 +5,10 @@ import Header from '../Header/Header';
 import Subscribe from '../Subscribe/Subscribe';
 import Footer from '../Footer/Footer';
 import Shipping from '../Shipping/Shipping';
+
+import Order from '../Order/Order';
 import  { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -19,6 +22,12 @@ const Cart=() => {
     { id: 3, name: "Lavenders Bouquets", type: "Bouquet", price: 24, qty: 1, img: "/lavender.png" },
     { id: 4, name: "Fresh Flower Basket", type: "Basket", price: 42, qty: 2, img: "/basket.png" },
   ]);
+  const navigate = useNavigate();
+  const paymentprocee=()=>{
+    // alert("Proceeding to payment gateway...");
+    // Here you can add your payment gateway integration logic
+    navigate('/Order');
+  }
 
   const updateQty = (id, delta) => {
     setCartItems((prev) =>
@@ -91,7 +100,7 @@ const Cart=() => {
         <p className="total">Total <span>${total.toFixed(2)}</span></p>
       
            
-            <button className="checkout-btn">Proceed to Checkout</button>
+            <button className="checkout-btn" onClick={paymentprocee}>Proceed to Checkout</button>
            
       </div>
          <div className="subscrib-form">

@@ -23,6 +23,7 @@ import Marquee from "./components/Marquee/Marquee";
 import FollowUs from "./components/followUs/FollowUs";
 import Shipping from "./components/Shipping/Shipping";
 import Subscribe from "./components/Subscribe/Subscribe";
+import Payment from "./components/Payment/Payment";
 
 import TrackOrder from "./components/TrackOrder/TrackOrder";
 
@@ -50,6 +51,7 @@ function App() {
       <Route path="/*" element={<ErrorPage />} />
       <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/TrackOrder" element={<TrackOrder />} />
+      <Route path="/Payment" element={<Payment />} />
 
     
     </Routes>
