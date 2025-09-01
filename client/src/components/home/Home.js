@@ -65,6 +65,8 @@ function Home() {
       <h2 className='faq'>FAQs</h2>
       <p className='look'>Question?<span>Look here.</span></p>
        </div>
+
+       
 <FAQ></FAQ>
   
 
