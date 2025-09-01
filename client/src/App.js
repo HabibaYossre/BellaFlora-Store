@@ -46,12 +46,13 @@ function App() {
       <Route path="/Cart" element={<Cart />} />
       <Route path="/Wishlist" element={<Wishlist />} />
       <Route path="/Order" element={<Order />} />
-      <Route path="/Reset" element={<Resetpass />} />
+      <Route path="/Reset/:token" element={<Resetpass />} />
       <Route path="/Checkmail" element={<Checkmail />} />
       <Route path="/*" element={<ErrorPage />} />
       <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/TrackOrder" element={<TrackOrder />} />
       <Route path="/Payment" element={<Payment />} />
+
 
     
     </Routes>

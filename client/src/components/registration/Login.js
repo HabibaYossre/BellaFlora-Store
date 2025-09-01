@@ -2,6 +2,7 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom"; 
 import  { useState } from "react";
+import Checkmail from "./Checkmail.js"
 import axios from "axios";
 
 
@@ -22,7 +23,7 @@ function Login() {
       .post("http://localhost:3000/auth/forgetpassword", { email})
       .then((result) => {
          if (result.status===200) {
-         console.log("Check Your Mail")
+         navigate("/Checkmail")
 
         }
          else {
