@@ -134,4 +134,32 @@ text-align: center;
   height: 100%;
   border: none;
 }
+@media (max-width: 768px) {
+    .contact-us-image{
+        display: none;
+    }
+    .contact-form{
+        margin-right: 20px;
+        margin-left: 20px;
+        margin-top: 20px;
+    }
+    .order-container{
+        padding: 20px 10px;
+    }
+    .line{
+        display: block;
+    }
+    .contact-info {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .info-box {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    .map-container {
+        height: 300px;
+    }
+}
 
