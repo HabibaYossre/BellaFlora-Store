@@ -88,8 +88,8 @@
 
 **Functions / Responsibilities:**
 
-* Add product to wishlist.
-* Remove product from wishlist.
+* Add product to wishlist.//done
+* Remove product from wishlist.//done
 * Move product from wishlist → cart.
 
 ---
