@@ -37,11 +37,11 @@ import Invoice from "./components/Invoice/Invoice";
 function App() {
   return (
     <>
-    {/* <Header></Header> */}
+  
     <Routes>
       {/* <Route path="/" element={<Main />}/> */}
       <Route path="/auth/login" element={<Login />} />         
-      <Route path="/Home" element={<Home />} />      
+      <Route path="/" element={<Home />} />      
       <Route path="/auth/signup" element={<SignUp />} /> 
       <Route path="/S" element={<Search />} />
       <Route path="/Allproducts" element={<Allproducts />} /> 
@@ -50,11 +50,12 @@ function App() {
       <Route path="/Order" element={<Order />} />
       <Route path="/api/auth/reset-password/:token" element={<Resetpass />} />  {/* Habiba Reset Password Route Here!*/}
       <Route path="/Checkmail" element={<Checkmail />} />
-      <Route path="/*" element={<ErrorPage />} />
-      <Route path="/ContactUs" element={<ContactUs />} />
+         <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/TrackOrder" element={<TrackOrder />} />
       <Route path="/Payment" element={<Payment />} />
       <Route path="/Invoice" element={<Invoice />} />
+      <Route path="/*" element={<ErrorPage />} />
+   
 
 
     
