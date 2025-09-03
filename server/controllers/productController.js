@@ -1,10 +1,3 @@
-// import fs from "fs";
-// import Product from "../models/Product.js";
-// import { isValidObjectId } from "mongoose";
-// const path = "D:\\downloadsD\\flower.json";
-// const data = fs.readFileSync(path, "utf8");
-// let sData = JSON.parse(data)
-
 
 import mongoose from 'mongoose';
 import Product from '../models/Product.js';
@@ -245,7 +238,7 @@ if(!productToDelete) return res.status(404).json({msg:"This Product Doesn't Exis
     await Product.deleteOne(productToDelete)
     return res.status(200).json({msg:"Product Is Deleted",Product:productToDelete})
     }catch(error){
-        console.error("Delet Error",error);
+        console.error("Delete Error",error);
         res.status(500).json({success:"False",msg:"Server Error"})
     }
 
