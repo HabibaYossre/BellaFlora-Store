@@ -3,12 +3,55 @@ import "./Invoice.css";
 import Header from "../Header/Header";
 import Subscribe from "../Subscribe/Subscribe";
 import Shipping from "../Shipping/Shipping";
-
+import { jsPDF } from "jspdf";
 import Footer from '../Footer/Footer';
 
 
 
 function Invoice(){
+      const handleDownload = () => {
+      const doc = new jsPDF();
+
+    // Title
+    doc.setFontSize(18);
+    doc.text("Invoice", 20, 20);
+
+    // Order Info
+    doc.setFontSize(12);
+    doc.text("Order ID: #SDGT1254FD", 20, 40);
+    doc.text("Payment Method: Paypal", 20, 50);
+    doc.text("Transaction ID: TR542SSFE", 20, 60);
+    doc.text("Estimated Delivery Date: 24 December 2024", 20, 70);
+
+    // Table Header
+    doc.text("Products", 20, 90);
+    doc.text("Price", 150, 90);
+
+    // Products
+    const products = [
+      { name: "Blue White Bouquets", price: "$180.00" },
+      { name: "Royal Pink Bouquets", price: "$96.00" },
+      { name: "Lavenders Bouquets", price: "$24.00" },
+      { name: "Fresh Flower Basket", price: "$84.00" }
+    ];
+
+    let y = 100;
+    products.forEach(p => {
+      doc.text(p.name, 20, y);
+      doc.text(p.price, 150, y);
+      y += 10;
+    });
+
+    // Summary
+    doc.text("Shipping: $0.00", 20, y + 10);
+    doc.text("Taxes: $0.00", 20, y + 20);
+    doc.text("Coupon Discount: -$30.00", 20, y + 30);
+    doc.setFontSize(14);
+    doc.text("Total: $354.00", 20, y + 50);
+
+    // Save file
+    doc.save("invoice.pdf");
+  };
      const orderDetails = [
     { id: 1, name: "Blue White Bouquets", type: "Bouquet", price: 180, img: "/images/bouquet1.png" },
     { id: 2, name: "Royal Pink Bouquets", type: "Bouquet", price: 96, img: "/images/bouquet2.png" },
@@ -18,10 +61,7 @@ function Invoice(){
     return(
         <>
         <Header />
-      {/* <div className='order-container'>
-        <h2>Order Completed</h2> <br />
-        <span className='cart-items'>Home / Shopping Cart / Checkout/ Order Completed</span>
-        </div> */}
+    
          <div className="order-completed">
 
       <div className="order-header">
@@ -46,7 +86,7 @@ function Invoice(){
         <span>Estimated Delivery Date</span>
         <p>24 December 2024</p>
       </div>
-      <button className="invoice-btn">Download Invoice</button>
+      <button className="invoice-btn"  onClick={handleDownload}>Download Invoice</button>
     </div>
 
       <div className="order-details">
