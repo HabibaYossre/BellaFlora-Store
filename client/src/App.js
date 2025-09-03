@@ -10,6 +10,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import Cart from "./components/Cart/Cart";
 import Wishlist from "./components/Wishlist/Wishlist";
 import Order from "./components/Order/Order";
+import Profile from "./components/Profile/Profile";
 
 
 import Resetpass from "./components/registration/Resetpass";
@@ -37,7 +38,7 @@ import Invoice from "./components/Invoice/Invoice";
 function App() {
   return (
     <>
-    {/* <Header></Header> */}
+  
     <Routes>
       {/* <Route path="/" element={<Main />}/> */}
       <Route path="/auth/login" element={<Login />} />         
@@ -50,11 +51,13 @@ function App() {
       <Route path="/Order" element={<Order />} />
       <Route path="/api/auth/reset-password/:token" element={<Resetpass />} />  {/* Habiba Reset Password Route Here!*/}
       <Route path="/Checkmail" element={<Checkmail />} />
-      <Route path="/*" element={<ErrorPage />} />
-      <Route path="/ContactUs" element={<ContactUs />} />
+         <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/TrackOrder" element={<TrackOrder />} />
       <Route path="/Payment" element={<Payment />} />
       <Route path="/Invoice" element={<Invoice />} />
+      <Route path="/*" element={<ErrorPage />} />
+      <Route path="/Profile" element={<Profile />} />
+   
 
 
     

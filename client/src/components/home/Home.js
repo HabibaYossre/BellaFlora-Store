@@ -12,52 +12,28 @@ import AboutUs from '../aboutUs/AboutUs';
 import FollowUs from '../followUs/FollowUs';
 
 
-
-
-
-
-
-
-
-
-
-
 function Home() {
 
   return (
-
  
-   <>
-     {/* <Occassions></Occassions> */}
+   <>    
      <Header />
      <Main />
      <Ocassions></Ocassions>
-       <AboutUs></AboutUs>
-     {/* <Ocassions></Ocassions>
-    <AboutUs></AboutUs>
-    <Marquee></Marquee>
-    <FollowUs></FollowUs>
-    <Shipping></Shipping>
-    <Subscribe></Subscribe>
-    <Footer></Footer> */}
-     
-<Marquee></Marquee>
-<FollowUs />
-<Marquee></Marquee>
+     <AboutUs></AboutUs>
+  
+     <Marquee></Marquee>
+     <FollowUs />
+     <Marquee></Marquee>
 
     <div className="FAQs">
       <h2 className='faq'>FAQs</h2>
       <p className='look'>Question?<span>Look here.</span></p>
-       </div>
-
-       
-<FAQ></FAQ>
-<Shipping />
-<Subscribe />
-<Footer />
-  
-
- 
+       </div>     
+      <FAQ></FAQ>
+      <Shipping />
+      <Subscribe />
+      <Footer />
 
 </>
 

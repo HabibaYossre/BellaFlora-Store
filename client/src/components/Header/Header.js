@@ -56,7 +56,7 @@ function Header() {
           <NavLink to="/search"><i className="fas fa-search"></i></NavLink>
           <NavLink to="/Wishlist"><i className="far fa-heart"></i></NavLink>
           <NavLink to="/Cart"><i className="fas fa-shopping-bag"></i></NavLink>
-          <NavLink to="/User"><i className="far fa-user"></i></NavLink>
+          <NavLink to="/Profile"><i className="far fa-user"></i></NavLink>
         </div>
       </nav>
     </header>

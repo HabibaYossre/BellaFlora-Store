@@ -1,7 +1,13 @@
 import React from "react";
 import "./ErrorPage.css";
+import Home from "../home/Home";
+import { useNavigate } from 'react-router-dom';
 
 function ErrorPage() {
+     const navigate = useNavigate();
+     const handleerror=()=>{
+      navigate('/Home');
+     }
   return (
     <div className="error-container">
       <div className="error-card">
@@ -12,7 +18,7 @@ function ErrorPage() {
         </p>
         <button
           className="home-button"
-          onClick={() => (window.location.href = "/")}
+          onClick={handleerror}
         >
           Back to Home
         </button>
