@@ -1,0 +1,128 @@
+.dropdown-container {
+  width: 100%;
+  max-width: 400px;
+}
+
+.dropdown {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 16px;
+  border: 1px solid #ddd;
+  border-radius: 30px;
+  appearance: none; /* remove default arrow */
+  background-color: #fff;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Container for the whole profile */
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+/* Avatar */
+.profile-avatar {
+  margin-top: 20px;
+  position: relative;
+  display: inline-block;
+}
+
+.avatar-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.edit-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #6a0dad;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background 0.3s;
+}
+
+.edit-icon:hover {
+  background-color: #520b9e;
+}
+
+/* Form */
+.Profile-form {
+  margin-top: 30px;
+  width: 100%;
+  max-width: 500px;
+  text-align: left;
+}
+
+.Profile-form input,
+.Profile-form select {
+  padding: 12px 18px;
+  border: 1px solid #dbdbdb;
+  outline: none;
+  border-radius: 50px;
+  font-size: 15px;
+  margin-bottom: 15px;
+  width: 100%;
+  font-weight: 400;
+}
+
+.Profile-form label {
+  font-weight: 500;
+  font-size: 16px;
+  color: #130021;
+}
+
+.Profile-form button {
+  width: 50%;
+  padding: 12px 24px;
+  border: none;
+  background: #6a0dad;
+  color: white;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+  margin-left: 130px;
+}
+
+/* Logout button */
+.log-out {
+  width: 100%;
+  max-width: 200px;
+  padding: 12px 24px;
+  border: none;
+  background: #020000;
+  color: #fff;
+  border-radius: 50px;
+  cursor: pointer;
+  margin: 20px auto;
+  display: block;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* ✅ Responsive */
+@media (max-width: 768px) {
+  .Profile-form {
+    padding: 0 20px;
+  }
+
+  .profile-avatar {
+    margin: 0 auto;
+  }
+  .Profile-form button{
+   margin-left: 110px;
+  }
+}
