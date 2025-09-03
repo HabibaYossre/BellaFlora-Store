@@ -15,6 +15,7 @@ dotenv.config();
 connectDB();
 
 const app = express();
+
 app.use(express.json());
 app.use(cors());
 
@@ -36,3 +37,14 @@ app.use("/users", userRoutes);
 
 const PORT = process.env.PORT ;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+/*
+
+✅ Flow:
+
+When a customer checks out → POST /orders → creates an order.
+
+Users can see their orders → GET /orders.
+
+*/
