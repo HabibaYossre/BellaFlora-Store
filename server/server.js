@@ -6,7 +6,7 @@ import cors from "cors";
 import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js"
-
+import reviewRouter from "./routes/reviewRoutes.js"
 
 
 // Load .env variables
@@ -24,6 +24,8 @@ app.use("/auth", authRoutes);
 app.use("/cart", cartRoutes);
 app.use('/product',productRoutes)
 app.use("/wishlist",wishlistRoutes)
+app.use("/review",reviewRouter)
+
 
 /*app.use("/orders", orderRoutes);
 app.use("/users", userRoutes);
