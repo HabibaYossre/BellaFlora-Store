@@ -14,10 +14,7 @@ const Wishlist=() => {
         { id: 3, name: "Lavenders Bouquets", type: "Bouquet", price: 24, qty: 1, img: "/lavender.png" },
         { id: 4, name: "Fresh Flower Basket", type: "Basket", price: 42, qty: 2, img: "/basket.png" },
       ]);
-    //   if(cartItems.type!=="Bouquet" && cartItems.type!=="Basket"){
-    //     return <div>Loading...</div>;
-
-    //   }
+   
 
     
       const updateQty = (id, delta) => {
@@ -31,6 +28,12 @@ const Wishlist=() => {
       const removeItem = (id) => {
         setCartItems((prev) => prev.filter((item) => item.id !== id));
       };
+      const Addalltocard=()=>{
+
+      }
+      const Addtocart=()=>{
+        
+      }
     
       const subTotal = cartItems.reduce((sum, i) => sum + i.price * i.qty, 0);
       const discount = 30;
@@ -67,7 +70,7 @@ const Wishlist=() => {
             <span>${item.price.toFixed(2)}</span>
             <span>Aug 15, 2023</span>
             <span className="in-stock">In Stock</span>
-            <button className="add-cart-btn" >Add to Cart</button>
+            <button className="add-cart-btn" onClick={Addtocart}>Add to Cart</button>
            
           
            
@@ -85,7 +88,7 @@ const Wishlist=() => {
         <div className="wishlist-actions">
           <div className="two">
         <span className="clear-wishlist" onClick={() => setCartItems([])}>Clear Wishlist</span>
-         <button className="add-to-cart-btn">Add All to Cart</button>
+         <button className="add-to-cart-btn" onClick={Addalltocard}>Add All to Cart</button>
           </div>
     
           

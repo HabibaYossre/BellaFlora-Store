@@ -18,12 +18,15 @@ import Footer from "./components/Footer/Footer";
 import Payment from "./components/Payment/Payment";
 import TrackOrder from "./components/TrackOrder/TrackOrder";
 import Invoice from "./components/Invoice/Invoice";
+import { CartProvider } from "./context/CartContext";
+
 
 
 function App() {
   return (
     <>
     <Header></Header>
+     <CartProvider>
     <Routes>
 
       <Route path="/" element={<Home />}/>
@@ -47,6 +50,7 @@ function App() {
       <Route path="/Profile" element={<Profile />} />
       <Route path="/Invoice" element={<Invoice />} />
     </Routes>   
+    </CartProvider>
     <Footer></Footer>
 
   </>
