@@ -11,6 +11,7 @@ import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
   const forgetpassword=(e)=>{
@@ -48,6 +49,9 @@ function Login() {
     if (!password) {
       alert("Password is required! if you forget password click on forget password");
       return;
+
+       
+   
     }
     axios
       .post("http://localhost:3000/auth/login", { email, password })

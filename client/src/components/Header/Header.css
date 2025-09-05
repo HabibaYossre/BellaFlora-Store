@@ -97,6 +97,10 @@
     gap: 15px;
   }
 }
+.signuplink{
+font-weight: bold;
+color: #fff;
+}
 
 /* Mobile only */
 @media (max-width: 768px) {
