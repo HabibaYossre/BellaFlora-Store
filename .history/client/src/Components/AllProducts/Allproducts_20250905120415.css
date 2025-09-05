@@ -1,0 +1,17 @@
+.products-container{
+    display: grid;
+    grid-template-columns: 0.5fr 4fr;
+}
+
+.right-column{
+  display: grid;
+  grid-template-rows: 0.5fr 0.5fr 5fr;
+  gap: 10px; 
+}
+ @media (max-width: 768px) {
+.right-column{
+  display: grid;
+  grid-template-rows: 0fr 0fr 5fr;
+  gap: 10px; 
+}
+ }

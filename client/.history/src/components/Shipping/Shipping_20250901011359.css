@@ -1,0 +1,55 @@
+.containershipping-info {
+  background-color: var(--background-color);
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: ;
+}
+
+
+
+.icon-shipping {
+  font-size: 2.5rem;
+  color: #5b0cae;
+  margin-bottom: 10px;
+  margin-top: 5px;
+  margin-right: 10px;
+}
+.info-card{
+  display: flex;
+}
+
+.info-card h3 {
+  color: #000000;
+  margin-bottom: 5px;
+  font-size: 1.25rem;
+}
+
+.info-card p {
+  color: #6b7280;
+  line-height: 1.5;
+  margin: 0;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .info-card {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 50px;
+  }
+}
+/* @media (min-width: 768px) {
+  .info-card{
+    flex-direction: column;
+    align-items: center;
+    margin-left: 200px;
+  }
+} */
+
