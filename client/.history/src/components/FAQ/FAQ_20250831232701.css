@@ -1,0 +1,98 @@
+
+.faq-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .faq-container {
+    flex-direction: row;
+  }
+}
+
+
+.faq-list {
+  flex: 1;
+}
+
+.faq-item {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 14px;
+  padding: 16px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.faq-item:hover {
+  box-shadow: 0 2px 8px rgba(89, 89, 89, 0.08);
+}
+
+.faq-item.active {
+  background: #6a0dad;
+  color: #fff;
+}
+
+.faq-question {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 500;
+  font-size: 16px;
+}
+
+.faq-answer {
+  margin-top: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Contact Card */
+.contact-card {
+
+  background: #6a0dad;
+  color: #fff;
+  border-radius: 56px;
+  padding: 30px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.contact-card .icon {
+  font-size: 40px;
+  margin-bottom: 10px;
+}
+
+.contact-card h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.contact-card p {
+  font-size: 14px;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.contact-card button {
+  background: #ff69b4;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 30px;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.contact-card button:hover {
+  background: #ff4da6;
+}

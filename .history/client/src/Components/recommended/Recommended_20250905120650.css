@@ -1,0 +1,16 @@
+.recommended-flex{
+    display: flex;
+    margin-left: 15px;
+     flex-wrap: wrap;
+     gap: 1;
+}
+.recommended-title{
+margin-bottom: 20px;
+margin-top: 20px;
+margin-left: 15px;
+font-size: 1.5rem;   
+}
+
+ @media (max-width: 768px) {
+
+ }
