@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import "./Header.css";
 import { NavLink } from 'react-router-dom';
+import { LuFlower } from "react-icons/lu";
 
 
 function Header() {
@@ -16,14 +17,12 @@ function Header() {
         </div>
         <div className="center">
           <span>
-            Sign up and <b>GET 20% OFF</b> for your first order.{" "}
+            Sign up and <b>GET 20% OFF</b>{" "}
            
           </span>
         </div>
         <div className="right">
           <a href="#"><i className="fab fa-facebook-f"></i></a>
-          <a href="#"><i className="fab fa-x-twitter"></i></a>
-          <a href="#"><i className="fab fa-pinterest"></i></a>
           <a href="#"><i className="fab fa-instagram"></i></a>
           <a href="#"><i className="fab fa-youtube"></i></a>
         </div>
@@ -32,7 +31,7 @@ function Header() {
      
       <nav className="navbar">
         <div className="logo">
-          <span className="logo-icon">🌸</span>
+          <span className="logo-icon"><LuFlower /></span>
           <span className="logo-text">Flower Shop.</span>
         </div>
 
@@ -44,16 +43,12 @@ function Header() {
    
         <ul className={`nav-links ${menuOpen ? "active" : ""}`}>
           <li><NavLink to="/Home">Home</NavLink></li>
-          <li><NavLink to="/Shop">Shop</NavLink></li>
-          <li><NavLink to="/Ossions">Occasions</NavLink></li>
-          <li><NavLink to="/AboutUs">About Us</NavLink></li>
+          <li><NavLink to="/product/all">Shop</NavLink></li>
           <li><NavLink to="/ContactUs">Contact Us</NavLink></li>
-          <li><NavLink to="/Blogs">Blogs</NavLink></li>
         </ul>
 
    
         <div className="icons">
-          <NavLink to="/search"><i className="fas fa-search"></i></NavLink>
           <NavLink to="/Wishlist"><i className="far fa-heart"></i></NavLink>
           <NavLink to="/Cart"><i className="fas fa-shopping-bag"></i></NavLink>
           <NavLink to="/Profile"><i className="far fa-user"></i></NavLink>

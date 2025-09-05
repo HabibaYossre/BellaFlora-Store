@@ -1,115 +1,7 @@
-.top-bar {
-  background: #6a0dad; /* Purple color */
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 20px;
-  font-size: 14px;
- height: 45px;
-}
-
-.top-bar a {
-  color: rgb(255, 255, 255);
-  text-decoration: underline;
-  margin-left: 5px;
-  
-}
-
-.center a{
-  color: rgb(236, 94, 206);
-  
-}
-
-.top-bar .right a {
-  margin-left: 10px;
-  font-size: 16px;
-}
-
-
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 40px;
-  background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  font-weight: bold;
-  font-size: 20px;
-}
-
-.logo-icon {
-  font-size: 24px;
-  margin-right: 5px;
-}
-
-.logo-text {
-  color: #000;
-}
-
-.nav-links {
-  display: flex;
-  list-style: none;
-  gap: 20px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #000;
-  font-weight: 500;
-}
-
-.nav-links a:hover {
-  color: #6a0dad;
-}
-
-.icons a {
-  margin-left: 15px;
-  font-size: 14px;
-  color: #000;
-}
-.icons a:hover {
-  color: #6a0dad;
-}
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .info-card {
-    width: 80%;
-    margin-bottom: 20px;
-  }
-}
-
-@media (min-width: 768px) {
-  .footer-bottom {
-    flex-direction: row;
-  }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* ---------- Top Bar ---------- */
 /* ---------- Top Bar ---------- */
 .top-bar {
-  background: #6a0dad;
+  background: var(--primary-color);
   color: white;
   display: flex;
   justify-content: space-between;
@@ -126,7 +18,7 @@
 }
 
 .center a {
-  color: rgb(236, 94, 206);
+  color: var(--secondary-color);
 }
 
 .top-bar .right a {
@@ -152,9 +44,10 @@
   font-size: 20px;
 }
 
-.logo-icon {
-  font-size: 24px;
-  margin-right: 5px;
+.logo-icon svg{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
 }
 
 .logo-text {
@@ -239,8 +132,8 @@
     text-align: center;
     gap: 5px;
     font-size: 13px;
-    
-
+    padding-top: 15px;
+  
   }
   .right{
     display: none;

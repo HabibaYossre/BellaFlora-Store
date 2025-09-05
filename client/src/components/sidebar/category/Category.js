@@ -3,7 +3,7 @@ import "./Category.css";
 import Input from "../../ui/Input";
 function Category({ handleFilterChange }) {
   return (
-    <>
+    <div className="sidebar-content">
       <div className="sidebar-title">Category</div>
       <div className="sidebar-container">
         <Input
@@ -25,7 +25,7 @@ function Category({ handleFilterChange }) {
           name="category"
         ></Input>
       </div>
-    </>
+    </div>
   );
 }
 export default Category;

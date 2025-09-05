@@ -4,7 +4,7 @@ import Input from "../../ui/Input";
 
 function Colors({ handleFilterChange }) {
   return (
-    <>
+    <div className="sidebar-content">
       <div className="sidebar-title">Colors</div>
       <div className="sidebar-container">
         <Input
@@ -38,7 +38,7 @@ function Colors({ handleFilterChange }) {
           name="color"
         ></Input>
       </div>
-    </>
+    </div>
   );
 }
 export default Colors;

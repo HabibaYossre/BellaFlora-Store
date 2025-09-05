@@ -1,3 +1,7 @@
+.sidebar-content{
+  display: flex;
+  flex-direction: column;
+}
 .sidebar-title {
   font-size: 22px;
   font-weight: 400;
@@ -19,9 +23,11 @@
 .sidebar-label-container input {
   position: absolute;
   opacity: 0;
+pointer-events: none;
   cursor: pointer;
+ 
 }
-.checkmark {
+.sidebar-label-container .checkmark {
   position: absolute;
   top: 0;
   left: 0;
@@ -30,8 +36,9 @@
   background-color: #eee;
   border-radius: 50%;
 }
+
 .sidebar-label-container:hover input ~ .checkmark {
-  background-color: var(--background-color);
+  background-color: var(--secondary-color);
 }
 .sidebar-label-container input:checked ~ .checkmark {
   background-color: var(--secondary-color);

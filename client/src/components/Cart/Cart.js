@@ -48,12 +48,12 @@ const Cart=() => {
     
   return (
     <div>
-    <Header />
 
-    <div className='car-container'>
+
+    {/* <div className='car-container'>
         <h2>Shopping Cart</h2> <br />
         <span className='cart-items'>Home/Shopping Cart</span>
-        </div>
+        </div> */}
 
     <div className="cart-container">
     
@@ -110,9 +110,9 @@ const Cart=() => {
     </div>
  
     
-<Shipping />
+{/* <Shipping /> */}
     <Subscribe />
-    <Footer />
+
  
 </div>
 

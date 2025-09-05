@@ -25,7 +25,6 @@ const proceddpayment=()=>{
       
     return (
         <div>
-<Header></Header>
 
    <div className='order-container'>
         <h2>Shopping Cart</h2> <br />
@@ -106,7 +105,7 @@ const proceddpayment=()=>{
            </div>
             <Shipping></Shipping>
             <Subscribe></Subscribe>
-            <Footer></Footer>
+
         </div>
     );
  

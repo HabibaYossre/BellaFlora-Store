@@ -42,7 +42,7 @@ function Main() {
             </span>
           </div>
           <span>
-            <Link className="main-link" to="/Allproducts">View All Products</Link>
+            <Link className="main-link" to="/product/all">View All Products</Link>
           </span>
         </div>
         {/* shop now section end */}

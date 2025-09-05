@@ -77,12 +77,22 @@ function Allproducts() {
       )
     );
   }
+
+  // -------reset filters----------
+  const handleResetFilters = () => {
+    setSelectedFilter(null);
+    setSearchQuery("");
+  };
   const result = filteringProducts(productsData, selectedFilter, searchQuery);
   return (
     <>
       <div className="products-container">
         <div className="left-column">
-          <Sidebar handleFilterChange={handleFilterChange}></Sidebar>
+          <Sidebar
+          key={selectedFilter}
+            handleFilterChange={handleFilterChange}
+            handleResetFilters={handleResetFilters}
+          ></Sidebar>
         </div>
         <div className="right-column">
           <div className="top-row">
