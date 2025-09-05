@@ -79,26 +79,23 @@ function SignUp() {
     // Clear error if valid
     setErrorMessage("");
 
-    // 3️⃣ Call API
     axios
-      .post("http://localhost:3000/auth/signup", {
-        name: `${firstName} ${lastName}`,
-        email,
-        password,
-      })
-      .then((res) => {
-        console.log(res.data);
-        if (res.data.token) {
-          localStorage.setItem("token", res.data.token);
-          navigate("/auth/login");
-        } else {
-          setErrorMessage(res.data.message || "Signup failed");
-        }
-      })
-      .catch((err) => {
-        console.error(err.response ? err.response.data : err.message);
-        setErrorMessage(err.response?.data?.message || "Something went wrong");
-      });
+         .post("http://localhost:3000/auth/signup", { firstName,lastName, email, password })
+         .then((res) => {
+           console.log(res.data); 
+           if (res.data.token) {
+             // save token for authentication
+             localStorage.setItem("token", res.data.token);
+             navigate("/auth/login");
+           } else {
+             alert(res.data.message || "Signup failed");
+           }
+         })
+         .catch((err) => {
+           console.error(err.response ? err.response.data : err.message);
+           alert(err.response?.data?.message || "Something went wrong");
+         });
+
   };
        
   return (
