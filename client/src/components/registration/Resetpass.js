@@ -11,11 +11,12 @@ function Resetpass() {
      const [pass, setPassword] = useState("");
      const [confirmPass, setConfirmPassword] = useState("");
       const { token } = useParams(); // get token from URL
+
     const handleReset = (e) => {
     e.preventDefault();
      {/* Habiba Reset Password Route Here!*/}
     axios
-      .post("http://localhost:3000/api/auth/reset-password/:token", { pass}) 
+      .post("http://localhost:3000/api/auth/reset-password/${token}", { pass}) 
       .then((result) => {
          if (result.status===200) {
         {/* Habiba Reset Password Route Here!*/}
