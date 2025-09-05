@@ -39,7 +39,7 @@ const Wishlist=() => {
     return (
 
         <div>
-            <Header />
+            {/* <Header /> */}
                <div className='car-container'>
         <h2>Wishlist</h2> <br />
         <span className='cart-items'>Home/Wishlist</span>
@@ -81,26 +81,19 @@ const Wishlist=() => {
 
             
         </div>
-        {/* <div className="wishlist-link">
-            <span className="link-wishlist" onClick={() => setCartItems([])}> Wishlist Link</span>
-          <input type="text" id="link-wishlist" name="link-wishlist" placeholder="https://localhost3000/Wishlist" />
-          <button className="apply-copy-btn">Copy Link</button>
-        </div> */}
+      
         <div className="wishlist-actions">
-         < div className="one">  
-          
-          <input type="text" id="link-wishlist" name="link-wishlist" placeholder="https://localhost3000/Wishlist"  />
-          <button className="apply-copy-btn">Copy Link</button>
-          </div>
           <div className="two">
         <span className="clear-wishlist" onClick={() => setCartItems([])}>Clear Wishlist</span>
          <button className="add-to-cart-btn">Add All to Cart</button>
           </div>
+    
+          
         </div>
           <Shipping />
           
         <Subscribe />
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 

@@ -48,7 +48,7 @@ const Cart=() => {
     
   return (
     <div>
-    <Header />
+    {/* <Header /> */}
 
     <div className='car-container'>
         <h2>Shopping Cart</h2> <br />
@@ -56,14 +56,15 @@ const Cart=() => {
         </div>
 
     <div className="cart-container">
+      
     
       <div className="cart-items">
-        <div className="cart-header">
+        {/* <div className="cart-header">
           <span>Product</span>
           <span>Price</span>
           <span>Quantity</span>
           <span>Subtotal</span>
-        </div>
+        </div> */}
 
         {cartItems.map((item) => (
           <div className="cart-row" key={item.id}>
@@ -85,8 +86,15 @@ const Cart=() => {
         ))}
       </div>
 
-      
-      <div className="order-summary">
+     
+ 
+         
+    </div>
+    <div className="subscrib-form">
+                <input type="email" placeholder="Coupon Code" />
+                <button type="submit">Apply Coupon</button>
+            </div>
+       <div className="order-summary">
       
         <h3>Order Summary</h3>
         <p>Items <span>{cartItems.reduce((sum, i) => sum + i.qty, 0)}</span></p>
@@ -103,16 +111,10 @@ const Cart=() => {
             <button className="checkout-btn" onClick={paymentprocee}>Proceed to Checkout</button>
            
       </div>
-         <div className="subscrib-form">
-                <input type="email" placeholder="Coupon Code" />
-                <button type="submit">Apply Coupon</button>
-            </div>
-    </div>
- 
     
 <Shipping />
     <Subscribe />
-    <Footer />
+    {/* <Footer /> */}
  
 </div>
 
