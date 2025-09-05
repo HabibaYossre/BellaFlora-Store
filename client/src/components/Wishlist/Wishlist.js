@@ -42,11 +42,12 @@ const Wishlist=() => {
     return (
 
         <div>
-            {/* <Header /> */}
-               <div className='car-container'>
+
+               {/* <div className='car-container'>
+
         <h2>Wishlist</h2> <br />
         <span className='cart-items'>Home/Wishlist</span>
-        </div>
+        </div>  */}
 
     <div className="cart-container">
     
@@ -96,7 +97,6 @@ const Wishlist=() => {
           <Shipping />
           
         <Subscribe />
-            {/* <Footer /> */}
         </div>
     );
 

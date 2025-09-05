@@ -39,3 +39,9 @@
     color: var(--primary-color);
     margin-left: 7rem;
 }
+
+@media (max-width: 768px){
+    .card-container{
+        justify-content: center;
+    }
+}

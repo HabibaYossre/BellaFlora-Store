@@ -12,13 +12,12 @@ function ContactUs() {
   return (
     <div className="contact-us-container">
 
-        <Header />
-         <div className='order-container'>
+         {/* <div className='order-container'>
         <h2>Contact Us</h2> <br />
         <span className='cart-items'>Home / Contact Us</span>
-        </div>
+        </div> */}
         <div className="line">
-        <img src="/images/pexels-seljansalim-26898071.jpg" alt="Contact Us" className="contact-us-image" />
+        <img src="images/contact.png" alt="Contact Us" className="contact-us-image" />
       
       <form className="contact-form">
         <label htmlFor="f-name">First Name*</label>
@@ -77,7 +76,7 @@ function ContactUs() {
     </section>
         <Shipping />
         <Subscribe />
-        <Footer />
+        
     </div>
   );
 }

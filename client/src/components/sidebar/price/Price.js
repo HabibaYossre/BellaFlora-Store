@@ -5,7 +5,7 @@ import Input from "../../ui/Input";
 
 function Price({ handleFilterChange }) {
   return (
-    <>
+    <div className="sidebar-content">
       <div className="sidebar-title price-title">Price</div>
       <div className="sidebar-container">
         <Input
@@ -27,7 +27,7 @@ function Price({ handleFilterChange }) {
           name="price"
         ></Input>
       </div>
-    </>
+    </div>
   );
 }
 export default Price;

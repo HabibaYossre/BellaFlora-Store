@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Search from "../search/Search";
-import Products from "../products/Products";
 import Recommeneded from "../recommended/Recommended";
 import "../allProducts/Allproducts.css";
 import Sidebar from "../sidebar/Sidebar";
 import Card from "../ui/Card";
+import Products from '../products/Products'
 
 function Allproducts() {
   const [searchQuery, setSearchQuery] = useState(""); 
@@ -94,12 +94,19 @@ function Allproducts() {
     );
   }
 
-  const result = filteringProducts(allProducts, selectedFilter, searchQuery);
+  // -------reset filters----------
+  const handleResetFilters = () => {
+    setSelectedFilter(null);
+    setSearchQuery("");
+  };
 
+  const result = filteringProducts(allProducts, selectedFilter, searchQuery);
+ 
   return (
     <div className="products-container">
       <div className="left-column">
-        <Sidebar handleFilterChange={handleFilterChange} />
+        <Sidebar handleFilterChange={handleFilterChange}
+         handleResetFilters={handleResetFilters} />
       </div>
       <div className="right-column">
         <div className="top-row">
@@ -118,6 +125,7 @@ function Allproducts() {
         </div>
       </div>
     </div>
+
   );
 }
 

@@ -19,7 +19,7 @@ function Profile(){
   }
     return(
 <>
-<Header />
+
  <div className="profile-section">
   <div className="profile-avatar">
     <img
@@ -65,10 +65,8 @@ function Profile(){
   </button>
 </div>
 
-        
-<Shipping />
+      
 <Subscribe />
-<Footer />
 
 </>
     );

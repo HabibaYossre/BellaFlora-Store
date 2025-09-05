@@ -6,7 +6,7 @@
   margin-bottom: 20px;
 }
 
-.checkmark {
+.order-header .checkmark {
   font-size: 40px;
   color: #ff80df;
   background: #f8d6ff;
@@ -157,7 +157,7 @@
   background: #5a0a93;
 }
 @media (max-width: 768px){
-    .checkmark{
+   .order-header  .checkmark{
         margin-left: 250px;
         margin-top: 120px;
     }
