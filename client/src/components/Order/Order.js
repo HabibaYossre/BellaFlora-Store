@@ -4,12 +4,25 @@ import Header from '../Header/Header';
 import Subscribe from '../Subscribe/Subscribe';
 import Footer from '../Footer/Footer';
 import Shipping from '../Shipping/Shipping';
+import { useNavigate } from 'react-router-dom';
+
+
 import { useState } from 'react';
+import { Home } from 'lucide-react';
+
 
 
 
 function Order() {
       const [selected, setSelected] = useState("same");
+      const navigate = useNavigate();
+
+const proceddpayment=()=>{
+  alert("Proceeding to payment gateway...");
+  // Here you can add your payment gateway integration logic
+  navigate('/Payment');
+}
+      
     return (
         <div>
 <Header></Header>
@@ -87,7 +100,7 @@ function Order() {
         <p className="total">Total <span>$200</span></p>
       
            
-            <button className="checkout-btn">Proceed to Payment</button>
+            <button className="checkout-btn" onClick={proceddpayment}>Proceed to Payment</button>
            
       </div>
            </div>

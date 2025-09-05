@@ -15,7 +15,7 @@ const generateToken = (id) => {
 // @route   POST /auth/signup
 export const signup = async (req, res) => {
   try {
-    console.log("i am a signup function");
+    //console.log("i am a signup function");
     const { name, email, password } = req.body;
 
     // Check if user already exists

@@ -2,6 +2,7 @@
 import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom"; 
 import  { useState } from "react";
+import Checkmail from "./Checkmail.js"
 import axios from "axios";
 
 
@@ -11,6 +12,31 @@ function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+
+  const forgetpassword=(e)=>{
+    e.preventDefault();
+ if (!email) {
+      alert("Email is required!");
+      return;
+    }
+     axios
+      .post("http://localhost:3000/auth/forgot-password", { email})
+      .then((result) => {
+         if (result.status===200) {
+         navigate("/Checkmail")
+
+        }
+         else {
+
+          alert("Invalid email");
+        }
+      })
+       .catch((err) => {
+        console.log(err);
+        alert("Something went wrong");
+      });
+
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -52,7 +78,7 @@ function Login() {
         <div>
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password" value={password}  onChange={(e) => setPassword(e.target.value)} />
-           <a href="/Checkmail" className="forgetpass">forget password?</a>
+           <a href="/Checkmail" className="forgetpass" onClick={forgetpassword}>forget password?</a>
         </div>
         <button type="submit" >Login</button>
          <span className="signup-link">

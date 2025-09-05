@@ -18,7 +18,7 @@ function ContactUs() {
         <span className='cart-items'>Home / Contact Us</span>
         </div>
         <div className="line">
-        <img src="/images/pexels-marina-abrosimova-3319804-5222107.jpg" alt="Contact Us" className="contact-us-image" />
+        <img src="/images/pexels-seljansalim-26898071.jpg" alt="Contact Us" className="contact-us-image" />
       
       <form className="contact-form">
         <label htmlFor="f-name">First Name*</label>
