@@ -17,7 +17,7 @@ function Header() {
         </div>
         <div className="center">
           <span>
-            Sign up and <b>GET 20% OFF</b>{" "}
+            Sign up and <b>GET 20% OFF</b><NavLink to="/auth/signup">Sign Up</NavLink>
            
           </span>
         </div>

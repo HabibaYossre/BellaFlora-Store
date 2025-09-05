@@ -38,7 +38,7 @@ function SignUp() {
            if (res.data.token) {
              // save token for authentication
              localStorage.setItem("token", res.data.token);
-             navigate("/Home");
+             navigate("/auth/login");
            } else {
              alert(res.data.message || "Signup failed");
            }
@@ -55,10 +55,15 @@ function SignUp() {
         
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Username</label>
-          <input type="text" id="username" name="username"  onChange={(e) => setName(e.target.value)}/>
+          <label htmlFor="username">First Name</label>
+          <input type="text" id="firstname" name="username"  onChange={(e) => setName(e.target.value)}/>
         </div>
          <div>
+            <div>
+          <label htmlFor="username">Last Name</label>
+          <input type="text" id="lastname" name="username"  onChange={(e) => setName(e.target.value)}/>
+        </div>
+         <div></div>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email"  onChange={(e) => setEmail(e.target.value)} />    
         </div>
@@ -73,7 +78,7 @@ function SignUp() {
           <input type="password" id="password" name="password" />
         </div>
        
-        <button type="submit" >SignUp</button>
+        <button type="submit"  >SignUp</button>
           <span className="signup-link">
               Already have an account?{" "} 
             
