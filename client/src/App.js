@@ -18,15 +18,18 @@ import Footer from "./components/Footer/Footer";
 import Payment from "./components/Payment/Payment";
 import TrackOrder from "./components/TrackOrder/TrackOrder";
 import Invoice from "./components/Invoice/Invoice";
+import { CartProvider } from "./context/CartContext";
+
 
 
 function App() {
   return (
     <>
     <Header></Header>
+     <CartProvider>
     <Routes>
+
       <Route path="/" element={<Home />}/>
-      {/* <Route path="/" element={<Main />}/> */}
       <Route path="/auth/login" element={<Login />} />         
       <Route path="/Home" element={<Home />} />      
       <Route path="/auth/login" element={<Login />} />         
@@ -37,6 +40,12 @@ function App() {
       <Route path="/Wishlist" element={<Wishlist />} />
       <Route path="/Order" element={<Order />} />
       <Route path="/api/auth/reset-password/:token" element={<Resetpass />} />  {/* Habiba Reset Password Route Here!*/}
+      {/*<Route path="/S" element={<Search />} />*/}
+      <Route path="/product/all" element={<Allproducts />} /> 
+      <Route path="/cart" element={<Cart />} />
+      <Route path="/wishlist" element={<Wishlist />} />
+      <Route path="/order" element={<Order />} />
+      <Route path="/auth/reset-password/:token" element={<Resetpass />} />  {/* Habiba Reset Password Route Here!*/}
       <Route path="/Checkmail" element={<Checkmail />} />
       <Route path="/ContactUs" element={<ContactUs />} />
       <Route path="/TrackOrder" element={<TrackOrder />} />
@@ -45,6 +54,7 @@ function App() {
       <Route path="/Profile" element={<Profile />} />
       <Route path="/Invoice" element={<Invoice />} />
     </Routes>   
+    </CartProvider>
     <Footer></Footer>
 
   </>

@@ -15,7 +15,7 @@
 .wishlist-actions{
     display: flex;
     margin-bottom: 50px;
-    margin-left: 50px;
+    margin-left: 100px;
     gap: 10px;
 
    
@@ -108,4 +108,18 @@
   cursor: pointer;
   margin-top: 20px;
    border-radius:  50px 50px ;
+}
+@media (max-width: 600px) {
+ .one,
+  .two {
+    /* flex-direction: column; */
+    /* width: 100%; */
+    margin-left: 5px;
+  }
+  .wishlist-actions{
+    margin-left: 150px;
+  }
+
+ 
+
 }

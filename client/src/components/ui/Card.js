@@ -1,8 +1,10 @@
-import React from 'react'
+import React , { useContext }from 'react'
 import { FaStar } from "react-icons/fa";
 import { IoBag } from "react-icons/io5";
+import { CartContext } from "../../context/CartContext";
 
- function Card({title, description, price, img, rating}) {
+ function Card({ _id,title, description, price, img, rating}) {
+    const { addToCart } = useContext(CartContext);
   return (
     <section className="card">
             <img className="card-img"
@@ -25,7 +27,7 @@ import { IoBag } from "react-icons/io5";
                   {price}
                 </div>
                 <div className="bag">
-                  <IoBag  className="bag-icon"/>
+                  <IoBag  className="bag-icon"  onClick={() =>addToCart({ _id, img, title, price })}/>
                 </div>
               </section>
             </div>
