@@ -14,7 +14,9 @@ const addReview=async(req,res)=>{
             const productExist=await Product.findById(productId)
         if(!productExist) return res.status(404).json({msg:"Product_ID: "+productId+" Is Not Found"})
         const userExist=await User.findById(userId)
-       if(!userExist) return res.status(404).json({msg:"User Not Found"})  
+       if(!userExist) return res.status(404).json({msg:"User Not Found"}) 
+        const reviewExist=await productExist.ratings.find(r=>r.userId===userId)
+       if(!reviewExist){
         const review=await new Review({productId,userId,ratings,comment})
         // productExist.ratings.value=review.ratings
         productExist.ratings.push({
@@ -27,6 +29,10 @@ const addReview=async(req,res)=>{
         await productExist.save()
         return res.status(200).json({Success:true,msg:"Review Is Added!",data:productExist})
     }
+    else{
+        editReview
+    }
+}
     catch(error){
         return res.status(500).json({Success:false,error:error.message})
     }
@@ -71,59 +77,6 @@ const deleteReviewFromProduct=async(req,res)=>{
         }
     }
 
-// const aggregateReview = async (req, res) => {
-//     try {
-//         const { productId } = req.params;
-        
-//         // Validation
-//         if (!productId) {
-//             return res.status(400).json({ msg: "All ID Fields Are Required" });
-        
-//         }
-//         if (!mongoose.Types.ObjectId.isValid(productId)) {
-//             return res.status(400).json({ msg: "Product_ID Invalid" });
-//         }
-//         // Check if product and user exist
-//         const productExist = await Product.findById(productId);
-//         if (!productExist) {
-//             return res.status(404).json({ msg: "Product_ID: " + productId + " Is Not Found" });
-//         }
-        
-//         // Check if ratings array exists and has values
-//         if (!productExist.ratings || productExist.ratings.length === 0) {
-//             return res.status(404).json({ msg: "No Reviews Exist" });
-//         }
-        
-//         // Calculate average rating (FIXED)
-//         let sum = productExist.ratings.reduce((total, value) => total + value, 0);
-//         let avg = sum / productExist.ratings.length;
-//                 for (const rating of productExist.ratings) {
-//             // تأكد أن قيمة التقييم رقم صحيح بين 1 و 5
-//             if (typeof rating.value === 'number' && 
-//                 rating.value >= 1 && 
-//                 rating.value <= 5) {
-//                 sum += rating.value;
-//                 validCount++;
-//             }
-//         }
-        
-//         // Update product with average rating
-//         await Product.findByIdAndUpdate(productId,{avgRatings:avg})
-//         await productExist.save();
-        
-//         return res.status(200).json({
-//             Success: true,
-//             msg: "Average Ratings Added Successfully",
-//             Average_Ratings: productExist.avgRatings
-//         });
-        
-//     } catch (error) {
-//         console.error("Aggregate_Review Error", error);
-//         return res.status(500).json({ msg: "Server Error", error: error.message });
-//     }
-// };
-
-
 export const aggregateReview = async (req, res) => {
     try {
         const { productId } = req.params;
@@ -133,14 +86,7 @@ export const aggregateReview = async (req, res) => {
             return res.status(404).json({ msg: "Product Not Found"});
         }
         
-        if (!product.ratings || product.ratings.length === 0) {
-            return res.status(200).json({
-                success: true,
-                averageRatings: 0.0,
-                totalRatings: 0
-            });
-        }
-        
+        if (product.ratings || product.ratings.length !== 0) {
         let sum = 0;
         let validCount = 0;
         
@@ -164,10 +110,40 @@ export const aggregateReview = async (req, res) => {
             averageRatings: avgRating,
             totalRatings: validCount
         });
+    }
+    else{
+        return res.status(404).json("Reviews Don't Exist")
+    }
     } catch (error) {
         console.error("Aggregate_Review Error", error);
         return res.status(500).json({ msg: "Server Error", error: error.message });
-    }        
+    } }
 
-};
-export default{addReview,deleteReviewFromProduct,deleteReview,aggregateReview}
+    const editReview=async(req,res)=>{
+        try {
+            const{userId,productId}=req.params
+            const{ratings,comment}=req.body
+            if(!productId) return res.status(400).json("Product_ID Required")
+                if(!mongoose.Types.ObjectId.isValid(productId)) return res.status(400).json("Invalid Product_ID!")
+                    const product=await Product.findById(productId)
+                if(!product) return res.status(404).json("Product Not Found")     
+            if(!userId) return res.status(400).json("User_ID Required")
+                if(!mongoose.Types.ObjectId.isValid(userId)) return res.status(400).json("Invalid User_ID!")
+                    const user=await User.findById(userId)
+                if(!user) return res.status(404).json("User Not Found")    
+                    const reviewIndex= product.ratings.findIndex(r=>r.userId===userId)
+                if(reviewIndex==-1) return res.status(404).json("No Review To Edit")
+                    if(ratings!==undefined)product.ratings[reviewIndex].value=ratings
+                    if(comment!==undefined)product.ratings[reviewIndex].comment=comment
+                    await product.save()
+                return res.status(200).json({Success:true,msg:"Review Edited Successfully!",Edited_Review:product.ratings[reviewIndex]})
+                
+        } catch (error) {
+            console.error("Server Error",error);
+            return res.status(500)
+            
+        }
+    }       
+
+
+export default{addReview,deleteReviewFromProduct,deleteReview,aggregateReview,editReview}
