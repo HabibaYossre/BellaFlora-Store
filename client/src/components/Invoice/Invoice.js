@@ -60,7 +60,7 @@ function Invoice(){
   ];
     return(
         <>
-        <Header />
+        {/* <Header /> */}
     
          <div className="order-completed">
 
@@ -133,7 +133,7 @@ function Invoice(){
 </div>
         <Shipping />
         <Subscribe />
-        <Footer />
+        {/* <Footer /> */}
         </>
     );
 
