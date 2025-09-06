@@ -1,0 +1,28 @@
+.sidebar-title{
+    font-size: 22px;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+.sidebar{
+    height: 100%;
+    border-right: 2px solid var(--font-color);
+    padding: 15px 25px;
+    display: flex;
+  flex-direction: column; /* vertical by default */
+  align-items: flex-start;
+}
+.logo-container{
+    margin-bottom: 2rem;
+}
+.logo-container h1{
+    margin-top: 1.3rem;
+}
+.logo-container svg{
+    color: var(--primary-color);
+}
+
+ @media (max-width: 768px) {
+.sidebar{
+    flex-direction: ;
+}
+ }
