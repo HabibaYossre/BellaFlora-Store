@@ -4,8 +4,7 @@ import Product from '../models/Product.js';
 
 const displayAll = async (req, res) => {
     try {
-        const products = await Product.find({}); // جلب جميع المنتجات
-        
+        const products = await Product.find({}); 
         if (!products || products.length === 0) {
             return res.status(404).json({ 
                 success: false,

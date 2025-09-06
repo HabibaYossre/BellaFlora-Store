@@ -7,7 +7,7 @@ import productRoutes from "./routes/productRoutes.js";
 import cartRoutes from "./routes/cartRoutes.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js"
 import reviewRouter from "./routes/reviewRoutes.js"
-
+import orderRoutes from "./routes/orderRoutes.js"
 
 // Load .env variables
 dotenv.config();
@@ -25,11 +25,11 @@ app.use("/cart", cartRoutes);
 app.use('/product',productRoutes)
 app.use("/wishlist",wishlistRoutes)
 app.use("/review",reviewRouter)
+app.use("/order", orderRoutes);
 
 
-/*app.use("/orders", orderRoutes);
-app.use("/users", userRoutes);
-*/
+//app.use("/users", userRoutes);
+
 
 // Error Handler
 //app.use(errorHandler);
