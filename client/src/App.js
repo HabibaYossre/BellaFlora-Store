@@ -37,7 +37,7 @@ function App() {
       <Route path="/product/all" element={<Allproducts />} /> 
       <Route path="/Cart" element={<Cart />} />
       <Route path="/Wishlist" element={<Wishlist />} />
-      <Route path="/Order" element={<Order />} />
+      <Route path="/order" element={<Order />} />
       <Route path="/api/auth/reset-password/:token" element={<Resetpass />} />  {/* Habiba Reset Password Route Here!*/}
       {/*<Route path="/S" element={<Search />} />*/}
       <Route path="/product/all" element={<Allproducts />} /> 
