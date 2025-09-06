@@ -1,23 +1,21 @@
-
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: linear-gradient(135deg, #270030, #5c2782, #36025b); 
- display: flexbox;
- 
-background-size:contain;  
-  background-color: var(--background-color);
+  /* background: linear-gradient(135deg, #270030, #5c2782, #36025b);  */
+  /* background-color: var(--background-color); */
+  display: flexbox;
 
+  background-image: url("../../../public/images/login2.jpg");
+  background-size: cover;
+  background-position: top;
 }
-.forgetpass{
+.forgetpass {
   color: #6a0dad;
   text-decoration: none;
   font-size: 14px;
   margin-top: 0px;
-
-
 }
 
 .login-container form {
@@ -26,22 +24,18 @@ background-size:contain;
   border-radius: 50 px;
   box-shadow: 0 6px 20px rgba(205, 205, 205, 0.15);
   width: 450px;
-
 }
 
 .login-container h2 {
- 
   margin-bottom: 25px;
   color: #333;
 }
-
 
 .login-container label {
   display: block;
   font-weight: 600;
   margin-bottom: 6px;
   color: #323232;
-  
 }
 
 .login-container input {
@@ -75,38 +69,22 @@ background-size:contain;
   cursor: pointer;
   align-items: center;
   margin-top: 10px;
-
 }
 
 .login-container button:hover {
   background: #7f0ed0;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Top Bar */
-.top-bar {
-  background: #6a0dad; /* Purple color */
+/* .top-bar {
+  background: var(--primary-color);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 8px 20px;
   font-size: 14px;
- height: 50px;
+  height: 50px;
 }
 
 .top-bar a {
@@ -115,24 +93,23 @@ background-size:contain;
   margin-left: 5px;
 }
 
-.center a{
+.center a {
   color: rgb(236, 94, 206);
-  
 }
 
 .top-bar .right a {
   margin-left: 10px;
   font-size: 16px;
-}
+} */
 
 /* Navbar */
-.navbar {
+/* .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 15px 40px;
   background: #fff;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 .logo {
@@ -176,7 +153,7 @@ background-size:contain;
   color: #6a0dad;
 }
 .footer {
-  background-color: #6a0dad; /* Purple background */
+  background-color: #6a0dad; 
   color: white;
   padding: 40px 20px;
   border-radius: 20px 20px 0 0;
@@ -269,18 +246,17 @@ background-size:contain;
   gap: 20px;
 }
 .signup-link {
-margin: 40px;
+  margin: 40px;
   color: #020202;
   text-decoration: none;
   text-align: center;
 }
-.signup-link a{
+.signup-link a {
   color: #6a0dad;
- 
 }
 
 @media (min-width: 768px) {
   .footer-bottom {
     flex-direction: row;
   }
-}
+} */

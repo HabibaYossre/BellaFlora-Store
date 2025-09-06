@@ -5,16 +5,23 @@
     padding-block-end: 70px;
 }
 .card{
+    position: relative;
     margin: 15px;
     border: 2px solid var(--background-color);
     padding: 20px;
     cursor: pointer;
     background-color: var(--background-color);
+    width: 250px;
+    height: 350px;
+    border-radius: 20px;
 
 }
 .card-img{
-    width: 13rem;
+    height: 10rem;
+    width: 100%;
     margin-bottom: 1rem;
+    border-radius: 20px;
+
 }
 .card-title{
     margin-bottom: 1rem;
@@ -33,11 +40,23 @@
 .card-price{
     display: flex;
     align-items: center;
+    font-weight: 600;
+    font-size: 1.2rem;
+    position: absolute;
+bottom: 20px;
+
     
 }
-.bag-icon{
+
+.icons{
+    display: flex;
+    gap: 10px;
+    align-items: center;
     color: var(--primary-color);
-    margin-left: 7rem;
+    margin-left: 7.5rem;
+}
+.bag-icon{
+    
 }
 
 @media (max-width: 768px){

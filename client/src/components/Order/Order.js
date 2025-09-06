@@ -5,6 +5,7 @@ import Subscribe from '../Subscribe/Subscribe';
 import Footer from '../Footer/Footer';
 import Shipping from '../Shipping/Shipping';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 
 import { useState } from 'react';
@@ -15,14 +16,59 @@ import { Home } from 'lucide-react';
 
 function Order() {
       const [selected, setSelected] = useState("same");
-      const navigate = useNavigate();
+      const [fullname,setFullname]=useState("")
+      const [email,setEmail]=useState("")
+      const [phonenumber,setPhonenumber]=useState("")
+      const [address,setAddress]=useState("")
+      const [city,setCity]=useState("")
+      const [zipcode,setZipcode]=useState("")
+      const [country,setCountry]=useState("")
+      const [deliveryaddress,setDeliveryaddress]=useState("")
+  const [errors, setErrors] = useState({}); 
 
-const proceddpayment=()=>{
-  alert("Proceeding to payment gateway...");
-  // Here you can add your payment gateway integration logic
-  navigate('/Payment');
-}
-      
+
+     const navigate = useNavigate();
+       const validateForm = () => {
+    let newErrors = {};
+    if (!fullname.trim()) newErrors.fullname = "Full name is required";
+    if (!email.trim()) newErrors.email = "Email is required";
+    if (!phonenumber.trim()) newErrors.phonenumber = "Phone number is required";
+    if (!address.trim()) newErrors.address = "Address is required";
+    if (!city.trim()) newErrors.city = "City is required";
+    if (!zipcode.trim()) newErrors.zipcode = "Zip code is required";
+    if (!country.trim()) newErrors.country = "Country is required";
+    return newErrors;
+  };
+
+
+  const proceddpayment = (e) => {
+    e.preventDefault();
+     const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return; 
+    }
+
+    
+    axios
+      .post("http://localhost:3000/order", { fullname,email,phonenumber,address,city,zipcode,country,deliveryaddress})
+      .then((result) => {
+        //console.log(result);
+        if (result.status===200) {
+          navigate("/Payment");
+        } else {
+          alert("Problem in Connection to DB");
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Something went wrong");
+      });
+  }
+    
+ 
+
+
     return (
         <div>
 
@@ -33,21 +79,30 @@ const proceddpayment=()=>{
        
         <div className='line'>
         <div className='order-page'>
-        <form className='order-form'>
+        <form className='order-form' >
             <label for="fname">Full Name*</label><br />
-            <input type="text" id="fname" name="fname" placeholder='Enter your full name' /><br />
+            <input type="text" id="fname" name="fname" placeholder='Enter your full name' value={fullname} required onChange={(e) => setFullname(e.target.value)} />
+             {errors.fullname && <p className="error" style={{ color: "red", marginTop: "10px" }}>{errors.fullname}</p>} <br />
             <label for="email">Email Address</label><br />
-            <input type="email" id="email" name="email" placeholder='Johndeo@gmail.com' /><br />
+            <input type="email" id="email" name="email" placeholder='Johndeo@gmail.com' required  value={email} onChange={(e) => setEmail(e.target.value)} /><br />
+             {errors.email && <p className="error" style={{ color: "red", marginTop: "10px" }}>{errors.email}</p>}<br />
             <label for="phone">Phone Number</label><br />
-            <input type="text" id="phone" name="phone" placeholder='01068652041' /><br />
+            <input type="text" id="phone" name="phone" placeholder='01068652041' required  value={phonenumber} onChange={(e) => setPhonenumber(e.target.value)} /><br />
+             {errors.phonenumber && <p className="error" style={{ color: "red", marginTop: "10px" }}>{errors.phonenumber}</p>}<br />
             <label for="address">Address</label><br />
-            <input type="text" id="address" name="address" placeholder='Obour City' /><br />
+            <input type="text" id="address" name="address" placeholder='Obour City' required value={address} onChange={(e) => setAddress(e.target.value)} /><br />
+             {errors.address && <p className="error" style={{ color: "red", marginTop: "10px" }}>{errors.address}</p>}<br />
+
             <label for="city">City</label><br />
-            <input type="text" id="city" name="city" placeholder='Obour' /><br />
+            <input type="text" id="city" name="city" placeholder='Obour' required  value={city} onChange={(e) => setCity(e.target.value)} /><br />
+            {errors.city && <p className="error" style={{ color: "red", marginTop: "10px" }}>{errors.city}</p>}<br />
             <label for="zip">Zip Code</label><br />
-            <input type="text" id="zip" name="zip" placeholder='18845' /><br />
+            <input type="text" id="zip" name="zip" placeholder='18845' required value={zipcode} onChange={(e) => setZipcode(e.target.value)} /><br />
+             {errors.zipcode && <p className="error" style={{ color: "red", marginTop: "10px" }}>{errors.zipcode}</p>}<br />
+
             <label for="country">Country</label><br />
-            <input type="text" id="country" name="country" placeholder='Egypt' /><br />
+            <input type="text" id="country" name="country" placeholder='Egypt' required  value={country} onChange={(e)=>setCountry(e.target.value)}/><br />
+             {errors.country && <p className="error" style={{ color: "red", marginTop: "10px" }}>{errors.country}</p>}<br />
             <label for="delivery-adress">Delivery Address</label><br />
               <div className="billing-options">
               <label
@@ -60,6 +115,7 @@ const proceddpayment=()=>{
           value="same"
           checked={selected === "same"}
           onChange={() => setSelected("same")}
+         
         />
         <span className="custom-radio"></span>
         <span className="text">Same as shipping address</span>
@@ -81,7 +137,7 @@ const proceddpayment=()=>{
         </label>
         <br />
 </div>
-            {/* <input type="submit" value="Place Order" /> */}
+         
         </form>
         </div>
 

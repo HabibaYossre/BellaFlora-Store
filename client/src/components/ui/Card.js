@@ -1,7 +1,9 @@
 import React , { useContext }from 'react'
 import { FaStar } from "react-icons/fa";
-import { IoBag } from "react-icons/io5";
 import { CartContext } from "../../context/CartContext";
+import { FaCartPlus } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+
 
  function Card({ _id,title, description, price, img, rating}) {
     const { addToCart } = useContext(CartContext);
@@ -26,8 +28,10 @@ import { CartContext } from "../../context/CartContext";
                   {/* <del>$300</del> */}
                   {price}
                 </div>
-                <div className="bag">
-                  <IoBag  className="bag-icon"  onClick={() =>addToCart({ _id, img, title, price })}/>
+                <div className="icons">
+                  <FaCartPlus  className="bag-icon"  onClick={() =>addToCart({ _id, img, title, price })}/>
+                  <FaHeart />
+
                 </div>
               </section>
             </div>

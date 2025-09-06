@@ -60,6 +60,7 @@ function Invoice(){
   ];
     return(
         <>
+       
     
          <div className="order-completed">
 
@@ -132,7 +133,7 @@ function Invoice(){
 </div>
         <Shipping />
         <Subscribe />
-
+      
         </>
     );
 

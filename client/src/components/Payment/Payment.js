@@ -54,7 +54,7 @@ function Payment() {
   return (
 
     <div>   
-        <Header />
+      
   
         <div className='order-container'>
         <h2>Payment Page</h2> <br />
@@ -146,7 +146,7 @@ function Payment() {
       </div>
             <Shipping />
         <Subscribe />
-            <Footer />
+         
     </div>
 
  )

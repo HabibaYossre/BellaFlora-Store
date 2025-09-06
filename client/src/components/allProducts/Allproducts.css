@@ -1,7 +1,7 @@
 .products-container{
     display: grid;
-    grid-template-columns: 0.5fr 4fr;
-    gap: 60px;
+    grid-template-columns: 1fr 4fr;
+    /* gap: 20px; */
 }
 
 .right-column{

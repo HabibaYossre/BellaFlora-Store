@@ -1,0 +1,48 @@
+.card-container{
+    display: flex;
+    flex-wrap: wrap;
+    z-index: -2;
+    padding-block-end: 70px;
+}
+.card{
+    margin: 15px;
+    border: 2px solid var(--background-color);
+    padding: 20px;
+    cursor: pointer;
+    background-color: var(--background-color);
+
+}
+.card-img{
+    width: 13rem;
+    height: 13rem;
+    margin-bottom: 1rem;
+}
+.card-title{
+    margin-bottom: 1rem;
+}
+.card-reviews{
+    margin-bottom: 1rem;
+    display: flex;
+}
+.ratings-star{
+    color: var(--stars-color);
+}
+.total-reviews{
+    font-size: 0.9rem;
+    margin-left: 10px;
+}
+.card-price{
+    display: flex;
+    align-items: center;
+    
+}
+.bag-icon{
+    color: var(--primary-color);
+    margin-left: 7rem;
+}
+
+@media (max-width: 768px){
+    .card-container{
+        justify-content: center;
+    }
+}

@@ -21,9 +21,11 @@ function Allproducts() {
         if (!res.ok) {
           throw new Error("Failed to fetch products");
         }
+        console.log(res);
         const data = await res.json();
-        console.log("API Response:", data); // 👈 Debug
-        setAllProducts(data.data || []);   // ✅ use "data.data"
+       
+        console.log("API Response:", data); 
+        setAllProducts(data.data || []); 
       } catch (err) {
         setError(err.message);
       } finally {

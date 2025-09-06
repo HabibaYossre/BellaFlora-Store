@@ -29,8 +29,7 @@ function App() {
      <CartProvider>
     <Routes>
 
-      <Route path="/" element={<Home />}/>
-      <Route path="/auth/login" element={<Login />} />         
+      <Route path="/" element={<Home />}/>       
       <Route path="/Home" element={<Home />} />      
       <Route path="/auth/login" element={<Login />} />         
       <Route path="/auth/signup" element={<SignUp />} /> 
@@ -38,7 +37,7 @@ function App() {
       <Route path="/product/all" element={<Allproducts />} /> 
       <Route path="/Cart" element={<Cart />} />
       <Route path="/Wishlist" element={<Wishlist />} />
-      <Route path="/Order" element={<Order />} />
+      <Route path="/order" element={<Order />} />
       <Route path="/api/auth/reset-password/:token" element={<Resetpass />} />  {/* Habiba Reset Password Route Here!*/}
       {/*<Route path="/S" element={<Search />} />*/}
       <Route path="/product/all" element={<Allproducts />} /> 
