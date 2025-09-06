@@ -40,7 +40,7 @@ function Ocassions() {
           </div>
           <h3>Lovely Fresh Bouqets</h3>
           <div className="collection-text">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab, qui.</div>
-          <div className="btns collection-btns"><Link to="/product/all">Shop Now</Link></div>
+          <div className="btns collection-btns"><Link to="/products/all">Shop Now</Link></div>
         </div>
          <div className="collection card2">
           <div className="discount">

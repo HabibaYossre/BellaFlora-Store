@@ -5,9 +5,7 @@
   height: 100vh;
   /* background: linear-gradient(135deg, #270030, #5c2782, #36025b);  */
  display: flexbox;
- background-image: url("../../../public/images/login2.jpg");
- background-size: cover;
- background-position: top;
+ 
 /* background-size:contain;   */
   /* background-color: var(--background-color); */
 
