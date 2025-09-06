@@ -11,8 +11,15 @@ import "./Login.css";
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+   const [errorMessage, setErrorMessage] = useState("");
 
   const navigate = useNavigate();
+
+     const validatePassword = (password) => {
+    // Regex: At least 8 chars, 1 uppercase, 1 lowercase, 1 number
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{8,}$/;
+    return regex.test(password);
+  };
 
   const forgetpassword=(e)=>{
     e.preventDefault();
@@ -46,13 +53,20 @@ function Login() {
       return;
     }
 
-    if (!password) {
-      alert("Password is required! if you forget password click on forget password");
-      return;
 
-       
-   
+
+    if (!password) {
+      alert("if you forget password click on forget password");
+      return;
     }
+
+    if (!validatePassword(password)) {
+      setErrorMessage(
+        "Password must be at least 8 characters, contain one uppercase letter, and include both numbers and letters."
+      );
+      return;
+    }
+      setErrorMessage("");
     axios
       .post("http://localhost:3000/auth/login", { email, password })
       .then((result) => {
@@ -81,13 +95,16 @@ function Login() {
         </div>
         <div>
           <label htmlFor="password">Password</label>
-          <input type="password" id="password" name="password" value={password}  onChange={(e) => setPassword(e.target.value)} />
+          <input type="password" id="password" name="password" value={password} required onChange={(e) => setPassword(e.target.value)} />
            <a href="/Checkmail" className="forgetpass" onClick={forgetpassword}>forget password?</a>
         </div>
+         {errorMessage && (
+          <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
+        )}
         <button type="submit" >Login</button>
          <span className="signup-link">
             Don't have an account?{" "} 
-            {/* <Link to="/SignUp">Sign up now</Link> */}
+           
           <NavLink to="/auth/signup">Sign up now</NavLink>
           </span>
       </form>
