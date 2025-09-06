@@ -1,0 +1,39 @@
+.aboutUs-container{
+padding: 5em 8rem;
+background-color: var(--background-color);
+display: flex;
+align-items: center;
+gap: 100px;
+}
+
+.aboutUs-img{
+    background-image: url(../../../public/images/aboutus.jpg);
+   background-position: top;
+   background-size: cover;
+   background-repeat: no-repeat;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+}
+
+.aboutUs-text{
+    display: flex;
+    flex-direction: column;
+    /* gap: 10px; */
+}
+.aboutUs-title{
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+.aboutUs-header{
+    font-size: 3rem;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+.aboutUs-subHeader{
+    color: var(--text-color);
+}
+.aboutUs-description{
+    max-width: 600px;
+    
+}

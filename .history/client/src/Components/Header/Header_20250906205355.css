@@ -1,0 +1,149 @@
+/* ---------- Top Bar ---------- */
+/* ---------- Top Bar ---------- */
+.top-bar {
+  background: var(--primary-color);
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 20px;
+  font-size: 14px;
+  flex-wrap: wrap;
+}
+
+.top-bar a {
+  color: #fff;
+  text-decoration: underline;
+  margin-left: 5px;
+}
+
+.center a {
+  color: var(--secondary-color);
+}
+
+.top-bar .right a {
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+/* ---------- Navbar ---------- */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #fff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  position: relative;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.logo-icon svg{
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.logo-text {
+  color: #000;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 20px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #000;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #6a0dad;
+}
+
+/* Icons */
+.icons a {
+  margin-left: 15px;
+  font-size: 16px;
+  color: #000;
+}
+.icons a:hover {
+  color: #6a0dad;
+}
+
+/* ---------- Responsive ---------- */
+/* Hide hamburger on desktop */
+.menu-toggle {
+  margin-left: 0px;
+  display: none;
+  
+}
+/* Tablet and smaller (still show nav normally) */
+@media (max-width: 992px) {
+  .navbar {
+    padding: 12px 20px;
+  }
+
+  .nav-links {
+    gap: 15px;
+  }
+}
+.signuplink{
+font-weight: bold;
+color: #fff;
+}
+
+/* Mobile only */
+@media (max-width: 768px) {
+  /* Hide nav links initially */
+  .nav-links {
+    position: absolute;
+    top: 65px;
+    right: 0;
+    background: #fff;
+    flex-direction: column;
+    gap: 15px;
+    width: 220px;
+    padding: 20px;
+    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    display: none; /* hidden by default */
+    z-index: 1000;
+  }
+
+  .nav-links.active {
+    display: flex; /* show when toggled */
+  }
+
+  /* Show hamburger button */
+  .menu-toggle {
+    display: flex; /* hidden by default */
+    font-size: 22px;
+    cursor: pointer;
+  }
+
+  /* Stack top bar */
+  .top-bar {
+    flex-direction: column;
+    text-align: center;
+    gap: 5px;
+    font-size: 13px;
+    padding-top: 15px;
+  
+  }
+  .right{
+    display: none;
+   
+  }
+}
+
+

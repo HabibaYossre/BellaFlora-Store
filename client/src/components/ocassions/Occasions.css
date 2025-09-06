@@ -1,10 +1,10 @@
 .ocassions-container {
-  padding: 5rem 6rem;
+  padding: 5rem 12rem;
 
 }
 .headers {
   margin: 0 auto;
-  max-width: 450px;
+  max-width: 550px;
   text-align: center;
 }
 .headers .subheader {
@@ -113,7 +113,8 @@ width: 600px;
   margin: 0.7rem 0;
 }
 .collection-text{
-  max-width: 300px;
+  max-width:200px;
+  font-weight: 300;
 }
 .collection-btns {
  width: 150px;

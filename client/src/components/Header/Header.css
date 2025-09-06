@@ -1,12 +1,11 @@
 /* ---------- Top Bar ---------- */
-/* ---------- Top Bar ---------- */
 .top-bar {
   background: var(--primary-color);
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 20px;
+  padding: 14px 20px;
   font-size: 14px;
   flex-wrap: wrap;
 }
