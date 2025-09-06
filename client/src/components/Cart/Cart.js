@@ -120,11 +120,15 @@ import "./Cart.css";
 import { CartContext } from "../../context/CartContext";
 import Shipping from "../Shipping/Shipping";
 import Subscribe from "../Subscribe/Subscribe";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQty, clearCart } = useContext(CartContext);
+  const navigate=useNavigate();
 
-  // احسب الإجمالي
+  const gotoorder=()=>{
+ navigate("/order");
+  }
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
@@ -208,7 +212,7 @@ const Cart = () => {
             Total <span>${totalPrice.toFixed(2)}</span>
           </p>
 
-          <button className="checkout-btn">Proceed to Checkout</button>
+          <button className="checkout-btn" onClick={gotoorder}>Proceed to Checkout</button>
           <button className="clear-btn" onClick={clearCart}>
             Clear Cart
           </button>
