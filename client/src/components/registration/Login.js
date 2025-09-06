@@ -60,13 +60,13 @@ function Login() {
       return;
     }
 
-    if (!validatePassword(password)) {
+    /*if (!validatePassword(password)) {
       setErrorMessage(
         "Password must be at least 8 characters, contain one uppercase letter, and include both numbers and letters."
       );
       return;
     }
-      setErrorMessage("");
+      setErrorMessage("");*/
     axios
       .post("http://localhost:3000/auth/login", { email, password })
       .then((result) => {
