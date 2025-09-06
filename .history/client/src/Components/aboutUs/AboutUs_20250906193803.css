@@ -1,0 +1,22 @@
+.aboutUs-container{
+      padding: 5rem 6rem;
+background-color: var(--background-color);
+display: flex;
+align-items: center;
+gap: 20px;
+}
+.aboutUs-img{
+    width: ;
+}
+.aboutUs-img .img{
+    width: 100%;
+}
+/* .aboutUs-img{
+    background-image: url(../../../public/images/aboutus.jpg);
+   background-position: top;
+   background-size: cover;
+   background-repeat: no-repeat;
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+} */

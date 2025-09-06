@@ -1,0 +1,26 @@
+.aboutUs-container{
+padding: 5em 8rem;
+background-color: var(--background-color);
+display: flex;
+align-items: center;
+gap: 100px;
+}
+
+.aboutUs-img{
+    background-image: url(../../../public/images/aboutus.jpg);
+   background-position: top;
+   background-size: cover;
+   background-repeat: no-repeat;
+    width: 450px;
+    height: 450px;
+    border-radius: 50%;
+}
+
+.aboutUs-text{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.aboutUs-title{
+    font-size: 3rem;
+}

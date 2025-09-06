@@ -13,7 +13,7 @@ function FollowUs() {
           <div className="image2-item">
             <div className="image-item">
               <img
-                src="/images/istockphoto-1270914034-612x612.jpg"
+                src="/images/followus5.jpg"
                 alt="Image 1"
               />
             </div>
@@ -26,7 +26,7 @@ function FollowUs() {
           </div>
           <div className="image-item-single">
             <img
-              src="/images/pexels-roman-odintsov-6022828.jpg"
+              src="/images/followus4.jpg"
               alt="Image 3"
             />
           </div>
