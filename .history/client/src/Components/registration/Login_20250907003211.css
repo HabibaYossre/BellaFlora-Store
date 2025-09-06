@@ -7,7 +7,7 @@
  display: flexbox;
  background-image: url("../../../public/images/login2.jpg");
  background-size: cover;
- background-position: top;
+ background-position: center;
 /* background-size:contain;   */
   /* background-color: var(--background-color); */
 

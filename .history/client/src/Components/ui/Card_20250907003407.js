@@ -26,7 +26,7 @@ import { FaHeart } from "react-icons/fa";
               <section className="card-price">
                 <div className="price">
                   {/* <del>$300</del> */}
-                  {price} $
+                  {price} 
                 </div>
                 <div className="icons">
                   <FaCartPlus  className="bag-icon"  onClick={() =>addToCart({ _id, img, title, price })}/>
