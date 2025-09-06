@@ -1,0 +1,23 @@
+.deals-container{
+      padding: 5rem 6rem ;
+}
+.deals-header{
+    font-size: 2.5rem;
+    font-weight: 500;
+    margin-bottom: 20px;
+}
+.deals-header span{
+    color: var(--primary-color);
+}
+.deals-content{
+    display: flex;
+    gap: 20px;
+}
+.offer{
+    background-image: url("../../../public/images/dealsBack.jpg");
+    background-size: cover;
+    background-position: bottom;
+   height: 500px;
+    width: 200px;
+    border-radius: 15px;
+}
