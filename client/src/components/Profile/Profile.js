@@ -112,7 +112,7 @@ function Profile() {
   // Fetch user profile from backend
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/user/profile", { withCredentials: true })
+      .get("http://localhost:3000/user/profile", { withCredentials: true })
       .then((result) => {
         setUser(result.data);
       })
