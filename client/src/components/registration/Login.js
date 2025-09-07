@@ -46,43 +46,80 @@ function Login() {
 
   }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
- if (!email) {
-      alert("Email is required!");
-      return;
-    }
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//  if (!email) {
+//       alert("Email is required!");
+//       return;
+//     }
 
 
 
-    if (!password) {
-      alert("if you forget password click on forget password");
-      return;
-    }
+//     if (!password) {
+//       alert("if you forget password click on forget password");
+//       return;
+//     }
 
-    /*if (!validatePassword(password)) {
-      setErrorMessage(
-        "Password must be at least 8 characters, contain one uppercase letter, and include both numbers and letters."
-      );
-      return;
-    }
-      setErrorMessage("");*/
-    axios
-      .post("http://localhost:3000/auth/login", { email, password })
-      .then((result) => {
-        //console.log(result);
-        if (result.status===200) {
-          navigate("/Home");
-        } else {
-          alert("Invalid email or password");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Something went wrong");
-      });
+//     /*if (!validatePassword(password)) {
+//       setErrorMessage(
+//         "Password must be at least 8 characters, contain one uppercase letter, and include both numbers and letters."
+//       );
+//       return;
+//     }
+//       setErrorMessage("");*/
+//     axios
+//       .post("http://localhost:3000/auth/login", { email, password })
+//       .then((result) => {
+//         //console.log(result);
+//         if (result.status===200) {
+//           navigate("/Home");
+//         } else {
+//           alert("Invalid email or password");
+//         }
+//       })
+//       .catch((err) => {
+//         console.log(err);
+//         alert("Something went wrong");
+//       });
+//   }
+   const handleSubmit = (e) => {
+  e.preventDefault();
+
+  if (!email) {
+    alert("Email is required!");
+    return;
   }
-    
+
+  if (!password) {
+    alert("If you forget password click on forget password");
+    return;
+  }
+
+  axios
+    .post("http://localhost:3000/auth/login", { email, password })
+    .then((result) => {
+      if (result.status === 200) {
+        // ✅ Save token in localStorage
+        const token = result.data.token; // make sure backend sends { token: "..." }
+        localStorage.setItem("token", token);
+     localStorage.setItem("userId", result.data._id);
+
+        // (optional) save userId if backend sends it
+        if (result.data.userId) {
+          localStorage.setItem("userId", result.data.userId);
+        }
+
+        navigate("/Home");
+      } else {
+        alert("Invalid email or password");
+      }
+    })
+    .catch((err) => {
+      console.log(err.response?.data || err.message);
+      alert("Something went wrong");
+    });
+};
+ 
  
 
 

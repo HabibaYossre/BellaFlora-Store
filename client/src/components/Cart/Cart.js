@@ -128,6 +128,8 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQty, clearCart } = useContext(CartContext);
+  console.log("🛒 Cart state in Cart.js:", cart);
+
   const navigate = useNavigate();
 
   const gotoorder = () => {
@@ -141,63 +143,63 @@ const Cart = () => {
         <span className="cart-items">Home / Shopping Cart</span>
       </div>
 
+
       <div className="cart-container">
         <div className="cart-items">
           {cart.items.length === 0 ? (
             <p>Your cart is empty 🛒</p>
           ) : (
-            cart.items.map((item) => (
-              <div className="cart-row" key={item.productId._id}>
-                {/* remove */}
-                <span
-                  className="remove"
-                  onClick={() => removeFromCart(item.productId._id)}
-                >
-                  ✖
-                </span>
-
-                {/* product image */}
-                <img
-                  src={item.productId.img}
-                  alt={item.productId.title}
-                  className="cart-img"
-                />
-
-                {/* info */}
-                <div className="cart-info">
-                  <h4>{item.productId.title}</h4>
-                  <p>{item.productId.description?.slice(0, 40)}...</p>
-                </div>
-
-                {/* price */}
-                <span>${item.productId.price.toFixed(2)}</span>
-
-                {/* qty controls */}
-                <div className="qty-controls">
-                  <button
-                    onClick={() =>
-                      updateQty(item.productId._id, item.quantity - 1)
-                    }
-                    disabled={item.quantity <= 1}
+            cart.items.map((item, idx) => {
+              const product = item.productId || {}; // ✅ safe access
+              return (
+                <div className="cart-row" key={product._id || idx}>
+                  {/* remove */}
+                  <span
+                    className="remove"
+                    onClick={() => removeFromCart(product._id)}
                   >
-                    −
-                  </button>
-                  <span>{item.quantity}</span>
-                  <button
-                    onClick={() =>
-                      updateQty(item.productId._id, item.quantity + 1)
-                    }
-                  >
-                    +
-                  </button>
-                </div>
+                    ✖
+                  </span>
 
-                {/* subtotal for this item */}
-                <span>
-                  ${(item.productId.price * item.quantity).toFixed(2)}
-                </span>
-              </div>
-            ))
+                  {/* product image */}
+                  <img
+                    src={product.img || "/placeholder.png"}
+                    alt={product.title || "Product"}
+                    className="cart-img"
+                  />
+
+                  {/* info */}
+                  <div className="cart-info">
+                    <h4>{product.title || "Untitled"}</h4>
+                    <p>{product.description?.slice(0, 40) || ""}...</p>
+                  </div>
+
+                  {/* price */}
+                  <span>${(product.price || 0).toFixed(2)}</span>
+
+                  {/* qty controls */}
+                  <div className="qty-controls">
+                    <button
+                      onClick={() => updateQty(product._id, item.quantity - 1)}
+                      disabled={item.quantity <= 1}
+                    >
+                      −
+                    </button>
+                    <span>{item.quantity}</span>
+                    <button
+                      onClick={() => updateQty(product._id, item.quantity + 1)}
+                    >
+                      +
+                    </button>
+                  </div>
+
+                  {/* subtotal for this item */}
+                  <span>
+                    ${((product.price || 0) * item.quantity).toFixed(2)}
+                  </span>
+                </div>
+              );
+            })
           )}
           {cart.items.length > 0 && (
             <button className="clear-btn" onClick={clearCart}>
@@ -216,21 +218,21 @@ const Cart = () => {
                 {cart.items.reduce((sum, i) => sum + i.quantity, 0)}
               </span>
             </p>
-        
-             <p>Subtotal <span>${cart.subtotal?.toFixed(2) || "0.00"}</span></p>
 
-         
             <p>
-              Shipping <span>${cart.shipping.toFixed(2)}</span>
+              Subtotal <span>${(cart.subtotal || 0).toFixed(2)}</span>
             </p>
             <p>
-              Taxes <span>${cart.tax.toFixed(2)}</span>
+              Shipping <span>${(cart.shipping || 0).toFixed(2)}</span>
+            </p>
+            <p>
+              Taxes <span>${(cart.tax || 0).toFixed(2)}</span>
             </p>
 
             <hr />
 
             <p className="total">
-              Total <span>${cart.totalPrice.toFixed(2)}</span>
+              Total <span>${(cart.totalPrice || 0).toFixed(2)}</span>
             </p>
 
             <button className="checkout-btn" onClick={gotoorder}>
@@ -254,5 +256,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
-

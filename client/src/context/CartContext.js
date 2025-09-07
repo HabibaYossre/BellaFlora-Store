@@ -112,7 +112,6 @@
 
 
 
-
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -148,33 +147,39 @@ export const CartProvider = ({ children }) => {
 
     axios
       .get(API_URL, getAuthHeaders())
-      .then((res) => setCart(res.data.cart || res.data)) // ✅ handle both cases
+      .then((res) => {
+        console.log("✅ Cart API response:", res.data);
+        setCart(res.data.cart || res.data); // handle both response shapes
+      })
       .catch((err) =>
-        console.error("Failed to load cart:", err.response?.data || err)
+        console.error("❌ Failed to load cart:", err.response?.data || err)
       );
   }, []);
 
   // ✅ Add product to cart
-  const addToCart = async (product) => {
-    try {
-      setLoading(true);
-      const token = localStorage.getItem("token");
-      if (!token) return;
+ const addToCart = async (product) => {
+  try {
+    setLoading(true);
+    const token = localStorage.getItem("token");
+    const userId = localStorage.getItem("userId"); // 👈 now works
 
-      const res = await axios.post(
-        `${API_URL}/add`,
-        { productId: product._id, quantity: 1 },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+    if (!token) return;
 
-      setCart(res.data.cart);
-    } catch (err) {
-      setError("Failed to add item");
-      console.error("Add to cart error:", err.response?.data || err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    const res = await axios.post(
+      `${API_URL}/add`,
+      { productId: product._id, quantity: 1, userId }, // pass userId if backend expects it
+      { headers: { Authorization: `Bearer ${token}` } }
+    );
+
+    setCart(res.data.cart);
+  } catch (err) {
+    setError("Failed to add item");
+    console.error("Add to cart error:", err.response?.data || err.message);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
   // ✅ Remove product
   const removeFromCart = async (productId) => {
@@ -183,9 +188,10 @@ export const CartProvider = ({ children }) => {
         ...getAuthHeaders(),
         data: { productId },
       });
-      setCart(res.data.cart);
+      console.log("🗑️ Cart after remove:", res.data);
+      setCart(res.data.cart || res.data);
     } catch (err) {
-      console.error("Remove from cart failed:", err.response?.data || err);
+      console.error("❌ Remove from cart failed:", err.response?.data || err);
     }
   };
 
@@ -197,9 +203,10 @@ export const CartProvider = ({ children }) => {
         { productId, quantity },
         getAuthHeaders()
       );
-      setCart(res.data.cart);
+      console.log("🔄 Cart after update:", res.data);
+      setCart(res.data.cart || res.data);
     } catch (err) {
-      console.error("Update qty failed:", err.response?.data || err);
+      console.error("❌ Update qty failed:", err.response?.data || err);
     }
   };
 
@@ -207,17 +214,27 @@ export const CartProvider = ({ children }) => {
   const clearCart = async () => {
     try {
       const res = await axios.delete(`${API_URL}/clear`, getAuthHeaders());
-      setCart(res.data.cart);
+      console.log("🧹 Cart after clear:", res.data);
+      setCart(res.data.cart || res.data);
     } catch (err) {
-      console.error("Clear cart failed:", err.response?.data || err);
+      console.error("❌ Clear cart failed:", err.response?.data || err);
     }
   };
 
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, removeFromCart, updateQty, clearCart, loading, error }}
+      value={{
+        cart,
+        addToCart,
+        removeFromCart,
+        updateQty,
+        clearCart,
+        loading,
+        error,
+      }}
     >
       {children}
     </CartContext.Provider>
   );
 };
+
