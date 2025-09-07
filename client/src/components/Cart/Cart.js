@@ -132,6 +132,7 @@ const Cart = () => {
   const totalPrice = cart.reduce(
     (sum, item) => sum + item.price * item.qty,
     0
+   
   );
 
   return (
@@ -148,7 +149,7 @@ const Cart = () => {
           ) : (
             cart.map((item) => (
               <div className="cart-row" key={item._id}>
-                {/* remove */}
+      
                 <span
                   className="remove"
                   onClick={() => removeFromCart(item._id)}
@@ -156,40 +157,33 @@ const Cart = () => {
                   ✖
                 </span>
 
-                {/* image */}
+               
                 <img src={item.img} alt={item.title} className="cart-img" />
 
-                {/* info */}
                 <div className="cart-info">
                   <h4>{item.title}</h4>
                   <p>{item.description?.slice(0, 40)}...</p>
                 </div>
 
-                {/* price */}
+              
                 <span>${item.price.toFixed(2)}</span>
 
-                {/* qty controls */}
                 <div className="qty-controls">
                   <button onClick={() => updateQty(item._id, -1)}>−</button>
                   <span>{item.qty}</span>
                   <button onClick={() => updateQty(item._id, 1)}>+</button>
                 </div>
 
-                {/* subtotal */}
+           
                 <span>${(item.price * item.qty).toFixed(2)}</span>
               </div>
             ))
           )}
+          <button className="clear-btn" onClick={clearCart}>
+            Clear Cart
+          </button>
         </div>
-      </div>
-
-      {/* coupon form */}
-      <div className="subscrib-form">
-        <input type="email" placeholder="Coupon Code" />
-        <button type="submit">Apply Coupon</button>
-      </div>
-
-      {/* order summary */}
+          {/* order summary */}
       {cart.length > 0 && (
         <div className="order-summary">
           <h3>Order Summary</h3>
@@ -200,7 +194,7 @@ const Cart = () => {
             Subtotal <span>${totalPrice.toFixed(2)}</span>
           </p>
           <p>
-            Shipping <span>$0.00</span>
+            Shipping <span>$00.00</span>
           </p>
           <p>
             Taxes <span>$0.00</span>
@@ -212,12 +206,19 @@ const Cart = () => {
             Total <span>${totalPrice.toFixed(2)}</span>
           </p>
 
-          <button className="checkout-btn" onClick={gotoorder}>Proceed to Checkout</button>
-          <button className="clear-btn" onClick={clearCart}>
-            Clear Cart
-          </button>
+          <button className="checkout-btn" onClick={gotoorder}>Proceed to Checkout</button> <br />
+         
         </div>
       )}
+      </div>
+ 
+      {/* coupon form */}
+      <div className="subscrib-form">
+        <input type="email" placeholder="Coupon Code" />
+        <button type="submit">Apply Coupon</button>
+      </div>
+
+    
 
       <Shipping />
       <Subscribe />

@@ -103,19 +103,19 @@ function SignUp() {
         
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">First Name</label>
+          <label htmlFor="username">Full Name</label>
           <input type="text" id="firstname" name="username"  onChange={(e) => setFirstName(e.target.value)}/>
         </div>
          <div>
-            <div>
-          <label htmlFor="username">Last Name</label>
-          <input type="text" id="lastname" name="username"  onChange={(e) => setLastName(e.target.value)}/>
-        </div>
+           
          <div></div>
           <label htmlFor="email">Email</label>
           <input type="email" id="email" name="email"  onChange={(e) => setEmail(e.target.value)} />    
         </div>
-
+ <div>
+          <label htmlFor="username">Phone</label>
+          <input type="text" id="lastname" name="username"  onChange={(e) => setLastName(e.target.value)}/>
+        </div>
         <div>
           <label htmlFor="password">Password</label>
           <input type="password" id="password" name="password"  onChange={(e) => setPassword(e.target.value)}/>

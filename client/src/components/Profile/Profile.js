@@ -112,7 +112,7 @@ function Profile() {
   // Fetch user profile from backend
   useEffect(() => {
     axios
-      .get("http://localhost:3000/user/profile", { withCredentials: true })
+      .get("http://localhost:3000/user/profile")  
       .then((result) => {
         setUser(result.data);
       })
@@ -133,7 +133,7 @@ function Profile() {
   const updateProfile = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:3000/api/user/profile", user, {
+      .put("http://localhost:3000/user/profile", user, {
         withCredentials: true,
       })
       .then((result) => {
@@ -153,7 +153,7 @@ function Profile() {
   // Logout
   const logout = () => {
     axios
-      .post("http://localhost:3000/auth/logout", {}, { withCredentials: true })
+      .post("http://localhost:3000/auth/logout")
       .then((result) => {
         if (result.status === 200) {
           navigate("/auth/login");
@@ -182,7 +182,7 @@ function Profile() {
         <form className="Profile-form" onSubmit={updateProfile}>
           {message && <p className="profile-message">{message}</p>}
 
-          <label htmlFor="firstName">First Name*</label>
+          <label htmlFor="firstName">Full Name*</label>
           <input
             type="text"
             id="firstName"
@@ -192,7 +192,7 @@ function Profile() {
             required
           />
 
-          <label htmlFor="lastName">Last Name*</label>
+          <label htmlFor="lastName">Password*</label>
           <input
             type="text"
             id="lastName"
@@ -202,15 +202,6 @@ function Profile() {
             required
           />
 
-          <label htmlFor="email">Email*</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            required
-          />
 
           <label htmlFor="phone">Phone*</label>
           <input
@@ -242,7 +233,7 @@ function Profile() {
           Logout
         </button>
       </div>
-
+<Shipping />
       <Subscribe />
     </>
   );
