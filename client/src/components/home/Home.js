@@ -21,8 +21,9 @@ function Home() {
       <Deals></Deals>
       <Marquee></Marquee>
       <FollowUs></FollowUs>
-      <Shipping></Shipping>
+    <Marquee></Marquee>
       <FAQ></FAQ>
+        <Shipping></Shipping>
       <Subscribe></Subscribe>
     </>
   );
