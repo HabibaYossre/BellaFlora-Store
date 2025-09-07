@@ -17,3 +17,5 @@ export const authMiddleware = async (req, res, next) => {
     res.status(401).json({ message: "Token failed" });
   }
 };
+
+export default authMiddleware;
