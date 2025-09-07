@@ -6,10 +6,9 @@ import sendEmail from "../services/emailService.js"; // service to send emails
 
 // Generate JWT Token
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "7d", // token valid for 7 days
-  });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
+
 
 // @desc    Register new user
 // @route   POST /auth/signup
