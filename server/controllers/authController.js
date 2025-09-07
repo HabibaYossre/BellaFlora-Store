@@ -49,21 +49,29 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check for user
     const user = await User.findOne({ email }).select("+password");
     if (!user) return res.status(401).json({ message: "Invalid credentials" });
 
     const isMatch = await user.matchPassword(password);
     if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
+    const token = generateToken(user._id);
+
+    // Set cookie
+    res.cookie("token", token, {
+      httpOnly: true,   // can’t be accessed via JS
+      secure: process.env.NODE_ENV === "production", // only https in prod
+      sameSite: "strict",
+      maxAge: 60 * 60 * 1000, // 1 hour
+    });
+
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(user._id),
     });
-   
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
