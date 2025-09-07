@@ -8,14 +8,27 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer"
 import Shipping from "../Shipping/Shipping";
 import ContactUs from "../ContactUs/ContactUs"
-
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
 function Profile(){
   const [gender, setGender] = useState("Female");
+  const navigate=useNavigate();
   const updateprofile=()=>{
 
   }
   const logout=()=>{
-
+ axios
+      .post("http://localhost:3000/auth/logout")
+      .then((result) => {
+        //console.log(result);
+        if (result.status===200) {
+          navigate("/auth/login");
+        } 
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Something went wrong");
+      });
   }
     return(
 <>
