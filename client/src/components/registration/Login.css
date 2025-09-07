@@ -24,7 +24,7 @@
 .login-container form {
   background: #fff;
   padding: 30px 40px;
-  border-radius: 50 px;
+  border-radius: 30px;
   box-shadow: 0 6px 20px rgba(205, 205, 205, 0.15);
   width: 450px;
 
@@ -46,7 +46,7 @@
 }
 
 .login-container input {
-  width: 93%;
+  width: 100%;
   padding: 10px;
   margin-bottom: 5px;
   border-radius: 8px;
