@@ -8,6 +8,8 @@ import cartRoutes from "./routes/cartRoutes.js";
 import wishlistRoutes from "./routes/wishlistRoutes.js"
 import reviewRouter from "./routes/reviewRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
+import cookieParser from "cookie-parser";
+
 
 // Load .env variables
 dotenv.config();
@@ -17,7 +19,12 @@ connectDB();
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cookieParser());
+
+app.use(cors({
+    origin: "http://localhost:3001",  // <-- your React frontend URL
+    credentials: true                 // <-- allow cookies
+  }));
 
 // Routes
 app.use("/auth", authRoutes);
@@ -26,15 +33,6 @@ app.use('/product',productRoutes)
 app.use("/wishlist",wishlistRoutes)
 app.use("/review",reviewRouter)
 app.use("/order", orderRoutes);
-
-
-//app.use("/users", userRoutes);
-
-
-// Error Handler
-//app.use(errorHandler);
-
-
 
 
 const PORT = process.env.PORT ;
