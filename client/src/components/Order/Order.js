@@ -200,7 +200,7 @@ function Order() {
   const{productId}=useContext(CartContext);
   const{quantity}=useContext(CartContext);
   const{price}=useContext(CartContext);
-  
+
   const [selected, setSelected] = useState("same");
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -225,7 +225,7 @@ function Order() {
     return newErrors;
   };
 
-  const proceddpayment = (e) => {
+/*  const proceddpayment = (e) => {
   e.preventDefault();
 
   const validationErrors = validateForm();
@@ -234,7 +234,7 @@ function Order() {
     return;
   }
 
-    const shippingAddresses = [
+    const shippingAddress = [
     {
       fullname,
       phonenumber,
@@ -255,7 +255,7 @@ function Order() {
 
 
 
-  axios.post("http://localhost:3000/order/", {shippingAddresses,items },   { withCredentials: true })
+  axios.post("http://localhost:3000/order/createOrder", {items, shippingAddress},   { withCredentials: true })
     .then((result) => {
       if (result.status === 200) {
         navigate("/Payment");
@@ -267,7 +267,52 @@ function Order() {
       console.error("❌ Error while ordering:", err.response?.data || err.message);
       alert(err.response?.data?.message || "Something went wrong");
     });
+};*/
+
+
+const proceddpayment = (e) => {
+  e.preventDefault();
+
+  const validationErrors = validateForm();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+
+  const shippingAddress = {
+    fullName: fullname,
+    addressLine: address,
+    city,
+    zipcode,
+    country,
+    phone: phonenumber,
+  };
+  
+
+  const items = cart.items.map((item) => ({
+    productId: item.productId._id,  // only send the ObjectId
+    quantity: item.quantity,
+    price: item.productId.price,    // take price from product
+  }));
+  
+
+  axios.post("http://localhost:3000/order/createOrder", 
+    { items, shippingAddress }, 
+    { withCredentials: true }
+  )
+    .then((result) => {
+      if (result.status === 201) {
+        navigate("/Payment");
+      } else {
+        alert("Problem in Connection to DB");
+      }
+    })
+    .catch((err) => {
+      console.error("❌ Error while ordering:", err.response?.data || err.message);
+      alert(err.response?.data?.message || "Something went wrong");
+    });
 };
+
 
   return (
     <div>
