@@ -48,15 +48,20 @@ function Card({ _id, title, description, price, img, rating }) {
   const { addToCart } = useContext(CartContext);
 
   const handleAddToCart = () => {
-    // ✅ build product object with qty = 1
+    // ✅ هيكل المنتج زي ما الكارت متوقع
     const product = {
       _id,
       title,
+      description,
       price,
       img,
-      qty: 1, // default qty
+      rating,
     };
-    addToCart(product);
+
+    console.log("🛒 [Card.js] Adding product to cart:", product);
+
+    // نبعته بالـ id بس للباك اند (الكارت بيخزن الـproductId + qty)
+    addToCart({ productId: _id, quantity: 1 });
   };
 
   return (
@@ -75,8 +80,12 @@ function Card({ _id, title, description, price, img, rating }) {
         <section className="card-price">
           <div className="price">{price} $</div>
           <div className="icons">
-            <FaCartPlus className="bag-icon" onClick={handleAddToCart} />
-            <FaHeart />
+            <FaCartPlus
+              className="bag-icon"
+              onClick={handleAddToCart}
+              title="Add to Cart"
+            />
+            <FaHeart title="Add to Wishlist" />
           </div>
         </section>
       </div>
