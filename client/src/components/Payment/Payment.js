@@ -8,10 +8,19 @@ import { useNavigate } from 'react-router-dom';
 import { FaPaypal, FaGooglePay, FaMoneyBillWave } from "react-icons/fa";
 import { SiVisa, SiVodafone } from "react-icons/si";
 import { CartContext } from "../../context/CartContext";
+import axios from "axios";
 
 function Payment() {
   const [selected, setSelected] = useState("paypal");
   const { cart } = useContext(CartContext);
+  const[cardname,setCardname]=useState("");
+  const[cardnumber,setCardnumber]=useState("");
+  const[cardcvv,setCardcvv]=useState("");
+  const[cardexm,setCardexpm]=useState("");
+  const[cardexy,setCardexpy]=useState("");
+
+
+  
   const navigate = useNavigate();
 
   const methods = [
@@ -24,7 +33,9 @@ function Payment() {
      {  id: "visa", 
        label: "**** **** **** 8047", 
         icon: <SiVisa className="text-blue-700 text-2xl" />},
-    // { // id: "googlepay", // label: "Google Pay", // icon: <FaGooglePay className="text-red-500 text-2xl" />, 
+    {  id: "googlepay", 
+       label: "Google Pay", 
+        icon: <FaGooglePay className="text-red-500 text-2xl" />}, 
     // { // id: "cod", // label: "Cash On Delivery", // icon: <FaMoneyBillWave className="text-purple-600 text-2xl" />, // }, {
     {
       id: "add-card",
@@ -35,8 +46,25 @@ function Payment() {
    
   ];
 
-  const paymentroute = () => {
-    // Payment logic here
+  const paymentroute = (e) => {
+
+    e.preventDefault();
+    try {
+     const res= axios.post(
+        "http://localhost:3000/",
+        { cardname,cardnumber, cardexm,cardexy,cardcvv },
+        { withCredentials: true } 
+      );
+
+      if (res.status === 200) {
+        
+        navigate("/Invoice");
+      }
+    } catch (err) {
+      console.error(err.response?.data || err.message);
+    alert("Habiba Something Went Wrong")
+    }
+
     navigate('/Invoice');
   };
 
@@ -75,19 +103,19 @@ function Payment() {
             <div className="add-card-form">
               <form className="payment-form">
                 <label htmlFor="cardname">Name on Card *</label>
-                <input type="text" id="cardname" name="cardname" placeholder="John More Doe" />
+                <input type="text" id="cardname" name="cardname" placeholder="John More Doe" required onChange={(e) => setCardname(e.target.value)}/>
 
                 <label htmlFor="cardnumber">Credit card number *</label>
-                <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" />
+                <input type="text" id="cardnumber" name="cardnumber" placeholder="1111-2222-3333-4444" required onChange={(e) => setCardnumber(e.target.value)} />
 
                 <label htmlFor="expmonth">Exp Month *</label>
-                <input type="text" id="expmonth" name="expmonth" placeholder="September" />
+                <input type="text" id="expmonth" name="expmonth" placeholder="September" required onChange={(e) => setCardexpm(e.target.value)} />
 
                 <label htmlFor="expyear">Exp Year *</label>
-                <input type="text" id="expyear" name="expyear" placeholder="2024" />
+                <input type="text" id="expyear" name="expyear" placeholder="2024" required onChange={(e) => setCardexpy(e.target.value)} />
 
                 <label htmlFor="cvv">CVV *</label>
-                <input type="text" id="cvv" name="cvv" placeholder="352" />
+                <input type="text" id="cvv" name="cvv" placeholder="352" required onChange={(e) => setCardcvv(e.target.value)} />
 
                 <button type="button" className="Addcard-btn" onClick={paymentroute}>
                   Add Card & Proceed
