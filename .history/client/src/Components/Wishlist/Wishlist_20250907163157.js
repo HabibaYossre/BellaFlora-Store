@@ -7,12 +7,10 @@ import Shipping from "../Shipping/Shipping";
 import { useState } from "react";
 import axios from "axios";
 
-function Wishlist() {
+const Wishlist=() => {
       const [cartItems, setCartItems] = useState([]);
       const userId =localStorage.getItem("userId");
-      const token =localStorage.getItem("token");
-
-
+      const token =localStorage.getItem("token")
 
     
       const updateQty = (id, delta) => {

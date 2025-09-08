@@ -64,9 +64,7 @@ function Login() {
       .then((result) => {
         //console.log(result);
         if (result.status === 200) {
-          localStorage.setItem("userId" , result.data._id);
-          localStorage.setItem("token" , result.data.token);
-          
+          localStorage.setItem("userId")
           navigate("/Home");
         } else {
           alert("Invalid email or password");

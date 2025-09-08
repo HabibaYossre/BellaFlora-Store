@@ -7,12 +7,14 @@ import Shipping from "../Shipping/Shipping";
 import { useState } from "react";
 import axios from "axios";
 
-function Wishlist() {
-      const [cartItems, setCartItems] = useState([]);
-      const userId =localStorage.getItem("userId");
-      const token =localStorage.getItem("token");
-
-
+const Wishlist=() => {
+      const [cartItems, setCartItems] = useState([
+        { id: 1, name: "Blue White Bouquets", type: "Bouquet", price: 45, qty: 4, img: "/blue.png" },
+        { id: 2, name: "Royal Pink Bouquets", type: "Bouquet", price: 48, qty: 2, img: "/pink.png" },
+        { id: 3, name: "Lavenders Bouquets", type: "Bouquet", price: 24, qty: 1, img: "/lavender.png" },
+        { id: 4, name: "Fresh Flower Basket", type: "Basket", price: 42, qty: 2, img: "/basket.png" },
+      ]);
+   
 
     
       const updateQty = (id, delta) => {
