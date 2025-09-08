@@ -268,20 +268,25 @@ function Order() {
       console.error("❌ Error while ordering:", err.response?.data || err.message);
       alert(err.response?.data?.message || "Something went wrong");
     });
-};
 
-try {
+
+
+    try {
       const response = axios.post(
         "http://localhost:3000/order/createOrder",
-        { items, shippingAddress },
+       {shippingAddresses,items },
         { withCredentials: true }
       );
        // Navigate to Invoice page with the order data
-      navigate("/invoice", { state: { order: response.data } });
+      navigate("/Invoice", { state: { order: response.data } });
     } catch (error) {
       console.error("Error creating order:", error.response?.data || error.message);
       alert(error.response?.data?.message || "Something went wrong");
     }
+
+};
+
+
 
   return (
     <div>
