@@ -17,12 +17,11 @@ import Payment from "./components/Payment/Payment";
 import TrackOrder from "./components/TrackOrder/TrackOrder";
 import Invoice from "./components/Invoice/Invoice";
 import { CartProvider } from "./context/CartContext";
-import Layout from './components/Layout'
+
 function App() {
   return (
-   
+    <Router>
       <CartProvider>
-        <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/Home" element={<Home />} />
@@ -56,9 +55,8 @@ function App() {
           <Route path="/Profile" element={<Profile />} />
           <Route path="/Invoice" element={<Invoice />} />
         </Routes>
-        </Layout>
       </CartProvider>
-   
+    </Router>
   );
 }
 

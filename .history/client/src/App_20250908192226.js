@@ -20,7 +20,7 @@ import { CartProvider } from "./context/CartContext";
 import Layout from './components/Layout'
 function App() {
   return (
-   
+    <Router>
       <CartProvider>
         <Layout>
         <Routes>
@@ -58,7 +58,7 @@ function App() {
         </Routes>
         </Layout>
       </CartProvider>
-   
+    </Router>
   );
 }
 

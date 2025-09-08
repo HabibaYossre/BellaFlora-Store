@@ -17,10 +17,10 @@ import Payment from "./components/Payment/Payment";
 import TrackOrder from "./components/TrackOrder/TrackOrder";
 import Invoice from "./components/Invoice/Invoice";
 import { CartProvider } from "./context/CartContext";
-import Layout from './components/Layout'
+import Layout from './components/R'
 function App() {
   return (
-   
+    <Router>
       <CartProvider>
         <Layout>
         <Routes>
@@ -58,7 +58,7 @@ function App() {
         </Routes>
         </Layout>
       </CartProvider>
-   
+    </Router>
   );
 }
 
