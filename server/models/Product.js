@@ -38,7 +38,7 @@ const productSchema = new mongoose.Schema({
         required: true    
     },
     images: {
-        type: [String], // ◀️ مصفوفة من روابط الصور
+        type: [String],
         required: true    
     },
     ratings: [{
@@ -55,7 +55,7 @@ const productSchema = new mongoose.Schema({
         }
     }]
 }, { 
-    timestamps: true // ◀️ يضيف createdAt و updatedAt تلقائياً
+    timestamps: true 
 });
 
 export default mongoose.model("Product", productSchema);

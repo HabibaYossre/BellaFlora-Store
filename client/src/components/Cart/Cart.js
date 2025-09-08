@@ -1,4 +1,3 @@
-
 // import React, { useContext } from "react";
 // import "./Cart.css";
 // import { CartContext } from "../../context/CartContext";
@@ -150,61 +149,50 @@ const Cart = () => {
               console.log("📦 Rendering cart item:", product.title, { productId, item });
 
               return (
-                <div className="cart-row" key={productId || idx}>
-                  {/* remove */}
-                  <span
-                    className="remove"
-                    onClick={() => {
-                      console.log("🗑️ Removing item with ID:", productId);
-                      removeFromCart(productId);
-                    }}
-                  >
-                    ✖
-                  </span>
-
-                  {/* product image */}
-                  <img
-                    src={product.img || "/placeholder.png"}
-                    alt={product.title || "Product"}
-                    className="cart-img"
-                  />
-
-                  {/* info */}
-                  <div className="cart-info">
-                    <h4>{product.title || "Untitled"}</h4>
-                    <p>{product.description?.slice(0, 40) || ""}...</p>
-                  </div>
-
-                  {/* price */}
-                  <span>${(product.price || 0).toFixed(2)}</span>
-
-                  {/* qty controls */}
-                  <div className="qty-controls">
-                    <button
-                      onClick={() => {
-                        console.log("➖ Decreasing qty for:", productId);
-                        updateQty(productId, item.quantity - 1);
-                      }}
-                      disabled={item.quantity <= 1}
-                    >
-                      −
-                    </button>
-                    <span>{item.quantity}</span>
-                    <button
-                      onClick={() => {
-                        console.log("➕ Increasing qty for:", productId);
-                        updateQty(productId, item.quantity + 1);
-                      }}
-                    >
-                      +
-                    </button>
-                  </div>
-
-                  {/* subtotal for this item */}
-                  <span>
-                    ${((product.price || 0) * item.quantity).toFixed(2)}
-                  </span>
+              <div className="cart-row" key={productId || idx}>
+                {/* remove */}
+                <span
+                  className="remove"
+                  onClick={() => removeFromCart(productId)}
+                >
+                  ✖
+                </span>
+              
+                {/* product image (first image from array) */}
+                <img
+                  src={product.images?.[0] || "/placeholder.png"}
+                  alt={product.name || "Product"}
+                  className="cart-img"
+                />
+              
+                {/* info */}
+                <div className="cart-info">
+                  <h4>{product.name || "Unnamed Product"}</h4>
+                  {product.title && <p>{product.title}</p>}
+                  <p>{product.description?.slice(0, 40) || ""}...</p>
                 </div>
+              
+                {/* price */}
+                <span>${(product.price || 0).toFixed(2)}</span>
+              
+                {/* qty controls */}
+                <div className="qty-controls">
+                  <button
+                    onClick={() => updateQty(productId, item.quantity - 1)}
+                    disabled={item.quantity <= 1}
+                  >
+                    −
+                  </button>
+                  <span>{item.quantity}</span>
+                  <button onClick={() => updateQty(productId, item.quantity + 1)}>+</button>
+                </div>
+              
+                {/* subtotal for this item */}
+                <span>
+                  ${((product.price || 0) * item.quantity).toFixed(2)}
+                </span>
+              </div>
+              
               );
             })
           )}

@@ -9,6 +9,8 @@ import wishlistRoutes from "./routes/wishlistRoutes.js"
 import reviewRouter from "./routes/reviewRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
 import cookieParser from "cookie-parser";
+import userRoutes from "./routes/userRoutes.js"
+
 
 
 // Load .env variables
@@ -37,6 +39,7 @@ app.use('/product',productRoutes)
 app.use("/wishlist",wishlistRoutes)
 app.use("/review",reviewRouter)
 app.use("/order", orderRoutes);
+app.use("/userProfile",userRoutes);
 
 
 const PORT = process.env.PORT ;

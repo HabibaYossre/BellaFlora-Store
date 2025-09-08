@@ -38,7 +38,6 @@ const searchByName = async (req, res) => {
             });
         }
 
-        // البحث غير حساس لحالة الأحرف
         const product = await Product.findOne({
             name: { $regex: name, $options: 'i' }
         });
@@ -59,7 +58,7 @@ const searchByName = async (req, res) => {
         console.error("Search Error:", error);
         return res.status(500).json({
             success: false,
-            error: error.message // ✅ تصحيح الخطأ هنا
+            error: error.message 
         });
     }
 };
@@ -75,7 +74,7 @@ const filterByCategory = async (req, res) => {
             });
         }
 
-        // البحث غير حساس لحالة الأحرف
+       
         const products = await Product.find({
             category: { $regex: new RegExp(`^${category}$`), $options: 'i' }
         });
@@ -159,7 +158,6 @@ const addNewProduct = async (req, res) => {
             images
         } = req.body;
 
-        // التحقق من الحقول المطلوبة (بدون id)
         if (!name || !description || !category || !size || !color || !material || !price || !stock || !images) {
             return res.status(400).json({
                 success: false,
@@ -167,7 +165,6 @@ const addNewProduct = async (req, res) => {
             });
         }
 
-        // إنشاء المنتج الجديد (بدون id)
         const newProduct = new Product({
             name,
             type,
@@ -187,7 +184,7 @@ const addNewProduct = async (req, res) => {
         return res.status(201).json({
             success: true,
             msg: "Product added successfully",
-            product: savedProduct // سيحتوي على _id تلقائي
+            product: savedProduct 
         });
 
     } catch (error) {
@@ -217,7 +214,7 @@ const updateProduct=async(req,res)=>{
     catch(error){
                 if (error.name === 'ValidationError') {
             return res.status(400).json({
-                success: false, // ✅ boolean
+                success: false,
                 msg: "Validation Error",
                 errors: error.errors
             });
@@ -232,10 +229,11 @@ const deleteProduct=async(req,res)=>{
     try{
 const{id}=req.params
 if(!id) return res.status(400).json({msg:"ID Is Required",Deleted:"False"})
-    const productToDelete= await Product.findById(id)
+    if(!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json("Invalid Product_ID")
+    const productToDelete= await Product.findByIdAndDelete(id)
 if(!productToDelete) return res.status(404).json({msg:"This Product Doesn't Exist"})
-    await Product.deleteOne(productToDelete)
-    return res.status(200).json({msg:"Product Is Deleted",Product:productToDelete})
+    // await Product.deleteOne(productToDelete)
+    return res.status(200).json({Success:true,msg:"Product Is Deleted",Product:productToDelete})
     }catch(error){
         console.error("Delete Error",error);
         res.status(500).json({success:"False",msg:"Server Error"})
