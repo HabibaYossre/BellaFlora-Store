@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import bcrypt from "bcryptjs";
 import crypto from "crypto";
+import { type } from "os";
 
 
 
@@ -40,6 +41,9 @@ const userSchema = new mongoose.Schema(
       type: String,
       enum: ["customer", "admin"],
       default: "customer"
+    },
+    image:{
+      type:String
     },
     addresses: [addressSchema],
     wishlist: [
