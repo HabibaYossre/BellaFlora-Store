@@ -1,29 +1,37 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { jsPDF } from "jspdf";
+import Shipping from "../Shipping/Shipping";
+import Subscribe from "../Subscribe/Subscribe";
+import Header from "../Header/Header";
+import Footer from "../Footer/Footer";
 
 function Invoice() {
-  const [orders, setOrders] = useState([]);
+  const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchOrders = async () => {
+    const fetchOrder = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/order/getOrder", {
-          withCredentials: true, // send cookies automatically
+        const res = await axios.get("http://localhost:3000/order/myOrder", {
+          withCredentials: true, // important for cookies
         });
-        setOrders(res.data);
+        if (res.data && res.data.length > 0) {
+          setOrder(res.data[0]); // latest order
+        }
       } catch (err) {
-        console.error("Error fetching orders:", err.response?.data || err.message);
+        console.error("Error fetching order:", err.response?.data || err.message);
       } finally {
         setLoading(false);
       }
     };
-
-    fetchOrders();
+    fetchOrder();
   }, []);
 
-  const handleDownload = (order) => {
+  if (loading) return <p>Loading order...</p>;
+  if (!order) return <p>No order found.</p>;
+
+  const handleDownload = () => {
     const doc = new jsPDF();
     doc.setFontSize(18);
     doc.text("Invoice", 20, 20);
@@ -31,60 +39,60 @@ function Invoice() {
     doc.setFontSize(12);
     doc.text(`Order ID: ${order._id}`, 20, 40);
     doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "N/A"}`, 20, 50);
-    doc.text(`Delivery Date: ${new Date(order.createdAt).toLocaleDateString()}`, 20, 60);
+    doc.text(`Transaction ID: ${order._id}`, 20, 60);
+    doc.text(`Delivery Date: ${new Date(order.createdAt).toLocaleDateString()}`, 20, 70);
 
-    let y = 80;
+    let y = 90;
     order.items.forEach((i) => {
-      doc.text(i.name || "Product", 20, y);
+      const productName = i.productId?.name || "Product";
+      doc.text(productName, 20, y);
       doc.text(`$${i.price.toFixed(2)}`, 150, y);
       y += 10;
     });
 
     const total = order.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
     doc.text(`Total: $${total.toFixed(2)}`, 20, y + 20);
-    doc.save(`invoice_${order._id}.pdf`);
+    doc.save("invoice.pdf");
   };
 
-  if (loading) return <p>Loading orders...</p>;
-  if (orders.length === 0) return <p>No orders found</p>;
-
   return (
-    <div>
-      <h2>My Orders</h2>
-      {orders.map((order) => (
-        <div key={order._id} style={{ border: "1px solid #ccc", marginBottom: "20px", padding: "10px" }}>
-          <p><strong>Order ID:</strong> {order._id}</p>
-          <p><strong>Payment Method:</strong> {order.billingDetails?.paymentMethod || "N/A"}</p>
-          <p><strong>Order Date:</strong> {new Date(order.createdAt).toLocaleDateString()}</p>
+    <>
+   
+      <div className="invoice-container">
+        <h2>Invoice</h2>
+        <p>Order ID: {order._id}</p>
+        <p>Payment Method: {order.billingDetails?.paymentMethod || "N/A"}</p>
+        <p>Delivery Date: {new Date(order.createdAt).toLocaleDateString()}</p>
 
-          <table border="1" cellPadding="5" style={{ width: "100%", marginTop: "10px" }}>
-            <thead>
-              <tr>
-                <th>Product</th>
-                <th>Qty</th>
-                <th>Price</th>
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Qty</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            {order.items.map((i, idx) => (
+              <tr key={idx}>
+                <td>{i.productId?.name || "Product"}</td>
+                <td>{i.quantity}</td>
+                <td>${i.price.toFixed(2)}</td>
               </tr>
-            </thead>
-            <tbody>
-              {order.items.map((item, idx) => (
-                <tr key={idx}>
-                  <td>{item.name || "Product"}</td>
-                  <td>{item.quantity}</td>
-                  <td>${item.price.toFixed(2)}</td>
-                </tr>
-              ))}
-              <tr>
-                <td colSpan="2"><strong>Total</strong></td>
-                <td>${order.items.reduce((sum, i) => sum + i.price * i.quantity, 0).toFixed(2)}</td>
-              </tr>
-            </tbody>
-          </table>
-          <button onClick={() => handleDownload(order)} style={{ marginTop: "10px" }}>
-            Download PDF
-          </button>
-        </div>
-      ))}
-    </div>
+            ))}
+            <tr>
+              <td colSpan="2">Total</td>
+              <td>${order.items.reduce((sum, i) => sum + i.price * i.quantity, 0).toFixed(2)}</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <button onClick={handleDownload}>Download PDF</button>
+      </div>
+      <Shipping />
+      <Subscribe />
+     
+    </>
   );
 }
 

@@ -301,22 +301,22 @@ const proceddpayment = (e) => {
     price: item.productId.price,    // take price from product
   }));
   
-
-  axios.post("http://localhost:3000/order/createOrder", 
-    { items, shippingAddress }, 
-    { withCredentials: true }
-  )
-    .then((result) => {
-      if (result.status === 201) {
-        navigate("/Payment");
-      } else {
-        alert("Problem in Connection to DB");
-      }
-    })
-    .catch((err) => {
-      console.error("❌ Error while ordering:", err.response?.data || err.message);
-      alert(err.response?.data?.message || "Something went wrong");
-    });
+  navigate("/Payment");
+  // axios.post("http://localhost:3000/order/createOrder", 
+  //   { items, shippingAddress }, 
+  //   { withCredentials: true }
+  // )
+  //   .then((result) => {
+  //     if (result.status === 201) {
+  //       navigate("/Payment");
+  //     } else {
+  //       alert("Problem in Connection to DB");
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     console.error("❌ Error while ordering:", err.response?.data || err.message);
+  //     alert(err.response?.data?.message || "Something went wrong");
+  //   });
 };
 
 
