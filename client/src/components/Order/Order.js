@@ -200,7 +200,7 @@ function Order() {
   const{productId}=useContext(CartContext);
   const{quantity}=useContext(CartContext);
   const{price}=useContext(CartContext);
-  
+
   const [selected, setSelected] = useState("same");
   const [fullname, setFullname] = useState("");
   const [email, setEmail] = useState("");
@@ -225,7 +225,7 @@ function Order() {
     return newErrors;
   };
 
-  const proceddpayment = (e) => {
+/*  const proceddpayment = (e) => {
   e.preventDefault();
 
   const validationErrors = validateForm();
@@ -234,7 +234,7 @@ function Order() {
     return;
   }
 
-    const shippingAddresses = [
+    const shippingAddress = [
     {
       fullname,
       phonenumber,
@@ -256,7 +256,11 @@ function Order() {
 
 
 
+  axios.post("http://localhost:3000/order/createOrder", {items, shippingAddress},   { withCredentials: true })
+=======
+
   axios.post("http://localhost:3000/order/", {shippingAddresses,items },   { withCredentials: true })
+
     .then((result) => {
       if (result.status === 200) {
         navigate("/Payment");
@@ -268,20 +272,72 @@ function Order() {
       console.error("❌ Error while ordering:", err.response?.data || err.message);
       alert(err.response?.data?.message || "Something went wrong");
     });
+<<<<<<< HEAD
+};*/
+
+
+const proceddpayment = (e) => {
+  e.preventDefault();
+
+  const validationErrors = validateForm();
+  if (Object.keys(validationErrors).length > 0) {
+    setErrors(validationErrors);
+    return;
+  }
+
+  const shippingAddress = {
+    fullName: fullname,
+    addressLine: address,
+    city,
+    zipcode,
+    country,
+    phone: phonenumber,
+  };
+  
+
+  const items = cart.items.map((item) => ({
+    productId: item.productId._id,  // only send the ObjectId
+    quantity: item.quantity,
+    price: item.productId.price,    // take price from product
+  }));
+  
+  navigate("/Payment");
+  // axios.post("http://localhost:3000/order/createOrder", 
+  //   { items, shippingAddress }, 
+  //   { withCredentials: true }
+  // )
+  //   .then((result) => {
+  //     if (result.status === 201) {
+  //       navigate("/Payment");
+  //     } else {
+  //       alert("Problem in Connection to DB");
+  //     }
+  //   })
+  //   .catch((err) => {
+  //     console.error("❌ Error while ordering:", err.response?.data || err.message);
+  //     alert(err.response?.data?.message || "Something went wrong");
+  //   });
 };
 
-try {
+
+
+  /*  try {
       const response = axios.post(
         "http://localhost:3000/order/createOrder",
-        { items, shippingAddress },
+       {shippingAddresses,items },
         { withCredentials: true }
       );
        // Navigate to Invoice page with the order data
-      navigate("/invoice", { state: { order: response.data } });
+      navigate("/Invoice", { state: { order: response.data } });
     } catch (error) {
       console.error("Error creating order:", error.response?.data || error.message);
       alert(error.response?.data?.message || "Something went wrong");
     }
+
+};*/
+
+
+
 
   return (
     <div>
