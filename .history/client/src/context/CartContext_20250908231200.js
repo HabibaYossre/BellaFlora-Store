@@ -1,3 +1,83 @@
+
+
+//     console.log("✅ Added to cart:", res.data);
+//     setCart(res.data);
+//     localStorage.setItem("cart", JSON.stringify(res.data));
+//   } catch (error) {
+//     console.error("❌ Add to cart error:", error.response?.data || error.message);
+//   }
+// };
+
+
+
+//   // ✅ Remove from cart
+//   const removeFromCart = async (productId) => {
+//     try {
+//       console.log("🗑️ Removing product:", productId);
+
+//       const res = await axios.delete(`${API_URL}/remove`, {
+//         data: { productId },
+//       });
+
+//       console.log("✅ Remove response:", res.data);
+//       setCart(res.data.cart || res.data);
+//     } catch (err) {
+//       console.error("❌ Remove from cart failed:", err.response?.data || err);
+//       setError("Failed to remove item");
+//     }
+//   };
+
+//   // ✅ Update quantity
+//   const updateQty = async (productId, quantity) => {
+//     try {
+//       console.log(`🔄 Updating qty → ${productId} : ${quantity}`);
+
+//       const res = await axios.put(`${API_URL}/update`, {
+//         productId,
+//         quantity,
+//       });
+
+//       console.log("✅ Update qty response:", res.data);
+//       setCart(res.data.cart || res.data);
+//     } catch (err) {
+//       console.error("❌ Update qty failed:", err.response?.data || err);
+//       setError("Failed to update quantity");
+//     }
+//   };
+
+//   // ✅ Clear cart
+//   const clearCart = async () => {
+//     try {
+//       console.log("🧹 Clearing entire cart...");
+
+//       const res = await axios.delete(`${API_URL}/clear`);
+
+//       console.log("✅ Cart cleared:", res.data);
+//       setCart(res.data.cart || res.data);
+//     } catch (err) {
+//       console.error("❌ Clear cart failed:", err.response?.data || err);
+//       setError("Failed to clear cart");
+//     }
+//   };
+
+//   return (
+//     <CartContext.Provider
+//       value={{
+//         cart,
+//         addToCart,
+//         removeFromCart,
+//         updateQty,
+//         clearCart,
+//         loading,
+//         error,
+//       }}
+//     >
+//       {children}
+//     </CartContext.Provider>
+//   );
+// };
+
+
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -11,14 +91,13 @@ export const CartProvider = ({ children }) => {
     shipping: 0,
     totalPrice: 0,
   });
-  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const API_URL = "http://localhost:3000/cart";
   axios.defaults.withCredentials = true;
 
-  // helper → normalize backend response
+  // 🛠 helper → normalize backend response
   const normalizeCart = (data) => {
     if (!data) return cart;
     // لو الباك رجع {message, cart}

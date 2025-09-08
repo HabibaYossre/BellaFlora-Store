@@ -11,14 +11,13 @@ export const CartProvider = ({ children }) => {
     shipping: 0,
     totalPrice: 0,
   });
-  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   const API_URL = "http://localhost:3000/cart";
   axios.defaults.withCredentials = true;
 
-  // helper → normalize backend response
+  // 🛠 helper → normalize backend response
   const normalizeCart = (data) => {
     if (!data) return cart;
     // لو الباك رجع {message, cart}

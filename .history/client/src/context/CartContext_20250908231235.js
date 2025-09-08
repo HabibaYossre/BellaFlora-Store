@@ -11,7 +11,6 @@ export const CartProvider = ({ children }) => {
     shipping: 0,
     totalPrice: 0,
   });
-  
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
