@@ -21,7 +21,9 @@ function Payment() {
       icon: <FaPaypal className="text-blue-700 text-2xl" />
 
     },
-    // { // id: "visa", // label: "**** **** **** 8047", // icon: <SiVisa className="text-blue-700 text-2xl" />,
+     {  id: "visa", 
+       label: "**** **** **** 8047", 
+        icon: <SiVisa className="text-blue-700 text-2xl" />},
     // { // id: "googlepay", // label: "Google Pay", // icon: <FaGooglePay className="text-red-500 text-2xl" />, 
     // { // id: "cod", // label: "Cash On Delivery", // icon: <FaMoneyBillWave className="text-purple-600 text-2xl" />, // }, {
     {
