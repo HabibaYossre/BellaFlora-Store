@@ -15,7 +15,7 @@ import { Home } from 'lucide-react';
 
 
 function Order() {
-   const { cart, removeFromCart, updateQty, clearCart } = useContext(CartContext);
+   const { cart} = useContext(CartContext);
       const [selected, setSelected] = useState("same");
       const [fullname,setFullname]=useState("")
       const [email,setEmail]=useState("")
@@ -52,7 +52,7 @@ function Order() {
 
     
     axios
-      .post("http://localhost:3000/order", { fullname,email,phonenumber,address,city,zipcode,country,deliveryaddress})
+      .post("http://localhost:3000/order/", { fullname,phonenumber,address,city,zipcode,country})
       .then((result) => {
         //console.log(result);
         if (result.status===200) {
@@ -142,23 +142,7 @@ function Order() {
         </form>
         </div>
 
-   {/* <div className="order-summary">
-      
-        <h3>Order Summary</h3>
-        <p>Items <span>9</span></p>
-        <p>Sub Total <span>$300</span></p>
-        <p>Shipping <span>$0.00</span></p>
-        <p>Taxes <span>$0.00</span></p>
-        <p>Coupon Discount <span>-$100</span></p>
 
-        <hr />
-        
-        <p className="total">Total <span>$200</span></p>
-      
-           
-            <button className="checkout-btn" onClick={proceddpayment}>Proceed to Payment</button>
-           
-      </div> */}
         <div className="order-summary">
             <h3>Order Summary</h3>
             <p>

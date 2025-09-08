@@ -10,12 +10,12 @@ function Checkmail() {
           We’ve sent you a link to reset your password. Please check your inbox
           and follow the instructions.
         </p>
-        <button
+        {/* <button
           className="back-button"
           
         >
           Confirm
-        </button>
+        </button> */}
       </div>
     </div>
   );

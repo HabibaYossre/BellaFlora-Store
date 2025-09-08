@@ -138,7 +138,7 @@ function Resetpass() {
       .then((res) => {
         console.log(res.data);
         alert(res.data.message);
-        navigate("/Home"); // redirect after success
+        navigate("/auth/login"); // redirect after success
       })
       .catch((err) => {
         console.error(err.response ? err.response.data : err.message);
