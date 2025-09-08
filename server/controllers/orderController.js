@@ -4,7 +4,8 @@ import Order from "../models/Order.js";
 export const createOrder = async (req, res) => {
   try {
     const { items, shippingAddress} = req.body;
-
+    console.log("items",items)
+    console.log("shippingAddress",shippingAddress)
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "Order must contain at least one item" });
     }
