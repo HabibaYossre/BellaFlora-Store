@@ -3,7 +3,7 @@ import Order from "../models/Order.js";
 // Create new order
 export const createOrder = async (req, res) => {
   try {
-    const { items, shippingAddress, billingDetails } = req.body;
+    const { items, shippingAddress} = req.body;
 
     if (!items || items.length === 0) {
       return res.status(400).json({ message: "Order must contain at least one item" });
@@ -13,7 +13,7 @@ export const createOrder = async (req, res) => {
       userId: req.user.id, // req.user comes from auth middleware
       items,
       shippingAddress,
-      billingDetails,
+
     });
 
     const savedOrder = await newOrder.save();
