@@ -6,17 +6,16 @@ import sendEmail from "../services/emailService.js"; // service to send emails
 
 // Generate JWT Token
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET, {
-    expiresIn: "7d", // token valid for 7 days
-  });
+  return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: "1h" });
 };
+
 
 // @desc    Register new user
 // @route   POST /auth/signup
 export const signup = async (req, res) => {
   try {
     //console.log("i am a signup function");
-    const { name, email, password } = req.body;
+    const { name, email,phone, password } = req.body;
 
     // Check if user already exists
     const userExists = await User.findOne({ email });
@@ -26,9 +25,7 @@ export const signup = async (req, res) => {
 
     // Create new user
     const user = await User.create({
-      name,
-      email,
-      password,
+      name, email,phone, password,
     });
 
     res.status(201).json({
@@ -36,6 +33,7 @@ export const signup = async (req, res) => {
       name: user.name,
       email: user.email,
       role: user.role,
+      phone: user.phone,
       token: generateToken(user._id),
     });
   } catch (error) {
@@ -49,21 +47,29 @@ export const login = async (req, res) => {
   try {
     const { email, password } = req.body;
 
-    // Check for user
     const user = await User.findOne({ email }).select("+password");
     if (!user) return res.status(401).json({ message: "Invalid credentials" });
 
     const isMatch = await user.matchPassword(password);
     if (!isMatch) return res.status(401).json({ message: "Invalid credentials" });
 
+    const token = generateToken(user._id);
+
+    // Set cookie
+    res.cookie("token", token, {
+      httpOnly: true,   // can’t be accessed via JS
+      secure: process.env.NODE_ENV === "production", // only https in prod
+      sameSite: "strict",
+      maxAge: 60 * 60 * 1000, // 1 hour
+    });
+
     res.json({
       _id: user._id,
       name: user.name,
       email: user.email,
       role: user.role,
-      token: generateToken(user._id),
     });
-   
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -71,9 +77,11 @@ export const login = async (req, res) => {
 
 // @desc    Logout user (client should just delete token)
 // @route   POST /auth/logout
-export const logout = async (req, res) => {
-  res.json({ message: "User logged out successfully" });
+export const logout = (req, res) => {
+  res.clearCookie("token", { httpOnly: true, sameSite: "strict", secure: process.env.NODE_ENV === "production" });
+  res.json({ message: "Logged out successfully" });
 };
+
 
 // @desc    Forgot password - send reset link
 // @route   POST /auth/forgot-password
@@ -111,7 +119,7 @@ export const forgotPassword = async (req, res) => {
 
 // @desc    Reset password
 // @route   POST /api/auth/reset-password/:token
-export const resetPassword = async (req, res) => {
+/*export const resetPassword = async (req, res) => {
   try {
     const resetPasswordToken = crypto
       .createHash("sha256")
@@ -133,6 +141,54 @@ export const resetPassword = async (req, res) => {
     await user.save();
 
     res.json({ message: "Password reset successful" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+*/
+
+export const resetPassword = async (req, res) => {
+  try {
+    const resetPasswordToken = crypto
+      .createHash("sha256")
+      .update(req.params.token)
+      .digest("hex");
+
+    const user = await User.findOne({
+      resetPasswordToken,
+      resetPasswordExpire: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({ message: "Invalid or expired token" });
+    }
+
+    // update password
+    user.password = req.body.password;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpire = undefined;
+    await user.save();
+
+    // generate JWT and set cookie
+    const token = generateToken(user._id);
+
+    res.cookie("token", token, {
+      httpOnly: true,   // cannot be accessed via JS
+      secure: process.env.NODE_ENV === "production", // only https in production
+      sameSite: "strict",
+      maxAge: 60 * 60 * 1000, // 1 hour
+    });
+
+    res.json({
+      message: "Password reset successful, you are now logged in",
+      user: {
+        _id: user._id,
+        name: user.name,
+        email: user.email,
+        role: user.role,
+      },
+    });
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

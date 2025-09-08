@@ -1,9 +1,9 @@
-import jwt from "jsonwebtoken"
+import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-
+import cookieParser from "cookie-parser";
 
 export const authMiddleware = async (req, res, next) => {
-  const token = req.headers.authorization?.split(" ")[1];
+  const token = req.cookies.token; // token from cookie
 
   if (!token) {
     return res.status(401).json({ message: "Not authorized, no token" });
@@ -17,4 +17,5 @@ export const authMiddleware = async (req, res, next) => {
     res.status(401).json({ message: "Token failed" });
   }
 };
+
 export default authMiddleware;

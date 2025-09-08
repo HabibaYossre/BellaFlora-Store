@@ -6,8 +6,8 @@ import Footer from '../Footer/Footer';
 import Shipping from '../Shipping/Shipping';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-
-
+import { CartContext } from "../../context/CartContext";
+import { useContext } from "react";
 import { useState } from 'react';
 import { Home } from 'lucide-react';
 
@@ -15,6 +15,7 @@ import { Home } from 'lucide-react';
 
 
 function Order() {
+   const { cart} = useContext(CartContext);
       const [selected, setSelected] = useState("same");
       const [fullname,setFullname]=useState("")
       const [email,setEmail]=useState("")
@@ -51,7 +52,7 @@ function Order() {
 
     
     axios
-      .post("http://localhost:3000/order", { fullname,email,phonenumber,address,city,zipcode,country,deliveryaddress})
+      .post("http://localhost:3000/order/", { fullname,phonenumber,address,city,zipcode,country})
       .then((result) => {
         //console.log(result);
         if (result.status===200) {
@@ -141,23 +142,37 @@ function Order() {
         </form>
         </div>
 
-   <div className="order-summary">
-      
-        <h3>Order Summary</h3>
-        <p>Items <span>9</span></p>
-        <p>Sub Total <span>$300</span></p>
-        <p>Shipping <span>$0.00</span></p>
-        <p>Taxes <span>$0.00</span></p>
-        <p>Coupon Discount <span>-$100</span></p>
 
-        <hr />
-        
-        <p className="total">Total <span>$200</span></p>
-      
-           
-            <button className="checkout-btn" onClick={proceddpayment}>Proceed to Payment</button>
-           
-      </div>
+        <div className="order-summary">
+            <h3>Order Summary</h3>
+            <p>
+              Items{" "}
+              <span>
+                {cart.items.reduce((sum, i) => sum + i.quantity, 0)}
+              </span>
+            </p>
+
+            <p>
+              Subtotal <span>${(cart.subtotal || 0).toFixed(2)}</span>
+            </p>
+            <p>
+              Shipping <span>${(cart.shipping || 0).toFixed(2)}</span>
+            </p>
+            <p>
+              Taxes <span>${(cart.tax || 0).toFixed(2)}</span>
+            </p>
+
+            <hr />
+
+            <p className="total">
+              Total <span>${(cart.totalPrice || 0).toFixed(2)}</span>
+            </p>
+
+            <button className="checkout-btn" onClick={proceddpayment} >
+              Proceed to Checkout
+            </button>
+            <br />
+          </div>
            </div>
             <Shipping></Shipping>
             <Subscribe></Subscribe>

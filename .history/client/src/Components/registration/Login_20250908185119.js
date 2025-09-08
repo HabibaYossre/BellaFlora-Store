@@ -1,7 +1,14 @@
+<<<<<<< HEAD
+import React from "react";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Checkmail from "./Checkmail.js";
+=======
 /*import React from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom"; 
 import  { useState } from "react";
 import Checkmail from "./Checkmail.js"
+>>>>>>> 132cc2cdb935a5007da84acd73e9226218fa7b84
 import axios from "axios";
 
 import "./Login.css";
@@ -158,6 +165,8 @@ function Login() {
   );
 }
 
+<<<<<<< HEAD
+=======
 export default Login;*/
 
 
@@ -257,4 +266,5 @@ function Login() {
   );
 }
 
+>>>>>>> 132cc2cdb935a5007da84acd73e9226218fa7b84
 export default Login;
