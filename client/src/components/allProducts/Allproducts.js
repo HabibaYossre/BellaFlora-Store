@@ -80,18 +80,20 @@ function Allproducts() {
 
     return filteredProducts.map(
       ({ _id, name, description, price, images, ratings }) => (
-        <Card
-          key={_id}
-          img={images?.[0]} // safe access in case images is missing
-          title={name}
-          description={description}
-          price={price}
-          rating={
-            ratings?.length > 0
-              ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length
-              : 0
-          }
-        />
+     <Card
+  key={_id}
+  _id={_id}          // ✅ زودي دي
+  img={images?.[0]}
+  title={name}
+  description={description}
+  price={price}
+  rating={
+    ratings?.length > 0
+      ? ratings.reduce((sum, r) => sum + r.rating, 0) / ratings.length
+      : 0
+  }
+/>
+
       )
     );
   }

@@ -44,30 +44,25 @@ import { FaStar } from "react-icons/fa";
 import { CartContext } from "../../context/CartContext";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 
-function Card({ _id, title, description, price, img, rating }) {
+function Card({ _id, id, title, description, price, img, rating }) {
   const { addToCart } = useContext(CartContext);
 
+  const productId = _id || id; // ✅ استخدمي اللي موجود
+
   const handleAddToCart = () => {
-    // ✅ هيكل المنتج زي ما الكارت متوقع
-    const product = {
-      _id,
-      title,
-      description,
-      price,
-      img,
-      rating,
-    };
+    if (!productId) {
+      console.error("❌ Product ID is missing!", { _id, id, title });
+      return;
+    }
 
-    console.log("🛒 [Card.js] Adding product to cart:", product);
+    console.log("🛒 [Card.js] Adding product to cart:", { productId, title });
 
-    // نبعته بالـ id بس للباك اند (الكارت بيخزن الـproductId + qty)
-    addToCart({ productId: _id, quantity: 1 });
+    addToCart({ productId, quantity: 1 });
   };
 
   return (
     <section className="card">
       <img className="card-img" src={img} alt={title} />
-
       <div className="card-details">
         <h3 className="card-title">{title}</h3>
         <section className="card-reviews">
@@ -93,5 +88,5 @@ function Card({ _id, title, description, price, img, rating }) {
   );
 }
 
-export default Card;
 
+export default Card;

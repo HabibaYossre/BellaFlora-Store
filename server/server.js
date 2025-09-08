@@ -22,9 +22,13 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(cors({
-    origin: "http://localhost:3001",  // <-- your React frontend URL
-    credentials: true                 // <-- allow cookies
+    // origin: "http://localhost:3001",  // <-- your React frontend URL
+    // credentials: true   
+    //               // <-- allow cookies
+      origin: true,          // بيخلي السيرفر يرجع نفس origin اللي جاي في request
+  credentials: true
   }));
+
 
 // Routes
 app.use("/auth", authRoutes);

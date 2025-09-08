@@ -167,24 +167,29 @@ export const CartProvider = ({ children }) => {
 
   // ✅ Add to cart
   const addToCart = async (product) => {
-    try {
-      setLoading(true);
-      console.log("➕ Adding product to cart:", product);
+  try {
+    console.log("➕ Adding product to cart:", product);
 
-      const res = await axios.post(`${API_URL}/add`, {
-        productId: product._id,
-        quantity: product.qty || 1,
-      });
+    const res = await axios.post(
+      "http://localhost:3000/cart/add",
+      {
+        items: [
+          {
+            productId: product.productId,
+            quantity: product.quantity,
+          },
+        ],
+      },
+      { withCredentials: true }
+    );
 
-      console.log("✅ Added to cart (response):", res.data);
-      setCart(res.data.cart || res.data);
-    } catch (err) {
-      setError("Failed to add item");
-      console.error("❌ Add to cart error:", err.response?.data || err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+    console.log("✅ Added to cart:", res.data);
+    setCart(res.data);
+  } catch (error) {
+    console.error("❌ Add to cart error:", error.response?.data || error.message);
+  }
+};
+
 
   // ✅ Remove from cart
   const removeFromCart = async (productId) => {
