@@ -2,6 +2,7 @@ import Cart from "../models/Cart.js";
 import Product from "../models/Product.js";
 
 // Add product to cart
+// Add product to cart
 export const addToCart = async (req, res) => {
   try {
     const { productId, quantity } = req.body;
@@ -26,14 +27,18 @@ export const addToCart = async (req, res) => {
     await cart.calculateTotal();
     await cart.save();
 
+    // ✅ populate product details before sending response
+    const populatedCart = await Cart.findById(cart._id)
+      .populate("items.productId", "name description images price");
+
     res.status(200).json({
       message: "Product added to cart",
       cart: {
-        items: cart.items,
-        subtotal: cart.subtotal,
-        tax: cart.tax,
-        shipping: cart.shipping,
-        totalPrice: cart.totalPrice,
+        items: populatedCart.items,
+        subtotal: populatedCart.subtotal,
+        tax: populatedCart.tax,
+        shipping: populatedCart.shipping,
+        totalPrice: populatedCart.totalPrice,
       },
     });
   } catch (err) {
