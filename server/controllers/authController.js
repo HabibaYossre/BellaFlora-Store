@@ -117,14 +117,17 @@ export const forgotPassword = async (req, res) => {
   }
 };
 
-// @desc    Reset password
-// @route   POST /api/auth/reset-password/:token
-/*export const resetPassword = async (req, res) => {
+
+const getHashedToken = (token) => {
+  return crypto.createHash("sha256").update(token).digest("hex");
+};
+
+
+// GET route to validate reset token
+// GET route to validate reset token
+export const getResetPassword = async (req, res) => {
   try {
-    const resetPasswordToken = crypto
-      .createHash("sha256")
-      .update(req.params.token)
-      .digest("hex");
+    const resetPasswordToken = getHashedToken(req.params.token);
 
     const user = await User.findOne({
       resetPasswordToken,
@@ -135,25 +138,20 @@ export const forgotPassword = async (req, res) => {
       return res.status(400).json({ message: "Invalid or expired token" });
     }
 
-    user.password = req.body.password;
-    user.resetPasswordToken = undefined;
-    user.resetPasswordExpire = undefined;
-    await user.save();
-
-    res.json({ message: "Password reset successful" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.json({
+      message: "Valid token. You can now reset your password.",
+      token: req.params.token
+    });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Server error" });
   }
 };
-*/
 
+// POST route to reset password
 export const resetPassword = async (req, res) => {
   try {
-    const resetPasswordToken = crypto
-      .createHash("sha256")
-      .update(req.params.token)
-      .digest("hex");
-
+    const resetPasswordToken = getHashedToken(req.params.token);
     const user = await User.findOne({
       resetPasswordToken,
       resetPasswordExpire: { $gt: Date.now() },
@@ -169,12 +167,11 @@ export const resetPassword = async (req, res) => {
     user.resetPasswordExpire = undefined;
     await user.save();
 
-    // generate JWT and set cookie
     const token = generateToken(user._id);
 
     res.cookie("token", token, {
-      httpOnly: true,   // cannot be accessed via JS
-      secure: process.env.NODE_ENV === "production", // only https in production
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
       sameSite: "strict",
       maxAge: 60 * 60 * 1000, // 1 hour
     });
@@ -188,30 +185,7 @@ export const resetPassword = async (req, res) => {
         role: user.role,
       },
     });
-
   } catch (error) {
     res.status(500).json({ message: error.message });
-  }
-};
-
-// GET route to validate reset token
-export const getResetPassword = async (req, res) =>{
-  try {
-    const user = await User.findOne({
-      resetPasswordToken: req.params.token,
-      resetPasswordExpire: { $gt: Date.now() }, // ensure not expired
-    });
-
-    if (!user) {
-      return res.status(400).json({ message: "Invalid or expired token" });
-    }
-
-    res.json({
-      message: "Valid token. You can now reset your password.",
-      token: req.params.token
-    });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Server error" });
   }
 };
