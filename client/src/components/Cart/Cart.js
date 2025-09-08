@@ -145,8 +145,11 @@ const Cart = () => {
             <p>Your cart is empty 🛒</p>
           ) : (
             cart.items.map((item, idx) => {
-              const product = item.productId || {}; // ✅ safe access
+              const product = item.productId ||item.product|| {}; // ✅ safe access
               const productId = product._id || item.productId; // handle both cases
+           
+              // const product = item.product || item.productId || {};
+
               console.log("📦 Rendering cart item:", product.title, { productId, item });
 
               return (
@@ -164,14 +167,14 @@ const Cart = () => {
 
                   {/* product image */}
                   <img
-                    src={product.img || "/placeholder.png"}
+                    src={ product.imgages || "/placeholder.png"}
                     alt={product.title || "Product"}
                     className="cart-img"
                   />
 
                   {/* info */}
                   <div className="cart-info">
-                    <h4>{product.title || "Untitled"}</h4>
+                    <h4>{product.name|| "Untitled"}</h4>
                     <p>{product.description?.slice(0, 40) || ""}...</p>
                   </div>
 

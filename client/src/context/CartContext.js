@@ -330,7 +330,7 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   // ✅ Add to cart
-  const addToCart = async (product) => {
+const addToCart = async (product) => {
     try {
       console.log("➕ Adding product to cart:", product);
 
@@ -345,6 +345,12 @@ export const CartProvider = ({ children }) => {
       console.error("❌ Add to cart error:", error.response?.data || error.message);
     }
   };
+
+
+
+
+
+
 
   // ✅ Remove from cart
   const removeFromCart = async (productId) => {
