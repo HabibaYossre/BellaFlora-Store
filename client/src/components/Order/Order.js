@@ -321,7 +321,7 @@ const proceddpayment = (e) => {
 
 
 
-    try {
+  /*  try {
       const response = axios.post(
         "http://localhost:3000/order/createOrder",
        {shippingAddresses,items },
@@ -334,7 +334,7 @@ const proceddpayment = (e) => {
       alert(error.response?.data?.message || "Something went wrong");
     }
 
-};
+};*/
 
 
 
