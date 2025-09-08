@@ -255,6 +255,7 @@ function Order() {
 
 
 
+
   axios.post("http://localhost:3000/order/", {shippingAddresses,items },   { withCredentials: true })
     .then((result) => {
       if (result.status === 200) {
@@ -268,6 +269,19 @@ function Order() {
       alert(err.response?.data?.message || "Something went wrong");
     });
 };
+
+try {
+      const response = axios.post(
+        "http://localhost:3000/order/createOrder",
+        { items, shippingAddress },
+        { withCredentials: true }
+      );
+       // Navigate to Invoice page with the order data
+      navigate("/invoice", { state: { order: response.data } });
+    } catch (error) {
+      console.error("Error creating order:", error.response?.data || error.message);
+      alert(error.response?.data?.message || "Something went wrong");
+    }
 
   return (
     <div>
