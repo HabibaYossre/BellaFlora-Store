@@ -111,7 +111,6 @@
 
 
 
-
 import React, { createContext, useState, useEffect } from "react";
 import axios from "axios";
 
@@ -128,96 +127,117 @@ export const CartProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_URL = "http://localhost:3000/cart"; // 👈 adjust backend port
+  // ⚡ Backend API
+  const API_URL = "http://localhost:3000/cart";
 
-  // Helper to get auth headers
-  const getAuthHeaders = () => {
-    const token = localStorage.getItem("token");
-    return {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    };
-  };
+  // ✅ Always send cookies
+  axios.defaults.withCredentials = true;
 
-  // ✅ Load cart from backend when user logs in
+  // ✅ Load from localStorage first
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) return;
-
-    axios
-      .get(API_URL, getAuthHeaders())
-      .then((res) => {
-        console.log("✅ Cart API response:", res.data);
-        setCart(res.data.cart || res.data); // handle both response shapes
-      })
-      .catch((err) =>
-        console.error("❌ Failed to load cart:", err.response?.data || err)
-      );
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      console.log("📦 Loaded cart from localStorage:", JSON.parse(savedCart));
+      setCart(JSON.parse(savedCart));
+    }
   }, []);
 
-  // ✅ Add product to cart
- const addToCart = async (product) => {
-  try {
-    setLoading(true);
-    const token = localStorage.getItem("token");
-    const userId = localStorage.getItem("userId"); // 👈 now works
+  // ✅ Save cart to localStorage whenever it changes
+  useEffect(() => {
+    if (cart && cart.items) {
+      localStorage.setItem("cart", JSON.stringify(cart));
+      console.log("💾 Cart updated & saved to localStorage:", cart);
+    }
+  }, [cart]);
 
-    if (!token) return;
+  // ✅ Load cart from backend on mount
+  useEffect(() => {
+    console.log("📡 Fetching cart from backend (cookies auth)...");
+    axios
+      .get(API_URL)
+      .then((res) => {
+        console.log("✅ Cart fetched from backend:", res.data);
+        setCart(res.data.cart || res.data);
+      })
+      .catch((err) => {
+        console.error("❌ Failed to load cart:", err.response?.data || err);
+        setError("Failed to load cart");
+      });
+  }, []);
+
+  // ✅ Add to cart
+  const addToCart = async (product) => {
+  try {
+    console.log("➕ Adding product to cart:", product);
 
     const res = await axios.post(
-      `${API_URL}/add`,
-      { productId: product._id, quantity: 1, userId }, // pass userId if backend expects it
-      { headers: { Authorization: `Bearer ${token}` } }
+      "http://localhost:3000/cart/add",
+      {
+        items: [
+          {
+            productId: product.productId,
+            quantity: product.quantity,
+          },
+        ],
+      },
+      { withCredentials: true }
     );
 
-    setCart(res.data.cart);
-  } catch (err) {
-    setError("Failed to add item");
-    console.error("Add to cart error:", err.response?.data || err.message);
-  } finally {
-    setLoading(false);
+    console.log("✅ Added to cart:", res.data);
+    setCart(res.data);
+  } catch (error) {
+    console.error("❌ Add to cart error:", error.response?.data || error.message);
   }
 };
 
 
-  // ✅ Remove product
+  // ✅ Remove from cart
   const removeFromCart = async (productId) => {
     try {
+      console.log("🗑️ Removing product:", productId);
+
       const res = await axios.delete(`${API_URL}/remove`, {
-        ...getAuthHeaders(),
         data: { productId },
       });
-      console.log("🗑️ Cart after remove:", res.data);
+
+      console.log("✅ Remove response:", res.data);
       setCart(res.data.cart || res.data);
     } catch (err) {
       console.error("❌ Remove from cart failed:", err.response?.data || err);
+      setError("Failed to remove item");
     }
   };
 
-  // ✅ Update qty
+  // ✅ Update quantity
   const updateQty = async (productId, quantity) => {
     try {
-      const res = await axios.put(
-        `${API_URL}/update`,
-        { productId, quantity },
-        getAuthHeaders()
-      );
-      console.log("🔄 Cart after update:", res.data);
+      console.log(`🔄 Updating qty → ${productId} : ${quantity}`);
+
+      const res = await axios.put(`${API_URL}/update`, {
+        productId,
+        quantity,
+      });
+
+      console.log("✅ Update qty response:", res.data);
       setCart(res.data.cart || res.data);
     } catch (err) {
       console.error("❌ Update qty failed:", err.response?.data || err);
+      setError("Failed to update quantity");
     }
   };
 
   // ✅ Clear cart
   const clearCart = async () => {
     try {
-      const res = await axios.delete(`${API_URL}/clear`, getAuthHeaders());
-      console.log("🧹 Cart after clear:", res.data);
+      console.log("🧹 Clearing entire cart...");
+
+      const res = await axios.delete(`${API_URL}/clear`);
+
+      console.log("✅ Cart cleared:", res.data);
       setCart(res.data.cart || res.data);
     } catch (err) {
       console.error("❌ Clear cart failed:", err.response?.data || err);
+      setError("Failed to clear cart");
     }
   };
 
@@ -237,4 +257,3 @@ export const CartProvider = ({ children }) => {
     </CartContext.Provider>
   );
 };
-

@@ -114,11 +114,6 @@
 
 
 
-
-
-
-
-
 import React, { useContext } from "react";
 import "./Cart.css";
 import { CartContext } from "../../context/CartContext";
@@ -128,11 +123,12 @@ import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const { cart, removeFromCart, updateQty, clearCart } = useContext(CartContext);
-  console.log("🛒 Cart state in Cart.js:", cart);
+  console.log("🛒 [Cart.js] Current cart state:", cart);
 
   const navigate = useNavigate();
 
   const gotoorder = () => {
+    console.log("➡️ Navigating to order page...");
     navigate("/order");
   };
 
@@ -143,7 +139,6 @@ const Cart = () => {
         <span className="cart-items">Home / Shopping Cart</span>
       </div>
 
-
       <div className="cart-container">
         <div className="cart-items">
           {cart.items.length === 0 ? (
@@ -151,12 +146,17 @@ const Cart = () => {
           ) : (
             cart.items.map((item, idx) => {
               const product = item.productId || {}; // ✅ safe access
+              console.log("📦 Rendering cart item:", product.title, item);
+
               return (
                 <div className="cart-row" key={product._id || idx}>
                   {/* remove */}
                   <span
                     className="remove"
-                    onClick={() => removeFromCart(product._id)}
+                    onClick={() => {
+                      console.log("🗑️ Removing item:", product._id);
+                      removeFromCart(product._id);
+                    }}
                   >
                     ✖
                   </span>
@@ -180,14 +180,20 @@ const Cart = () => {
                   {/* qty controls */}
                   <div className="qty-controls">
                     <button
-                      onClick={() => updateQty(product._id, item.quantity - 1)}
+                      onClick={() => {
+                        console.log("➖ Decreasing qty for:", product._id);
+                        updateQty(product._id, item.quantity - 1);
+                      }}
                       disabled={item.quantity <= 1}
                     >
                       −
                     </button>
                     <span>{item.quantity}</span>
                     <button
-                      onClick={() => updateQty(product._id, item.quantity + 1)}
+                      onClick={() => {
+                        console.log("➕ Increasing qty for:", product._id);
+                        updateQty(product._id, item.quantity + 1);
+                      }}
                     >
                       +
                     </button>
@@ -202,7 +208,13 @@ const Cart = () => {
             })
           )}
           {cart.items.length > 0 && (
-            <button className="clear-btn" onClick={clearCart}>
+            <button
+              className="clear-btn"
+              onClick={() => {
+                console.log("🧹 Clearing the whole cart");
+                clearCart();
+              }}
+            >
               Clear Cart
             </button>
           )}
@@ -246,7 +258,9 @@ const Cart = () => {
       {/* coupon form */}
       <div className="subscrib-form">
         <input type="email" placeholder="Coupon Code" />
-        <button type="submit">Apply Coupon</button>
+        <button type="submit" onClick={() => console.log("🏷️ Coupon applied (demo only)")}>
+          Apply Coupon
+        </button>
       </div>
 
       <Shipping />
@@ -256,3 +270,4 @@ const Cart = () => {
 };
 
 export default Cart;
+

@@ -44,25 +44,25 @@ import { FaStar } from "react-icons/fa";
 import { CartContext } from "../../context/CartContext";
 import { FaCartPlus, FaHeart } from "react-icons/fa";
 
-function Card({ _id, title, description, price, img, rating }) {
+function Card({ _id, id, title, description, price, img, rating }) {
   const { addToCart } = useContext(CartContext);
 
+  const productId = _id || id; // ✅ استخدمي اللي موجود
+
   const handleAddToCart = () => {
-    // ✅ build product object with qty = 1
-    const product = {
-      _id,
-      title,
-      price,
-      img,
-      qty: 1, // default qty
-    };
-    addToCart(product);
+    if (!productId) {
+      console.error("❌ Product ID is missing!", { _id, id, title });
+      return;
+    }
+
+    console.log("🛒 [Card.js] Adding product to cart:", { productId, title });
+
+    addToCart({ productId, quantity: 1 });
   };
 
   return (
     <section className="card">
       <img className="card-img" src={img} alt={title} />
-
       <div className="card-details">
         <h3 className="card-title">{title}</h3>
         <section className="card-reviews">
@@ -75,8 +75,12 @@ function Card({ _id, title, description, price, img, rating }) {
         <section className="card-price">
           <div className="price">{price} $</div>
           <div className="icons">
-            <FaCartPlus className="bag-icon" onClick={handleAddToCart} />
-            <FaHeart />
+            <FaCartPlus
+              className="bag-icon"
+              onClick={handleAddToCart}
+              title="Add to Cart"
+            />
+            <FaHeart title="Add to Wishlist" />
           </div>
         </section>
       </div>
@@ -84,5 +88,5 @@ function Card({ _id, title, description, price, img, rating }) {
   );
 }
 
-export default Card;
 
+export default Card;
