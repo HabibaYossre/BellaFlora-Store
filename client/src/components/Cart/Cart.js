@@ -146,16 +146,17 @@ const Cart = () => {
           ) : (
             cart.items.map((item, idx) => {
               const product = item.productId || {}; // ✅ safe access
-              console.log("📦 Rendering cart item:", product.title, item);
+              const productId = product._id || item.productId; // handle both cases
+              console.log("📦 Rendering cart item:", product.title, { productId, item });
 
               return (
-                <div className="cart-row" key={product._id || idx}>
+                <div className="cart-row" key={productId || idx}>
                   {/* remove */}
                   <span
                     className="remove"
                     onClick={() => {
-                      console.log("🗑️ Removing item:", product._id);
-                      removeFromCart(product._id);
+                      console.log("🗑️ Removing item with ID:", productId);
+                      removeFromCart(productId);
                     }}
                   >
                     ✖
@@ -181,8 +182,8 @@ const Cart = () => {
                   <div className="qty-controls">
                     <button
                       onClick={() => {
-                        console.log("➖ Decreasing qty for:", product._id);
-                        updateQty(product._id, item.quantity - 1);
+                        console.log("➖ Decreasing qty for:", productId);
+                        updateQty(productId, item.quantity - 1);
                       }}
                       disabled={item.quantity <= 1}
                     >
@@ -191,8 +192,8 @@ const Cart = () => {
                     <span>{item.quantity}</span>
                     <button
                       onClick={() => {
-                        console.log("➕ Increasing qty for:", product._id);
-                        updateQty(product._id, item.quantity + 1);
+                        console.log("➕ Increasing qty for:", productId);
+                        updateQty(productId, item.quantity + 1);
                       }}
                     >
                       +
@@ -258,7 +259,10 @@ const Cart = () => {
       {/* coupon form */}
       <div className="subscrib-form">
         <input type="email" placeholder="Coupon Code" />
-        <button type="submit" onClick={() => console.log("🏷️ Coupon applied (demo only)")}>
+        <button
+          type="submit"
+          onClick={() => console.log("🏷️ Coupon applied (demo only)")}
+        >
           Apply Coupon
         </button>
       </div>
@@ -270,4 +274,3 @@ const Cart = () => {
 };
 
 export default Cart;
-
