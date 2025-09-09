@@ -31,3 +31,70 @@ li{
   font-size: 1rem;
   max-width: 300px;
 }
+
+/* Card component visual feedback styles */
+.bag-icon, .heart-icon {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 8px;
+  border-radius: 50%;
+  font-size: 18px;
+}
+
+.bag-icon:hover {
+  background-color: rgba(106, 13, 173, 0.1);
+  transform: scale(1.1);
+}
+
+.bag-icon.adding {
+  opacity: 0.6;
+  cursor: not-allowed;
+  animation: pulse 1s infinite;
+}
+
+.heart-icon {
+  color: #ccc;
+}
+
+.heart-icon:hover {
+  color: #ff6b6b;
+  background-color: rgba(255, 107, 107, 0.1);
+  transform: scale(1.1);
+}
+
+.heart-icon.in-wishlist {
+  color: #ff6b6b;
+  animation: heartBeat 0.6s ease-in-out;
+}
+
+.heart-icon.wishlisting {
+  opacity: 0.6;
+  cursor: not-allowed;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes heartBeat {
+  0% { transform: scale(1); }
+  25% { transform: scale(1.3); }
+  50% { transform: scale(1.1); }
+  75% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+/* Success feedback animation */
+@keyframes successBounce {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.bag-icon.success {
+  animation: successBounce 0.6s ease-in-out;
+  color: #4caf50;
+}

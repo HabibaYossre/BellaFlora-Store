@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useCallback } from "react";
 import axios from "axios";
 
 export const CartContext = createContext();
@@ -11,119 +11,167 @@ export const CartProvider = ({ children }) => {
     shipping: 0,
     totalPrice: 0,
   });
-  
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const API_URL = "http://localhost:3000/cart";
   axios.defaults.withCredentials = true;
 
-  // helper → normalize backend response
-  const normalizeCart = (data) => {
-    if (!data) return cart;
-    // لو الباك رجع {message, cart}
-    const realCart = data.cart || data;
-    return {
-      items: realCart.items || [],
-      subtotal: realCart.subtotal || 0,
-      tax: realCart.tax || 0,
-      shipping: realCart.shipping || 0,
-      totalPrice: realCart.totalPrice || 0,
-    };
-  };
+  // ✅ Check if user is authenticated
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token);
+  }, []);
 
-  // Load from localStorage
+  // ✅ Calculate totals for local cart
+  const calculateTotals = useCallback((items) => {
+    const subtotal = items.reduce((sum, item) => {
+      const product = item.product || {};
+      return sum + (product.price || 0) * (item.quantity || 0);
+    }, 0);
+
+    const TAX_RATE = 0.1;
+    const SHIPPING_COST = subtotal > 0 ? 5 : 0;
+    const tax = +(subtotal * TAX_RATE).toFixed(2);
+    const shipping = SHIPPING_COST;
+    const totalPrice = subtotal + tax + shipping;
+
+    return { subtotal, tax, shipping, totalPrice };
+  }, []);
+
+  // ✅ Load cart from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
-      const parsed = JSON.parse(savedCart);
-      console.log("📦 Loaded cart from localStorage:", parsed);
-      setCart(normalizeCart(parsed));
+      try {
+        const parsed = JSON.parse(savedCart);
+        setCart(parsed);
+      } catch {
+        localStorage.removeItem("cart");
+      }
     }
   }, []);
 
-  // ✅ Save to localStorage
+  // ✅ Save cart to localStorage whenever it changes
   useEffect(() => {
     if (cart && cart.items) {
       localStorage.setItem("cart", JSON.stringify(cart));
-      console.log("💾 Cart updated & saved to localStorage:", cart);
     }
   }, [cart]);
 
-  // ✅ Load cart from backend
+  // ✅ Load cart from backend if authenticated
   useEffect(() => {
-    console.log("📡 Fetching cart from backend...");
-    axios
-      .get(API_URL)
-      .then((res) => {
-        console.log("✅ Cart fetched:", res.data);
-        setCart(normalizeCart(res.data));
-      })
-      .catch((err) => {
-        console.error("❌ Failed to load cart:", err.response?.data || err);
-        setError("Failed to load cart");
-      });
-  }, []);
+    if (isAuthenticated) {
+      const fetchCart = async () => {
+        try {
+          setLoading(true);
+          const res = await axios.get(API_URL);
+          setCart(res.data.cart || res.data);
+        } catch (err) {
+          console.error("❌ Failed to load cart:", err);
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchCart();
+    }
+  }, [isAuthenticated]);
 
   // ✅ Add to cart
-const addToCart = async (product) => {
+  const addToCart = async ({ productId, quantity = 1, product }) => {
     try {
-      console.log("➕ Adding product to cart:", product);
-
-      const res = await axios.post(`${API_URL}/add`, {
-        productId: product.productId,
-        quantity: 1,
-      });
-
-      console.log("✅ Added to cart:", res.data);
-      setCart(normalizeCart(res.data));
-    } catch (error) {
-      console.error("❌ Add to cart error:", error.response?.data || error.message);
+      setLoading(true);
+      if (isAuthenticated) {
+        const res = await axios.post(`${API_URL}/add`, { productId, quantity });
+        setCart(res.data.cart || res.data);
+      } else {
+        setCart((prev) => {
+          const existing = prev.items.find((i) => i.productId === productId);
+          let newItems;
+          if (existing) {
+            newItems = prev.items.map((i) =>
+              i.productId === productId
+                ? { ...i, quantity: i.quantity + quantity }
+                : i
+            );
+          } else {
+            newItems = [...prev.items, { productId, quantity, product }];
+          }
+          return { items: newItems, ...calculateTotals(newItems) };
+        });
+      }
+    } catch (err) {
+      setError("Failed to add to cart");
+    } finally {
+      setLoading(false);
     }
   };
-
-
-
-
-
-
 
   // ✅ Remove from cart
   const removeFromCart = async (productId) => {
     try {
-      console.log("🗑️ Removing product:", productId);
-      const res = await axios.delete(`${API_URL}/remove`, { data: { productId } });
-      console.log("✅ Remove response:", res.data);
-      setCart(normalizeCart(res.data));
+      setLoading(true);
+      if (isAuthenticated) {
+        const res = await axios.delete(`${API_URL}/remove`, {
+          data: { productId },
+        });
+        setCart(res.data.cart || res.data);
+      } else {
+        setCart((prev) => {
+          const newItems = prev.items.filter((i) => i.productId !== productId);
+          return { items: newItems, ...calculateTotals(newItems) };
+        });
+      }
     } catch (err) {
-      console.error("Remove from cart failed:", err.response?.data || err);
       setError("Failed to remove item");
+    } finally {
+      setLoading(false);
     }
   };
 
-  // Update quantity
+  // ✅ Update quantity
   const updateQty = async (productId, quantity) => {
     try {
-      console.log(`🔄 Updating qty → ${productId} : ${quantity}`);
-      const res = await axios.put(`${API_URL}/update`, { productId, quantity });
-      console.log("Update qty response:", res.data);
-      setCart(normalizeCart(res.data));
+      setLoading(true);
+      if (quantity < 1) return removeFromCart(productId);
+
+      if (isAuthenticated) {
+        const res = await axios.put(`${API_URL}/update`, {
+          productId,
+          quantity,
+        });
+        setCart(res.data.cart || res.data);
+      } else {
+        setCart((prev) => {
+          const newItems = prev.items.map((i) =>
+            i.productId === productId ? { ...i, quantity } : i
+          );
+          return { items: newItems, ...calculateTotals(newItems) };
+        });
+      }
     } catch (err) {
-      console.error(" Update qty failed:", err.response?.data || err);
       setError("Failed to update quantity");
+    } finally {
+      setLoading(false);
     }
   };
 
   // ✅ Clear cart
   const clearCart = async () => {
     try {
-      console.log("🧹 Clearing entire cart...");
-      const res = await axios.delete(`${API_URL}/clear`);
-      console.log("✅ Cart cleared:", res.data);
-      setCart(normalizeCart(res.data));
+      setLoading(true);
+      if (isAuthenticated) {
+        const res = await axios.delete(`${API_URL}/clear`);
+        setCart(res.data.cart || res.data);
+      } else {
+        setCart({ items: [], subtotal: 0, tax: 0, shipping: 0, totalPrice: 0 });
+      }
     } catch (err) {
-      console.error("❌ Clear cart failed:", err.response?.data || err);
       setError("Failed to clear cart");
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -137,10 +185,10 @@ const addToCart = async (product) => {
         clearCart,
         loading,
         error,
+        isAuthenticated,
       }}
     >
       {children}
     </CartContext.Provider>
   );
 };
-

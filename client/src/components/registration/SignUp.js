@@ -141,9 +141,6 @@ function SignUp() {
 };
 export default SignUp;*/
 
-
-
-
 import React, { useState } from "react";
 import "./Login.css";
 import { NavLink, useNavigate } from "react-router-dom";

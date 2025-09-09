@@ -150,6 +150,131 @@
   margin-top: 20px;
 }
 
+/* Loading and error states */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.error-message {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 15px;
+  margin: 20px;
+  border-radius: 8px;
+  border-left: 4px solid #c62828;
+}
+
+.auth-notice {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.auth-notice a {
+  color: #1565c0;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.empty-cart p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+.continue-shopping-btn {
+  padding: 12px 24px;
+  border: 2px solid #6a0dad;
+  background-color: transparent;
+  color: #6a0dad;
+  font-size: 14px;
+  font-weight: bold;
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.continue-shopping-btn:hover {
+  background-color: #6a0dad;
+  color: white;
+}
+
+/* Improved cart row styling */
+.cart-row {
+  display: grid;
+  grid-template-columns: auto 60px 2fr 1fr 1fr 2fr;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+  transition: background-color 0.2s;
+}
+
+.cart-row:hover {
+  background-color: #f9f9f9;
+}
+
+.cart-row .price,
+.cart-row .subtotal {
+  font-weight: bold;
+  color: #333;
+}
+
+.cart-row .quantity {
+  font-weight: bold;
+  color: #6a0dad;
+}
+
+/* Improved order summary */
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  margin: 10px 0;
+  padding: 5px 0;
+}
+
+.summary-line.total {
+  font-weight: bold;
+  font-size: 18px;
+  border-top: 2px solid #eee;
+  padding-top: 10px;
+  margin-top: 15px;
+}
+
+/* Button improvements */
+.bag-icon.adding {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.qty-controls button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.qty-controls button:hover:not(:disabled) {
+  background-color: #f0f0f0;
+  border-radius: 50%;
+}
+
+.remove:hover {
+  color: #c62828;
+  font-weight: bold;
+}
+
 /* ✅ RESPONSIVE STYLES */
 @media (max-width: 1024px) {
   .cart-container {

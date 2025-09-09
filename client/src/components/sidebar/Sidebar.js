@@ -5,7 +5,7 @@ import Price from "./price/Price";
 import Colors from "./colors/Colors";
 
 import "./sidebar.css";
-function Sidebar({ handleFilterChange, handleResetFilters }) {
+function Sidebar({ handleFilterChange, handleResetFilters, filters }) {
   return (
     <>
       <section className="sidebar-lg-screens">
@@ -14,9 +14,18 @@ function Sidebar({ handleFilterChange, handleResetFilters }) {
             <FaFilter />
           </h1>
         </div>
-        <Category handleFilterChange={handleFilterChange}></Category>
-        <Price handleFilterChange={handleFilterChange}></Price>
-        <Colors handleFilterChange={handleFilterChange}></Colors>
+        <Category 
+          handleFilterChange={handleFilterChange}
+          selectedCategory={filters.category}
+        />
+        <Price 
+          handleFilterChange={handleFilterChange}
+          selectedPrice={filters.price}
+        />
+        <Colors 
+          handleFilterChange={handleFilterChange}
+          selectedColor={filters.color}
+        />
         <button onClick={handleResetFilters} className="reset-btn btns">
           Reset Filters
         </button>
@@ -29,9 +38,18 @@ function Sidebar({ handleFilterChange, handleResetFilters }) {
           </h1>
         </div>
         <div className="filters">
-          <Category handleFilterChange={handleFilterChange}></Category>
-          <Price handleFilterChange={handleFilterChange}></Price>
-          <Colors handleFilterChange={handleFilterChange}></Colors>
+          <Category 
+            handleFilterChange={handleFilterChange}
+            selectedCategory={filters.category}
+          />
+          <Price 
+            handleFilterChange={handleFilterChange}
+            selectedPrice={filters.price}
+          />
+          <Colors 
+            handleFilterChange={handleFilterChange}
+            selectedColor={filters.color}
+          />
         </div>
         <button onClick={handleResetFilters} className="reset-btn btns">
           Reset Filters

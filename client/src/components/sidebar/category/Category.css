@@ -44,6 +44,16 @@ pointer-events: none;
   background-color: var(--secondary-color);
 }
 
+.sidebar-label-container.selected .checkmark {
+  background-color: var(--secondary-color);
+  box-shadow: 0 0 0 2px rgba(106, 13, 173, 0.3);
+}
+
+.sidebar-label-container.selected .label-text {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
 .line{
     margin-top: 3rem;
     border-color: var(--font-color);

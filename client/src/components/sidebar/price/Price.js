@@ -3,7 +3,7 @@ import React from "react";
 import "./Price.css";
 import Input from "../../ui/Input";
 
-function Price({ handleFilterChange }) {
+function Price({ handleFilterChange, selectedPrice }) {
   return (
     <div className="sidebar-content">
       <div className="sidebar-title price-title">Price</div>
@@ -13,18 +13,21 @@ function Price({ handleFilterChange }) {
           value="0-50"
           title="$0-50"
           name="price"
+          isSelected={selectedPrice === "0-50"}
         ></Input>
         <Input
           handleFilterChange={handleFilterChange}
           value="50-100"
           title="$50-100"
           name="price"
+          isSelected={selectedPrice === "50-100"}
         ></Input>
         <Input
           handleFilterChange={handleFilterChange}
           value="100+"
           title="Over $150"
           name="price"
+          isSelected={selectedPrice === "100+"}
         ></Input>
       </div>
     </div>

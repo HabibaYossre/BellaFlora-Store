@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter as Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Login from "./components/registration/Login";
 import SignUp from "./components/registration/SignUp";
 import Home from "./components/home/Home";
@@ -17,49 +17,41 @@ import Payment from "./components/Payment/Payment";
 import TrackOrder from "./components/TrackOrder/TrackOrder";
 import Invoice from "./components/Invoice/Invoice";
 import { CartProvider } from "./context/CartContext";
-import Layout from './components/Layout'
-import {WishlistProvider} from './context/WishlistContext';
+import { WishlistProvider } from "./context/WishlistContext";
+import Layout from "./components/Layout";
+
 function App() {
   return (
-      <CartProvider>
-    <WishlistProvider>
+    <CartProvider>
+      <WishlistProvider>
         <Layout>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/Home" element={<Home />} />
-          <Route path="/auth/login" element={<Login />} />
-          <Route path="/auth/signup" element={<SignUp />} />
-          <Route path="/S" element={<Search />} />
-          <Route path="/product/all" element={<Allproducts />} />
-          {/* <Route path="/Cart" element={<Cart />} /> */}
-          <Route path="/Wishlist" element={<Wishlist />} />
-          <Route path="/order" element={<Order />} />
-          <Route
-            path="/auth/reset-password/:token"
-            element={<Resetpass />}
-          />{" "}
-          {/* Habiba Reset Password Route Here!*/}
-          {/*<Route path="/S" element={<Search />} />*/}
-          <Route path="/product/all" element={<Allproducts />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/wishlist" element={<Wishlist />} />
-          <Route path="/order" element={<Order />} />
-          <Route
-            path="/auth/reset-password/:token"
-            element={<Resetpass />}
-          />{" "}
-          {/* Habiba Reset Password Route Here!*/}
-          <Route path="/Checkmail" element={<Checkmail />} />
-          <Route path="/ContactUs" element={<ContactUs />} />
-          <Route path="/TrackOrder" element={<TrackOrder />} />
-          <Route path="/*" element={<ErrorPage />} />
-          <Route path="/Payment" element={<Payment />} />
-          <Route path="/Profile" element={<Profile />} />
-          <Route path="/Invoice" element={<Invoice />} />
-        </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/auth/login" element={<Login />} />
+            <Route path="/auth/signup" element={<SignUp />} />
+            <Route path="/search" element={<Search />} />
+            <Route path="/product/all" element={<Allproducts />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/order" element={<Order />} />
+            <Route path="/auth/reset-password/:token" element={<Resetpass />} />
+            <Route path="/checkmail" element={<Checkmail />} />
+            <Route path="/contact" element={<ContactUs />} />
+            <Route path="/ContactUs" element={<ContactUs />} />
+            <Route path="/track-order" element={<TrackOrder />} />
+            <Route path="/TrackOrder" element={<TrackOrder />} />
+            <Route path="/payment" element={<Payment />} />
+            <Route path="/Payment" element={<Payment />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/Profile" element={<Profile />} />
+            <Route path="/invoice" element={<Invoice />} />
+            <Route path="/Invoice" element={<Invoice />} />
+            <Route path="/*" element={<ErrorPage />} />
+          </Routes>
         </Layout>
-   </WishlistProvider>
-      </CartProvider>
+      </WishlistProvider>
+    </CartProvider>
   );
 }
 
