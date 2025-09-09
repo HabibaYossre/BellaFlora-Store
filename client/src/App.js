@@ -20,6 +20,7 @@ import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
 import About from "./components/About/About";
 import Layout from "./components/Layout";
+import Ocassions from "./components/ocassions/Ocassions";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route path="/invoice" element={<Invoice />} />
             <Route path="/Invoice" element={<Invoice />} />
             <Route path="/*" element={<ErrorPage />} />
+            <Route path="/Ossciassions" element={<Ocassions />} />
           </Routes>
         </Layout>
       </WishlistProvider>
