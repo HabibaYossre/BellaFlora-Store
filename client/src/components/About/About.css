@@ -1,26 +1,70 @@
-.character img{
-    width: 200px;
-    height: 270px;
+.character img {
+    width: 100%;
+    max-width: 200px; /* keeps images from getting too large */
+    height: auto;     /* maintains aspect ratio */
     border-radius: 20px;
     cursor: pointer;
+    transition: transform 0.3s ease;
 }
-.character{
-    margin-left: 50px;
-    margin-bottom: 50px;
-    margin-top: 50px;
+
+.character img:hover {
+    transform: scale(1.05); /* small hover effect */
 }
-.character p{
-    font-size: larger;
-     font-weight: 600;
-    /* font-weight: bold; */
+
+.character {
+    margin: 50px 20px; /* reduces side margin on smaller screens */
+    text-align: center;
 }
-.character span{
+
+.character p {
+    font-size: 1.2rem; /* responsive font size */
+    font-weight: 600;
+}
+
+.character span {
     color: rgb(188, 188, 188);
-   font-weight: 400;
+    font-weight: 400;
 }
-.characters-img{
+
+.characters-img {
     display: flex;
-    gap: 80px;
+    flex-wrap: wrap; /* allows wrapping on smaller screens */
+    gap: 40px;       /* smaller gap for smaller screens */
     align-items: center;
     justify-content: center;
+}
+
+@media (max-width: 1024px) {
+    .characters-img {
+        gap: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .characters-img {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .character {
+        margin: 30px 10px;
+    }
+
+    .character p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .character img {
+        max-width: 150px; /* smaller images on very small screens */
+    }
+
+    .character p {
+        font-size: 0.9rem;
+    }
+
+    .characters-img {
+        gap: 10px;
+    }
 }
