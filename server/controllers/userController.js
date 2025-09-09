@@ -3,14 +3,14 @@ import mongoose from "mongoose"
 const updateUser=async(req,res)=>{
     try {
         const userId=req.user._id
-        const {name,phone,image}=req.body
-        if(!name&&!phone&&!image) return res.status(400).json("NO Field Fill To Update!")
+        const {name,phone,gender}=req.body
+        if(!name&&!phone&&!gender) return res.status(400).json("NO Field Fill To Update!")
         if(!userId) return res.status(400).json("User_ID Is Required")
         if(!mongoose.Types.ObjectId.isValid(userId)) return res.status(400).json("Invalid User_ID")
             const user=await User.findById(userId)
              if(name!==undefined) user.name=name
              if(phone!==undefined)user.phone=phone
-             if(image!==undefined) user.image=image
+             if(gender!==undefined) user.image=gender
         //  const user=await User.findByIdAndUpdate(userId,{name,phone,image})   
         await user.save()
         return res.status(200).json({Success:true,msg:"User_Data Updated Successfully",User:user})
@@ -29,13 +29,8 @@ const getUser=async(req,res)=>{
         const user=await User.findById(userId)
         if(!user) return res.status(404).json("User Not Found")
          return res.status(200).json({Success:true,User:{
-            ID:user._id,
             Name:user.name,
-            Email:user.email,
-            Role:user.role,
             Phone:user.phone,
-            Image:user.image,
-            CreatedAt:user.createdAt
          }})     
     } catch (error) {
         console.error("Get User Error",error);

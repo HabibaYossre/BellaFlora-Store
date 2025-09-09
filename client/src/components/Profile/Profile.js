@@ -100,8 +100,7 @@ function Profile() {
   const navigate = useNavigate();
 
   const [user, setUser] = useState({
-    firstName: "",
-    password: "",
+    name: "",
     phone: "",
     gender: "Female",
   });
@@ -111,16 +110,23 @@ function Profile() {
   // Fetch user profile from backend
   useEffect(() => {
     axios
-      .get("http://localhost:3000/userProfile/getById",  {
-        withCredentials: true,
-      })  
+      .get("http://localhost:3000/userProfile/getById", { withCredentials: true })
       .then((result) => {
-        setUser(result.data);
+        if (result.data && result.data.User) {
+          setUser({
+            name: result.data.User.Name || "",
+            phone: result.data.User.Phone || "",
+            email: result.data.User.Email || "",
+            image: result.data.User.Image || "",
+            gender: result.data.User.Gender || "Female", // only if backend sends gender
+          });
+        }
       })
       .catch((err) => {
         console.error(err);
       });
   }, []);
+  
 
   // Handle input changes
   const handleChange = (e) => {
@@ -183,17 +189,17 @@ function Profile() {
         <form className="Profile-form" onSubmit={updateProfile}>
           {message && <p className="profile-message">{message}</p>}
 
-          <label htmlFor="firstName">Full Name*</label>
+          <label htmlFor="name">Full Name*</label>
           <input
             type="text"
-            id="firstName"
-            name="firstName"
-            value={user.firstName}
+            id="name"
+            name="name"
+            value={user.name}
             onChange={handleChange}
             required
           />
-
-          <label htmlFor="lastName">Password*</label>
+{/*
+          <label htmlFor="password">Password*</label>
           <input
             type="password"
             id="password"
@@ -202,7 +208,7 @@ function Profile() {
             onChange={handleChange}
             required
           />
-
+*/}
 
           <label htmlFor="phone">Phone*</label>
           <input
