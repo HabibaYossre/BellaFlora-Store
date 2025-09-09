@@ -18,6 +18,7 @@ import TrackOrder from "./components/TrackOrder/TrackOrder";
 import Invoice from "./components/Invoice/Invoice";
 import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
+import About from "./components/About/About";
 import Layout from "./components/Layout";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="About" element={<About />} />
             <Route path="/home" element={<Home />} />
             <Route path="/auth/login" element={<Login />} />
             <Route path="/auth/signup" element={<SignUp />} />

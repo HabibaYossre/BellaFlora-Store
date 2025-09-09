@@ -1,0 +1,26 @@
+.character img{
+    width: 200px;
+    height: 270px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+.character{
+    margin-left: 50px;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.character p{
+    font-size: larger;
+     font-weight: 600;
+    /* font-weight: bold; */
+}
+.character span{
+    color: rgb(188, 188, 188);
+   font-weight: 400;
+}
+.characters-img{
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    justify-content: center;
+}

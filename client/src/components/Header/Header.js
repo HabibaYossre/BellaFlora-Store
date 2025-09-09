@@ -45,7 +45,7 @@ function Header() {
           <li><NavLink to="/Home">Home</NavLink></li>
           <li><NavLink to="/product/all">Shop</NavLink></li>
           <li><NavLink to="/ContactUs">Contact Us</NavLink></li>
-           <li><NavLink to="/ContactUs">About Us</NavLink></li>
+           <li><NavLink to="/About">About Us</NavLink></li>
             <li><NavLink to="/ContactUs">Ocassions</NavLink></li>
         </ul>
 
