@@ -1,16 +1,18 @@
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext }from "react";
 import axios from "axios";
 import { jsPDF } from "jspdf";
 import { useParams } from "react-router-dom"; // ✅ import useParams
 import Shipping from "../Shipping/Shipping";
 import Subscribe from "../Subscribe/Subscribe";
+import { CartContext } from "../../context/CartContext";
 import "./Invoice.css"
 
 function Invoice() {
   const { orderId } = useParams(); // ✅ grab orderId from route
   const [order, setOrder] = useState(null);
   const [loading, setLoading] = useState(true);
+   const { cart } = useContext(CartContext);
 
   useEffect(() => {
     const fetchOrder = async () => {
@@ -39,7 +41,7 @@ function Invoice() {
 
     doc.setFontSize(12);
     doc.text(`Order ID: ${order._id}`, 20, 40);
-    doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "N/A"}`, 20, 50);
+    doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "Debit Card"}`, 20, 50);
     doc.text(`Transaction ID: ${order._id}`, 20, 60);
     doc.text(`Delivery Date: ${new Date(order.createdAt).toLocaleDateString()}`, 20, 70);
 
@@ -51,8 +53,8 @@ function Invoice() {
       y += 10;
     });
 
-    const total = order.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
-    doc.text(`Total: $${total.toFixed(2)}`, 20, y + 20);
+    // const total = order.items.reduce((sum, i) => sum + i.price * i.quantity+cart.totalPrice, 0);
+    doc.text(`Total: $${cart.totalPrice.toFixed(2)}`, 20, y + 20);
     doc.save("invoice.pdf");
   };
 
@@ -78,7 +80,7 @@ function Invoice() {
     <div className="order-item">
 
       <span>Payment Method</span>
-      <p>{order.billingDetails?.paymentMethod || "N/A"}</p>
+      <p>{order.billingDetails?.paymentMethod || "Debit Card"}</p>
     </div>
 
     <div className="order-item"> 
@@ -128,15 +130,15 @@ function Invoice() {
 
         <tr>
           <td>Shipping</td>
-          <td>${(order.shipping || 0).toFixed(2)}</td>
+          <td>${(cart.shipping || 0).toFixed(2)}</td>
         </tr>
         <tr>
           <td>Taxes</td>
-          <td>${(order.taxes || 0).toFixed(2)}</td>
+          <td>${(cart.tax || 0).toFixed(2)}</td>
         </tr>
         <tr>
           <td>Coupon Discount</td>
-          <td>- ${(order.discount || 0).toFixed(2)}</td>
+          <td>- ${(order.discount || 10).toFixed(2)}</td>
         </tr>
 
 
@@ -147,9 +149,7 @@ function Invoice() {
           <td>Total</td>
           <td>
             $
-            {order.items
-              .reduce((sum, i) => sum + i.price * i.quantity, 0)
-              .toFixed(2)}
+            {(cart.totalPrice -10 || 0).toFixed(2)}
           </td>
         </tr>
       </tbody>
