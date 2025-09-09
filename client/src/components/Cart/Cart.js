@@ -144,11 +144,11 @@ const Cart = () => {
       <div className="car-container">
         <h2>Shopping Cart</h2>
         <span className="cart-items">Home / Shopping Cart</span>
-        {!isAuthenticated && (
+        {/* {!isAuthenticated && (
           <p className="auth-notice">
             You're browsing as a guest. <a href="/auth/login">Sign in</a> to save your cart.
           </p>
-        )}
+        )} */}
       </div>
 
       {error && (
