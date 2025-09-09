@@ -1,89 +1,146 @@
-// import React , { useContext }from 'react'
-// import { FaStar } from "react-icons/fa";
-// import { CartContext } from "../../context/CartContext";
-// import { FaCartPlus } from "react-icons/fa";
-// import { FaHeart } from "react-icons/fa";
-
-
-//  function Card({ _id,title, description, price, img, rating}) {
-//     const { addToCart } = useContext(CartContext);
-//   return (
-//     <section className="card">
-//             <img className="card-img"
-//               src={img}
-//               alt={title}
-//             />
-    
-//             <div className="card-details">
-//               <h3 className="card-title">{title}</h3>
-//               <section className="card-reviews">
-//                 <FaStar className="ratings-star" />
-//                 <FaStar className="ratings-star" />
-//                 <FaStar className="ratings-star" />
-//                 <FaStar className="ratings-star" />
-//               <span className="total-reviews"></span>
-//               </section>
-//               <section className="card-price">
-//                 <div className="price">
-//                   {/* <del>$300</del> */}
-//                   {price} $
-//                 </div>
-//                 <div className="icons">
-//                   <FaCartPlus  className="bag-icon"  onClick={() =>addToCart({ _id, img, title, price })}/>
-//                   <FaHeart />
-
-//                 </div>
-//               </section>
-//             </div>
-//           </section>
-//   )
-// }
-// export default Card;
-import React, { useContext } from "react";
-import { FaStar } from "react-icons/fa";
+import React, { useContext, useState } from "react";
+import { FaStar, FaCartPlus, FaHeart } from "react-icons/fa";
 import { CartContext } from "../../context/CartContext";
-import {wishListContext} from '../../context/WishlistContext'
-import { FaCartPlus, FaHeart } from "react-icons/fa";
+import { WishlistContext } from "../../context/WishlistContext";
 
-function Card({ _id, id, title, description, price, img, rating }) {
-  const { addToCart } = useContext(CartContext);
-  const {addToWishlist} =useContext(wishListContext);
-  const productId = _id || id; // ✅ استخدمي اللي موجود
+function Card({
+  _id,
+  id,
+  title,
+  description,
+  price,
+  img,
+  rating,
+  name,
+  images,
+}) {
+  const { addToCart, loading } = useContext(CartContext);
+  const {
+    addToWishlist,
+    removeFromWishlist,
+    isInWishlist,
+    loading: wishlistLoading,
+  } = useContext(WishlistContext);
 
-  const handleAddToCart = () => {
-    if (!productId) {
-      console.error("❌ Product ID is missing!", { _id, id, title });
-      return;
+  const [isAdding, setIsAdding] = useState(false);
+  const [isWishlisting, setIsWishlisting] = useState(false);
+
+  const productId = _id || id;
+  const productName = name || title;
+  const productImage = img || images?.[0];
+
+  // ✅ Handle Add to Cart
+  const handleAddToCart = async () => {
+    if (!productId || isAdding || loading) return;
+
+    try {
+      setIsAdding(true);
+      await addToCart({
+        productId,
+        quantity: 1,
+        product: {
+          _id: productId,
+          name: productName,
+          title: productName,
+          description,
+          price,
+          img: productImage,
+          images: images || [productImage],
+          rating,
+        },
+      });
+    } catch (error) {
+      console.error("❌ Error adding to cart:", error);
+    } finally {
+      setIsAdding(false);
     }
-
-    console.log("🛒 [Card.js] Adding product to cart:", { productId, title });
-
-    addToCart({ productId, quantity: 1 });
   };
-  const handleAddToWishList
+
+  // ✅ Handle Wishlist Toggle
+  const handleToggleWishlist = async () => {
+    if (!productId || isWishlisting || wishlistLoading) return;
+
+    try {
+      setIsWishlisting(true);
+      if (isInWishlist(productId)) {
+        await removeFromWishlist(productId);
+      } else {
+        await addToWishlist({
+          productId,
+          product: {
+            _id: productId,
+            name: productName,
+            title: productName,
+            description,
+            price,
+            img: productImage,
+            images: images || [productImage],
+            rating,
+          },
+        });
+      }
+    } catch (error) {
+      console.error("❌ Error updating wishlist:", error);
+    } finally {
+      setIsWishlisting(false);
+    }
+  };
 
   return (
     <section className="card">
-      <img className="card-img" src={img} alt={title} />
+      <img className="card-img" src={productImage} alt={productName} />
+
       <div className="card-details">
-        <h3 className="card-title">{title}</h3>
+        <h3 className="card-title">{productName}</h3>
+
         <section className="card-reviews">
           <FaStar className="ratings-star" />
           <FaStar className="ratings-star" />
           <FaStar className="ratings-star" />
           <FaStar className="ratings-star" />
-          <span className="total-reviews"></span>
+          <span className="total-reviews">({rating || 0})</span>
         </section>
-        <section className="card-price">
-          <div className="price">{price} $</div>
-          <div className="icons">
+
+        <section
+          className="card-price"
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            width: "85%",
+          }}
+        >
+          <div className="price" style={{ fontWeight: "bold" }}>
+            {price} $
+          </div>
+
+          <div
+            className="icons"
+            style={{
+              display: "flex",
+              gap: "12px",
+              alignItems: "center",
+            }}
+          >
             <FaCartPlus
-              className="bag-icon"
+              size={22}
               onClick={handleAddToCart}
-              title="Add to Cart"
+              title={isAdding ? "Adding..." : "Add to Cart"}
+              style={{ cursor: "pointer" }}
             />
-            <FaHeart title="Add to Wishlist" 
-            onClick={}
+
+            <FaHeart
+              size={22}
+              onClick={handleToggleWishlist}
+              title={
+                isInWishlist(productId)
+                  ? "Remove from Wishlist"
+                  : "Add to Wishlist"
+              }
+              style={{
+                cursor: "pointer",
+                color: isInWishlist(productId) ? "red" : "black",
+              }}
             />
           </div>
         </section>
@@ -91,6 +148,5 @@ function Card({ _id, id, title, description, price, img, rating }) {
     </section>
   );
 }
-
 
 export default Card;

@@ -55,36 +55,25 @@ function Card({
       setIsAdding(false);
     }
   };
+// ✅ Handle Wishlist Toggle
+const handleToggleWishlist = async () => {
+  if (!productId || isWishlisting || wishlistLoading) return;
 
-  // ✅ Handle Wishlist Toggle
-  const handleToggleWishlist = async () => {
-    if (!productId || isWishlisting || wishlistLoading) return;
-
-    try {
-      setIsWishlisting(true);
-      if (isInWishlist(productId)) {
-        await removeFromWishlist(productId);
-      } else {
-        await addToWishlist({
-          productId,
-          product: {
-            _id: productId,
-            name: productName,
-            title: productName,
-            description,
-            price,
-            img: productImage,
-            images: images || [productImage],
-            rating,
-          },
-        });
-      }
-    } catch (error) {
-      console.error("❌ Error updating wishlist:", error);
-    } finally {
-      setIsWishlisting(false);
+  try {
+    setIsWishlisting(true);
+    if (isInWishlist(productId)) {
+      await removeFromWishlist(productId);
+    } else {
+      // ✅ Only send productId
+      await addToWishlist(productId);
     }
-  };
+  } catch (error) {
+    console.error("❌ Error updating wishlist:", error);
+  } finally {
+    setIsWishlisting(false);
+  }
+};
+
 
   return (
     <section className="card">
