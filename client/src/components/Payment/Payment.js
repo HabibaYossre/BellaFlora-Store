@@ -49,21 +49,21 @@ function Payment() {
   const paymentroute = (e) => {
 
     e.preventDefault();
-    try {
-     const res= axios.post(
-        "http://localhost:3000/",
-        { cardname,cardnumber, cardexm,cardexy,cardcvv },
-        { withCredentials: true } 
-      );
+    // try {
+    //  const res= axios.post(
+    //     "http://localhost:3000/",
+    //     { cardname,cardnumber, cardexm,cardexy,cardcvv },
+    //     { withCredentials: true } 
+    //   );
 
-      if (res.status === 200) {
+    //   if (res.status === 200) {
         
-        navigate("/Invoice");
-      }
-    } catch (err) {
-      console.error(err.response?.data || err.message);
-    alert("Habiba Something Went Wrong")
-    }
+    //     navigate("/Invoice");
+    //   }
+    // } catch (err) {
+    //   console.error(err.response?.data || err.message);
+    // alert("Habiba Something Went Wrong")
+    // }
 
     navigate('/Invoice');
   };
