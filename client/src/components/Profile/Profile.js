@@ -111,7 +111,9 @@ function Profile() {
   // Fetch user profile from backend
   useEffect(() => {
     axios
-      .get("http://localhost:3000/user/profile")  
+      .get("http://localhost:3000/userProfile/getById",  {
+        withCredentials: true,
+      })  
       .then((result) => {
         setUser(result.data);
       })
@@ -132,7 +134,7 @@ function Profile() {
   const updateProfile = (e) => {
     e.preventDefault();
     axios
-      .put("http://localhost:3000/user/profile", user, {
+      .put("http://localhost:3000/userProfile/update", user, {
         withCredentials: true,
       })
       .then((result) => {
