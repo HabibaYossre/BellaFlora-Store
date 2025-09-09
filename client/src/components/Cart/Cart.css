@@ -13,7 +13,7 @@
 
 .cart-header {
   display: grid;
-  grid-template-columns: 2.5fr 1fr 1fr 1fr;
+  grid-template-columns: 0.8fr 0.3fr 0.5fr 0.5fr;
   background-color: #f98cde;
   padding: 10px;
   border-radius: 12px;

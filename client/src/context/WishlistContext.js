@@ -13,10 +13,10 @@ export const WishlistProvider = ({ children }) => {
   axios.defaults.withCredentials = true;
 
   // Check if user is authenticated
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   setIsAuthenticated(!!token);
+  // }, []);
 
   // Load wishlist from localStorage on mount
   useEffect(() => {
@@ -69,6 +69,15 @@ export const WishlistProvider = ({ children }) => {
 
   // Add to wishlist
   const addToWishlist = async ({ productId, product }) => {
+
+    const userId = localStorage.getItem("userId");
+
+ if (userId) {
+  console.log("User ID:", userId);
+} else {
+  console.log("No user found");
+}
+
     try {
       setLoading(true);
       setError(null);
@@ -81,7 +90,7 @@ export const WishlistProvider = ({ children }) => {
 
       if (isAuthenticated) {
         // Add to backend
-        const res = await axios.post(`${API_URL}/add`, { productId });
+        const res = await axios.post(`${API_URL}/add/remove/${userId}/${productId}`, { productId });
         console.log("✅ Added to wishlist (backend):", res.data);
 
         setWishlist(res.data.wishlist || []);

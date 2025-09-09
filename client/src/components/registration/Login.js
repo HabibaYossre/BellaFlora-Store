@@ -177,7 +177,13 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const userId = localStorage.getItem("userId");
 
+ if (userId) {
+  console.log("User ID:", userId);
+} else {
+  console.log("No user found");
+}
     if (!email) return alert("Email is required!");
     if (!password) return alert("Password is required!");
 

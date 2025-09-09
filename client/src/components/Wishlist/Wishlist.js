@@ -72,11 +72,11 @@ function Wishlist() {
           ) : (
             <>
               <div className="cart-header">
-                <span>Product</span>
+                <span>Product Details</span>
                 <span>Price</span>
                 <span>Date Added</span>
                 <span>Stock Status</span>
-                <span>Action</span>
+             
               </div>
 
               {wishlist.map((item) => (
@@ -103,12 +103,12 @@ function Wishlist() {
                   <span>${(item.product.price || 0).toFixed(2)}</span>
                   <span>{new Date(item.addedAt).toLocaleDateString()}</span>
                   <span className="in-stock">In Stock</span>
-                  <button
+                  {/* <button
                     className="add-cart-btn"
                     onClick={() => handleAddToCart(item)}
                   >
                     Add to Cart
-                  </button>
+                  </button> */}
                 </div>
               ))}
             </>
