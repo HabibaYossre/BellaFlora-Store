@@ -90,7 +90,7 @@ export const WishlistProvider = ({ children }) => {
 
       if (isAuthenticated) {
         // Add to backend
-        const res = await axios.post(`${API_URL}/add/remove/${userId}/${productId}`, { productId });
+        const res = await axios.post(`${API_URL}/add/remove/${userId}/${productId}`, { productId },{userId});
         console.log("✅ Added to wishlist (backend):", res.data);
 
         setWishlist(res.data.wishlist || []);

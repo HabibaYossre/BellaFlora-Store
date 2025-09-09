@@ -102,6 +102,7 @@ function Wishlist() {
                   </div>
                   <span>${(item.product.price || 0).toFixed(2)}</span>
                   <span>{new Date(item.addedAt).toLocaleDateString()}</span>
+                  
                   <span className="in-stock">In Stock</span>
                   {/* <button
                     className="add-cart-btn"
