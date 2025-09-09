@@ -121,20 +121,28 @@ function Invoice() {
             </td>
             <td>${(i.price * i.quantity).toFixed(2)}</td>
           </tr>
+
+          
+
         ))}
 
         <tr>
           <td>Shipping</td>
-          <td>$0.00</td>
+          <td>${(order.shipping || 0).toFixed(2)}</td>
         </tr>
         <tr>
           <td>Taxes</td>
-          <td>$0.00</td>
+          <td>${(order.taxes || 0).toFixed(2)}</td>
         </tr>
         <tr>
           <td>Coupon Discount</td>
-          <td>- $0.00</td>
+          <td>- ${(order.discount || 0).toFixed(2)}</td>
         </tr>
+
+
+
+
+        
         <tr className="total-row">
           <td>Total</td>
           <td>

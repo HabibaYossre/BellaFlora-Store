@@ -104,12 +104,12 @@ function Wishlist() {
                   <span>{new Date(item.addedAt).toLocaleDateString()}</span>
                   
                   <span className="in-stock">In Stock</span>
-                  <button
+                  {/* <button
                     className="add-cart-btn"
                     onClick={() => handleAddToCart(item)}
                   >
                     Add to Cart
-                  </button>
+                  </button> */}
                 </div>
               ))}
             </>
