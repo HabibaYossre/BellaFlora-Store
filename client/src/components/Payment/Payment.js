@@ -9,6 +9,7 @@ import { FaPaypal, FaGooglePay, FaMoneyBillWave } from "react-icons/fa";
 import { SiVisa, SiVodafone } from "react-icons/si";
 import { CartContext } from "../../context/CartContext";
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 function Payment() {
   const [selected, setSelected] = useState("paypal");
@@ -18,7 +19,7 @@ function Payment() {
   const[cardcvv,setCardcvv]=useState("");
   const[cardexm,setCardexpm]=useState("");
   const[cardexy,setCardexpy]=useState("");
-
+  const { orderId } = useParams();
 
   
   const navigate = useNavigate();
@@ -65,7 +66,7 @@ function Payment() {
     // alert("Habiba Something Went Wrong")
     // }
 
-    navigate('/Invoice');
+    navigate(`/invoice/${orderId}`);
   };
 
   return (

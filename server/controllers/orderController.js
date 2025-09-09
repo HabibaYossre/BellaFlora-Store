@@ -24,6 +24,23 @@ export const createOrder = async (req, res) => {
   }
 };
 
+// Get single order by ID
+export const getOrderById = async (req, res) => {
+  try {
+    const order = await Order.findOne({ _id: req.params.id, userId: req.user.id })
+      .populate("items.productId", "name price images");
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    res.status(200).json(order);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching order", error: error.message });
+  }
+};
+
+
 // Get user order history
 export const getUserOrders = async (req, res) => {
   try {

@@ -295,28 +295,35 @@ const proceddpayment = (e) => {
   };
   
 
-  const items = cart.items.map((item) => ({
+/*  const items = cart.items.map((item) => ({
     productId: item.productId._id,  // only send the ObjectId
     quantity: item.quantity,
     price: item.productId.price,    // take price from product
   }));
-  
-  navigate("/Payment");
-  // axios.post("http://localhost:3000/order/createOrder", 
-  //   { items, shippingAddress }, 
-  //   { withCredentials: true }
-  // )
-  //   .then((result) => {
-  //     if (result.status === 201) {
-  //       navigate("/Payment");
-  //     } else {
-  //       alert("Problem in Connection to DB");
-  //     }
-  //   })
-  //   .catch((err) => {
-  //     console.error("❌ Error while ordering:", err.response?.data || err.message);
-  //     alert(err.response?.data?.message || "Something went wrong");
-  //   });
+ */
+  const items = cart.items.map((item) => ({
+    productId: item.product._id,   //  take ID from nested product
+    quantity: item.quantity,
+    price: item.product.price,     // take price from nested product
+  })); 
+  //navigate("/Payment");
+  axios.post("http://localhost:3000/order/createOrder", 
+     { items, shippingAddress }, 
+     { withCredentials: true }
+   )
+    .then((result) => {
+       if (result.status === 201) {
+        const newOrder = result.data;
+        navigate(`/payment/${newOrder._id}`);
+        //navigate("/Payment");
+       } else {
+         alert("Problem in Connection to DB");
+       }
+     })
+     .catch((err) => {
+      console.error("❌ Error while ordering:", err.response?.data || err.message);
+      alert(err.response?.data?.message || "Something went wrong");
+     });
 };
 
 

@@ -44,11 +44,11 @@ function App() {
             <Route path="/ContactUs" element={<ContactUs />} />
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/TrackOrder" element={<TrackOrder />} />
-            <Route path="/payment" element={<Payment />} />
+            <Route path="/payment/:orderId" element={<Payment />} />
             <Route path="/Payment" element={<Payment />} />
             <Route path="/profile" element={<Profile />} />
             <Route path="/Profile" element={<Profile />} />
-            <Route path="/invoice" element={<Invoice />} />
+            <Route path="/invoice/:orderId" element={<Invoice />} />
             <Route path="/Invoice" element={<Invoice />} />
             <Route path="/*" element={<ErrorPage />} />
             <Route path="/Ossciassions" element={<Ocassions />} />
