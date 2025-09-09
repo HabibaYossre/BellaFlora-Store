@@ -101,8 +101,7 @@ function Profile() {
 
   const [user, setUser] = useState({
     firstName: "",
-    lastName: "",
-    email: "",
+    password: "",
     phone: "",
     gender: "Female",
   });
@@ -194,10 +193,10 @@ function Profile() {
 
           <label htmlFor="lastName">Password*</label>
           <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={user.lastName}
+            type="password"
+            id="password"
+            name="password"
+            value={user.password}
             onChange={handleChange}
             required
           />

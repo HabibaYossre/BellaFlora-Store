@@ -59,6 +59,7 @@ function Invoice() {
   return (
     <>
     <div className="order-completed">
+     
   <div className="order-header">
     <div className="checkmark">✔</div>
     <h2>Your order is completed!</h2>

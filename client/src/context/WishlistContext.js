@@ -70,13 +70,13 @@ export const WishlistProvider = ({ children }) => {
   // Add to wishlist
   const addToWishlist = async ({ productId, product }) => {
 
-    const userId = localStorage.getItem("userId");
+    // const userId = localStorage.getItem("userId");
 
- if (userId) {
-  console.log("User ID:", userId);
-} else {
-  console.log("No user found");
-}
+//  if (userId) {
+//   console.log("User ID:", userId);
+// } else {
+//   console.log("No user found");
+// }
 
     try {
       setLoading(true);
@@ -89,8 +89,8 @@ export const WishlistProvider = ({ children }) => {
       console.log("💖 Adding product to wishlist:", { productId, product });
 
       if (isAuthenticated) {
-        // Add to backend
-        const res = await axios.post(`${API_URL}/add/remove/${userId}/${productId}`, { productId },{userId});
+        
+        const res = await axios.post(`${API_URL}/add/remove/${productId}`);
         console.log("✅ Added to wishlist (backend):", res.data);
 
         setWishlist(res.data.wishlist || []);
