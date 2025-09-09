@@ -313,23 +313,27 @@ export const removeFromWishlist = async (req, res) => {
   }
 };
 
-// 🧹 Clear wishlist
+
+// Clear wishlist route
 export const clearWishlist = async (req, res) => {
   try {
     const userId = req.user._id;
+
+    // Find wishlist for user
     let wishlist = await Wishlist.findOne({ userId });
 
     if (!wishlist) {
-      return res.json({ success: true, Wishlist: { userId, productsId: [] } });
+      return res.status(404).json({ success: false, message: "Wishlist not found" });
     }
 
-    wishlist.productsId = [];
+    // Clear products array instead of messing with productId
+    wishlist.products = [];
     await wishlist.save();
 
-    res.json({ success: true, Wishlist: wishlist });
-  } catch (err) {
-    console.error("❌ Clear wishlist error:", err);
-    res.status(500).json({ success: false, msg: "Server error" });
+    res.json({ success: true, message: "Wishlist cleared" });
+  } catch (error) {
+    console.error("❌ Error clearing wishlist:", error);
+    res.status(500).json({ success: false, message: "Failed to clear wishlist" });
   }
 };
 
