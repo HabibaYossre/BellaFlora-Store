@@ -34,29 +34,75 @@ function Invoice() {
   if (loading) return <p>Loading order...</p>;
   if (!order) return <p>No order found.</p>;
 
-  const handleDownload = () => {
-    const doc = new jsPDF();
-    doc.setFontSize(18);
-    doc.text("Invoice", 20, 20);
+  // const handleDownload = () => {
+  //   const doc = new jsPDF();
+  //   doc.setFontSize(18);
+  //   doc.text("Invoice", 20, 20);
 
-    doc.setFontSize(12);
-    doc.text(`Order ID: ${order._id}`, 20, 40);
-    doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "Debit Card"}`, 20, 50);
-    doc.text(`Transaction ID: ${order._id}`, 20, 60);
-    doc.text(`Delivery Date: ${new Date(order.createdAt).toLocaleDateString()}`, 20, 70);
+  //   doc.setFontSize(12);
+  //   doc.text(`Order ID: ${order._id}`, 20, 40);
+  //   doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "N/A"}`, 20, 50);
+  //   doc.text(`Transaction ID: ${order._id}`, 20, 60);
+  //   doc.text(`Delivery Date: ${new Date(order.createdAt).toLocaleDateString()}`, 20, 70);
 
-    let y = 90;
-    order.items.forEach((i) => {
-      const productName = i.productId?.name || "Product";
-      doc.text(productName, 20, y);
-      doc.text(`$${i.price.toFixed(2)}`, 150, y);
-      y += 10;
-    });
+  //   let y = 90;
+  //   order.items.forEach((i) => {
+  //     const productName = i.productId?.name || "Product";
+  //     doc.text(productName, 20, y);
+  //     doc.text(`$${i.price.toFixed(2)}`, 150, y);
+  //     y += 10;
+  //   });
 
-    // const total = order.items.reduce((sum, i) => sum + i.price * i.quantity+cart.totalPrice, 0);
-    doc.text(`Total: $${cart.totalPrice.toFixed(2)}`, 20, y + 20);
-    doc.save("invoice.pdf");
-  };
+  //   const total = order.items.reduce((sum, i) => sum + i.price * i.quantity+cart.totalPrice, 0);
+  //   doc.text(`Total: $${total.toFixed(2)}`, 20, y + 20);
+  //   doc.save("invoice.pdf");
+  // };
+const handleDownload = () => {
+  const doc = new jsPDF();
+  doc.setFontSize(18);
+  doc.text("Invoice", 20, 20);
+
+  doc.setFontSize(12);
+  doc.text(`Order ID: ${order._id}`, 20, 40);
+  doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "N/A"}`, 20, 50);
+  doc.text(`Transaction ID: ${order._id}`, 20, 60);
+  doc.text(`Delivery Date: ${new Date(order.createdAt).toLocaleDateString()}`, 20, 70);
+
+  let y = 90;
+
+  // Order items
+  order.items.forEach((i) => {
+    const productName = i.productId?.name || "Product";
+    const itemTotal = i.price * i.quantity;
+    doc.text(productName, 20, y);
+    doc.text(`$${itemTotal.toFixed(2)}`, 150, y);
+    y += 10;
+  });
+
+  // Subtotal
+  const subTotal = order.items.reduce((sum, i) => sum + i.price * i.quantity, 0);
+
+  // Extras
+  const shipping = cart.shipping || 0;
+  const taxes = cart.tax || 0;
+  const discount = 10; // static for now, can be dynamic
+
+  // Final total
+  const finalTotal = subTotal + shipping + taxes - discount;
+
+  // Add to PDF
+  y += 10;
+  doc.text(`Shipping: $${shipping.toFixed(2)}`, 20, y);
+  y += 10;
+  doc.text(`Taxes: $${taxes.toFixed(2)}`, 20, y);
+  y += 10;
+  doc.text(`Coupon Discount: -$${discount.toFixed(2)}`, 20, y);
+  y += 20;
+  doc.setFontSize(14);
+  doc.text(`Total: $${finalTotal.toFixed(2)}`, 20, y);
+
+  doc.save("invoice.pdf");
+};
 
   return (
     <>
@@ -138,7 +184,7 @@ function Invoice() {
         </tr>
         <tr>
           <td>Coupon Discount</td>
-          <td>- ${(order.discount || 10).toFixed(2)}</td>
+          <td>- $10</td>
         </tr>
 
 
@@ -149,7 +195,7 @@ function Invoice() {
           <td>Total</td>
           <td>
             $
-            {(cart.totalPrice -10 || 0).toFixed(2)}
+            {(cart.totalPrice-10 || 0).toFixed(2)}
           </td>
         </tr>
       </tbody>
