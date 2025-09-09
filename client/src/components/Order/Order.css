@@ -2,11 +2,16 @@
 background-color: rgb(233, 233, 233);
 text-align: center;
 
+   /* gap: 200px; */
 }
 .line{    
     display: flex;
-    gap: 300px;
+    gap: 200px;
+    margin-left: 20px;
    
+}
+.order-page{
+  gap: 300px;
 }
 h5{
     text-align: left;
@@ -103,10 +108,11 @@ h5{
   background: #fff;
   padding: 0px;
   border-radius: 12px;
-    width: 300px;
-    /* margin-left: 400px; */
+    width: 400px;
+    margin-left: 700px;
     height: fit-content;
-    margin-top: 100px;
+    margin-top: 10px;
+    margin-right: 10px;
 
   /* border: 1px solid #eee; */
 }

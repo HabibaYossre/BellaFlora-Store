@@ -355,6 +355,7 @@ const proceddpayment = (e) => {
 
       <div className='line'>
         <div className='order-page'>
+          
           <form className='order-form'>
             <label htmlFor="fname">Full Name*</label><br />
             <input type="text" id="fname" name="fname" placeholder='Enter your full name' value={fullname} required onChange={(e) => setFullname(e.target.value)} />
@@ -399,9 +400,9 @@ const proceddpayment = (e) => {
               </label>
             </div>
           </form>
+          
         </div>
-
-        <div className="order-summary">
+<div className="order-summary">
           <h3>Order Summary</h3>
           <p>
             Items{" "}
@@ -431,6 +432,7 @@ const proceddpayment = (e) => {
           </button>
           <br />
         </div>
+        
       </div>
 
       <Shipping />
