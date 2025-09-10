@@ -74,7 +74,7 @@ const proceddpayment = (e) => {
     price: item.product.price,     // take price from nested product
   })); 
   //navigate("/Payment");
-  axios.post(`${BACKEND_URL}/order/createOrder`, 
+  axios.post(`${process.env.REACT_APP_BACKEND_URL}/order/createOrder`, 
      { items, shippingAddress }, 
      { withCredentials: true }
    )

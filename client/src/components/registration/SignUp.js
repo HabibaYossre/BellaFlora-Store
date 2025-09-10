@@ -39,7 +39,7 @@ function SignUp() {
     setErrorMessage("");
 
     axios
-      .post(`${BACKEND_URL}/auth/signup`, {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/signup`, {
         name: fullName,
         email,
         phone,

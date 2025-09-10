@@ -17,7 +17,7 @@ function Invoice() {
   useEffect(() => {
     const fetchOrder = async () => {
       try {
-        const res = await axios.get(`${BACKEND_URL}/order/${orderId}`, {
+        const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/order/${orderId}`, {
           withCredentials: true,
         });
         setOrder(res.data);

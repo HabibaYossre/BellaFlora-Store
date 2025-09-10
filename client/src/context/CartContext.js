@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const API_URL = `${BACKEND_URL}/cart`;
+  const API_URL = `${process.env.REACT_APP_BACKEND_URL}/cart`;
   axios.defaults.withCredentials = true;
 
   // ✅ Check if user is authenticated

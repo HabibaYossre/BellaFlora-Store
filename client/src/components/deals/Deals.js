@@ -9,7 +9,7 @@ function Deals() {
   useEffect(()=>{
     const fetchDeals=async()=>{
         try{
-           const res=await fetch(`${BACKEND_URL}/product/all`);
+           const res=await fetch(`${process.env.REACT_APP_BACKEND_URL}/product/all`);
            if(!res.ok){
              throw new Error("Failed to fetch deals");
            }

@@ -14,7 +14,7 @@ export const WishlistProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      const res = await axios.get(`${BACKEND_URL}/wishlist`, {
+      const res = await axios.get(`${process.env.REACT_APP_BACKEND_URL}/wishlist`, {
         withCredentials: true,
       });
 
@@ -42,7 +42,7 @@ export const WishlistProvider = ({ children }) => {
       setError(null);
 
       const res = await axios.post(
-        `${BACKEND_URL}/wishlist/add`,
+        `${process.env.REACT_APP_BACKEND_URL}/wishlist/add`,
         { productId },
         { withCredentials: true }
       );
@@ -68,7 +68,7 @@ export const WishlistProvider = ({ children }) => {
       setError(null);
 
       const res = await axios.delete(
-        `${BACKEND_URL}/wishlist/remove/${productId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/wishlist/remove/${productId}`,
         { withCredentials: true }
       );
 
@@ -92,7 +92,7 @@ export const WishlistProvider = ({ children }) => {
     try {
       setError(null);
 
-      const res = await axios.delete(`${BACKEND_URL}/wishlist/clear`, {
+      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/wishlist/clear`, {
         withCredentials: true,
       });
 

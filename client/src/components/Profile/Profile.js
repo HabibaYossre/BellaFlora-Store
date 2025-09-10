@@ -23,7 +23,7 @@ function Profile() {
   // Fetch user profile from backend
   useEffect(() => {
     axios
-      .get(`${BACKEND_URL}/userProfile/getById`, { withCredentials: true })
+      .get(`${process.env.REACT_APP_BACKEND_URL}/userProfile/getById`, { withCredentials: true })
       .then((result) => {
         if (result.data && result.data.User) {
           setUser({
@@ -53,7 +53,7 @@ function Profile() {
   const updateProfile = (e) => {
     e.preventDefault();
     axios
-      .put(`${BACKEND_URL}/userProfile/update`, user, {
+      .put(`${process.env.REACT_APP_BACKEND_URL}/userProfile/update`, user, {
         withCredentials: true,
       })
       .then((result) => {
@@ -73,7 +73,7 @@ function Profile() {
   // Logout
   const logout = () => {
     axios
-      .post(`${BACKEND_URL}/auth/logout`)
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/logout`)
       .then((result) => {
         if (result.status === 200) {
           navigate("/auth/login");

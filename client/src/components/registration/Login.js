@@ -25,7 +25,7 @@ function Login() {
 
     try {
       const res = await axios.post(
-        `${BACKEND_URL}/auth/login`,
+        `${process.env.REACT_APP_BACKEND_URL}/auth/login`,
         { email, password },
         { withCredentials: true } // ensures cookies are included
       );
@@ -52,7 +52,7 @@ function Login() {
     }
     try {
       const result = await axios.post(
-        `${BACKEND_URL}/auth/forgot-password`,
+        `${process.env.REACT_APP_BACKEND_URL}/auth/forgot-password`,
         { email }
       );
       if (result.status === 200) {
