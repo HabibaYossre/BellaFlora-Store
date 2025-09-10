@@ -158,10 +158,11 @@ const handleDownload = () => {
         {order.items.map((i, idx) => (
           <tr key={idx}>
             <td className="product-info">
-              {/* If product image exists */}
-              {i.productId?.image && (
-                <img src={i.productId.image}  />
+              
+              {i.productId?.images[0] && (
+                <img src={i.productId.images[0]}  />
               )}
+              
               <div>
                 <p className="product-name">{i.productId?.name || "Product"}</p>
                 <span className="product-type">Qty: {i.quantity}</span>
@@ -169,10 +170,8 @@ const handleDownload = () => {
             </td>
             <td>${(i.price * i.quantity).toFixed(2)}</td>
           </tr>
-
-          
-
         ))}
+
 
         <tr>
           <td>Shipping</td>
