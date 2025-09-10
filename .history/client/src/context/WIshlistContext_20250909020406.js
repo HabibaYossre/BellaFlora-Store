@@ -10,7 +10,7 @@ export const WishlistProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const API_URL = "http://localhost:3000/wishlist";
+  const API_URL = `${BACKEND_URL}/wishlist`;
   axios.defaults.withCredentials = true;
 
   useEffect(() => {
