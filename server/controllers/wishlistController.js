@@ -249,11 +249,11 @@ export const addToWishlist = async (req, res) => {
     }
 
     // Prevent duplicates
-    if (wishlist.productsId.includes(productId)) {
+    /*if (wishlist.productsId.includes(productId)) {
       return res
         .status(400)
         .json({ success: false, msg: "Product already in wishlist" });
-    }
+    }*/
 
     // Push only ObjectId
     wishlist.productsId.push(productId);
