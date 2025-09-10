@@ -8,24 +8,38 @@ function Category({ handleFilterChange, selectedCategory }) {
       <div className="sidebar-container">
         <Input
           handleFilterChange={handleFilterChange}
-          value="Bouquet"
-          title="Bouquet"
+          value="Graduation"
+          title="Graduation"
           name="category"
-          isSelected={selectedCategory === "Bouquet"}
+          isSelected={selectedCategory === "Graduation"}
         ></Input>
         <Input
           handleFilterChange={handleFilterChange}
-          value="Bunch"
-          title="Bunch"
+          value="wedding"
+          title="wedding"
           name="category"
-          isSelected={selectedCategory === "Bunch"}
+          isSelected={selectedCategory === "wedding"}
         ></Input>
         <Input
           handleFilterChange={handleFilterChange}
-          value="Vase Arrangement"
-          title="Vase Arrangement"
+          value="apology"
+          title="apology"
           name="category"
-          isSelected={selectedCategory === "Vase Arrangement"}
+          isSelected={selectedCategory === "apology"}
+        ></Input>
+         <Input
+          handleFilterChange={handleFilterChange}
+          value="thanks"
+          title="thanks"
+          name="category"
+          isSelected={selectedCategory === "thanks"}
+        ></Input>
+         <Input
+          handleFilterChange={handleFilterChange}
+          value="engagement"
+          title="engagement"
+          name="category"
+          isSelected={selectedCategory === "engagement"}
         ></Input>
       </div>
     </div>

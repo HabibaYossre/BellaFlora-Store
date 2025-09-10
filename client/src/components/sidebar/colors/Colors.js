@@ -37,10 +37,10 @@ function Colors({ handleFilterChange, selectedColor }) {
         ></Input>
         <Input
           handleFilterChange={handleFilterChange}
-          value="Purple"
-          title="Purple"
+          value="Purble"
+          title="Purble"
           name="color"
-          isSelected={selectedColor === "Purple"}
+          isSelected={selectedColor === "Purble"}
         ></Input>
       </div>
     </div>
