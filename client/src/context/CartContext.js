@@ -16,7 +16,7 @@ export const CartProvider = ({ children }) => {
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const API_URL = "http://localhost:3000/cart";
+  const API_URL = `${BACKEND_URL}/cart`;
   axios.defaults.withCredentials = true;
 
   // ✅ Check if user is authenticated

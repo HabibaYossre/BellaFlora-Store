@@ -21,7 +21,7 @@ function Allproducts() {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const res = await fetch("http://localhost:3000/product/all");
+        const res = await fetch(`${BACKEND_URL}/product/all`);
         if (!res.ok) {
           throw new Error("Failed to fetch products");
         }

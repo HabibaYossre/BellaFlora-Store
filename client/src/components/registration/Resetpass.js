@@ -17,7 +17,7 @@ function Resetpass() {
   // ✅ Check token validity when page loads
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/auth/reset-password/${token}`)
+      .get(`${BACKEND_URL}/auth/reset-password/${token}`)
       .then((res) => setMessage(res.data.message))
       .catch((err) =>
         setMessage(err.response?.data?.message || "Invalid or expired link ya fatma")
@@ -52,7 +52,7 @@ function Resetpass() {
     try {
       setLoading(true);
       const res = await axios.post(
-        `http://localhost:3000/auth/reset-password/${token}`,
+        `${BACKEND_URL}/auth/reset-password/${token}`,
         { password: pass }, // ✅ backend expects "password"
         { withCredentials: true }
       );

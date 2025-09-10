@@ -14,7 +14,7 @@ export const WishlistProvider = ({ children }) => {
       setLoading(true);
       setError(null);
 
-      const res = await axios.get("http://localhost:3000/wishlist", {
+      const res = await axios.get(`${BACKEND_URL}/wishlist`, {
         withCredentials: true,
       });
 
@@ -42,7 +42,7 @@ export const WishlistProvider = ({ children }) => {
       setError(null);
 
       const res = await axios.post(
-        "http://localhost:3000/wishlist/add",
+        `${BACKEND_URL}/wishlist/add`,
         { productId },
         { withCredentials: true }
       );
@@ -68,7 +68,7 @@ export const WishlistProvider = ({ children }) => {
       setError(null);
 
       const res = await axios.delete(
-        `http://localhost:3000/wishlist/remove/${productId}`,
+        `${BACKEND_URL}/wishlist/remove/${productId}`,
         { withCredentials: true }
       );
 
@@ -92,7 +92,7 @@ export const WishlistProvider = ({ children }) => {
     try {
       setError(null);
 
-      const res = await axios.delete("http://localhost:3000/wishlist/clear", {
+      const res = await axios.delete(`${BACKEND_URL}/wishlist/clear`, {
         withCredentials: true,
       });
 
