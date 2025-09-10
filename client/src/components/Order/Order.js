@@ -393,11 +393,11 @@ const proceddpayment = (e) => {
                 <span className="text">Same as shipping address</span>
               </label>
 
-              <label className={`option ${selected === "different" ? "selected" : ""}`} onClick={() => setSelected("different")}>
+              {/* <label className={`option ${selected === "different" ? "selected" : ""}`} onClick={() => setSelected("different")}>
                 <input type="radio" name="billing" value="different" checked={selected === "different"} onChange={() => setSelected("different")} />
                 <span className="custom-radio"></span>
                 <span className="text">Use a different billing address</span>
-              </label>
+              </label> */}
             </div>
           </form>
           
@@ -437,7 +437,7 @@ const proceddpayment = (e) => {
 
       <Shipping />
       <Subscribe />
-      <Footer />
+    
     </div>
   );
 }

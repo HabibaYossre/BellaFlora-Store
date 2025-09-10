@@ -64,7 +64,7 @@ const handleDownload = () => {
 
   doc.setFontSize(12);
   doc.text(`Order ID: ${order._id}`, 20, 40);
-  doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "N/A"}`, 20, 50);
+  doc.text(`Payment Method: ${order.billingDetails?.paymentMethod || "Debit Card"}`, 20, 50);
   doc.text(`Transaction ID: ${order._id}`, 20, 60);
   doc.text(`Delivery Date: ${new Date(order.createdAt).toLocaleDateString()}`, 20, 70);
 

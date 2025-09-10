@@ -1,7 +1,12 @@
 import React from "react";
 import "./Checkmail.css";
-
+import { useParams } from "react-router-dom";
 function Checkmail() {
+
+    const { token } = useParams(); // ✅ Get token from URL
+
+  console.log("Token from URL:", token);
+  
   return (
     <div className="check-email-container">
       <div className="check-email-card">
