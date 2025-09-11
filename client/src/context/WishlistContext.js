@@ -8,7 +8,6 @@ export const WishlistProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  // ✅ Fetch wishlist from backend
   const fetchWishlist = async () => {
     try {
       setLoading(true);
@@ -29,7 +28,7 @@ export const WishlistProvider = ({ children }) => {
         setWishlist(normalized);
       }
     } catch (err) {
-      console.error("❌ Fetch wishlist error:", err);
+      console.error("Fetch wishlist error:", err);
       setError("Failed to load wishlist");
     } finally {
       setLoading(false);
