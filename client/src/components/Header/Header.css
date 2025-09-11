@@ -7,6 +7,7 @@
   padding: 8px 10px;
   font-size: 14px;
   flex-wrap: wrap;
+  height: 50px;
 }
 
 .top-bar a {
@@ -42,6 +43,10 @@
   font-weight: bold;
   font-size: 20px;
 }
+.logo-icon {
+  font-size: 24px;
+  margin-right: 5px;
+}
 
 .logo-icon svg {
   display: flex;
@@ -52,7 +57,9 @@
 .logo-text {
   color: #000;
 }
-
+.navbar .icons{
+  display: flex;
+}
 .nav-links {
   display: flex;
   list-style: none;
@@ -91,7 +98,7 @@
 /* Tablet and smaller (still show nav normally) */
 @media (max-width: 992px) {
   .navbar {
-    padding: 12px 20px;
+    padding: 12px 10px;
   }
 
   .nav-links {
@@ -116,27 +123,28 @@
     width: 220px;
     padding: 20px;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-    display: none; /* hidden by default */
+    display: none; 
     z-index: 1000;
   }
 
   .nav-links.active {
     display: flex;
   }
-
+  .logo{
+    gap: 5px;
+  }
   /* Show hamburger button */
   .menu-toggle {
-    display: flex; /* hidden by default */
+    display: flex; 
     font-size: 22px;
     cursor: pointer;
-    margin-left: 100px;
+    margin-left: 80px;
   }
 
   /* Stack top bar */
   .top-bar {
     flex-direction: column;
     text-align: center;
-    /* gap: 45px; */
     font-size: 13px;
     padding-top: 15px;
     margin-left: 0px;

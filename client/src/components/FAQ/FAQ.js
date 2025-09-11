@@ -42,13 +42,6 @@ function FAQ() {
         ))}
       </div>
 
-      {/* Contact Us Card */}
-      {/* <div className="contact-card">
-        <div className="icon"></div>
-        <h2>You have different questions?</h2>
-        <p>Our team will answer all your questions. We ensure a quick response.</p>
-        <button>Contact Us</button>
-      </div> */}
     </div>
     </>
   );
