@@ -1,7 +1,6 @@
 
-import React from 'react';
 import "./Footer.css";
-
+import { LuFlower } from "react-icons/lu";
 
 
 
@@ -14,10 +13,10 @@ function Footer() {
       
         <div className="footer-section">
           <div className="footer-logo">
-            <span className="logo-icon">🌸</span>
+            <span className="logo-icon"><LuFlower /></span>
             <h2>Flower Shop.</h2>
           </div>
-          <p>
+          <p className="footer-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna namn Fatma.
           </p>

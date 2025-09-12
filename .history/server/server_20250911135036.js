@@ -27,9 +27,7 @@ app.use(cors({
     // origin: "http://localhost:3001",  // <-- your React frontend URL
     // credentials: true   
     //          
-
       origin: `true || https://flower-store-front.vercel.app`, 
-
       credentials: true
   }));
 

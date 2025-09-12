@@ -2,7 +2,7 @@
 .main-container{
     background-image: url("../../../public/images/mainBackground.jpg");
     background-size: cover;
-    height: calc(100vh - 45px - 67px);
+    height: calc(100vh - 35px - 67px);
     background-position:top;
     /* display: grid;
     grid-template-columns: 2fr 1fr; */

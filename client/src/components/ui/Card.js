@@ -29,7 +29,6 @@ function Card({
   const productName = name || title;
   const productImage = img || images?.[0];
 
-  // ✅ Handle Add to Cart
   const handleAddToCart = async () => {
     if (!productId || isAdding || loading) return;
 
@@ -55,7 +54,6 @@ function Card({
       setIsAdding(false);
     }
   };
-// ✅ Handle Wishlist Toggle
 const handleToggleWishlist = async () => {
   if (!productId || isWishlisting || wishlistLoading) return;
 
@@ -64,7 +62,6 @@ const handleToggleWishlist = async () => {
     if (isInWishlist(productId)) {
       await removeFromWishlist(productId);
     } else {
-      // ✅ Only send productId
       await addToWishlist(productId);
     }
   } catch (error) {
@@ -90,8 +87,7 @@ const handleToggleWishlist = async () => {
           <span className="total-reviews">({rating || 0})</span>
         </section>
 
-        <section
-          className="card-price"
+        <section className="card-price"
           style={{
             display: "flex",
             justifyContent: "space-between",

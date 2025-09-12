@@ -43,14 +43,10 @@
   .info-card {
     flex-direction: column;
     align-items: center;
-    margin-left: 50px;
+    justify-content: center;
+    text-align: center;
+    margin-left: 17px;
   }
 }
-/* @media (min-width: 768px) {
-  .info-card{
-    flex-direction: column;
-    align-items: center;
-    margin-left: 200px;
-  }
-} */
+
 

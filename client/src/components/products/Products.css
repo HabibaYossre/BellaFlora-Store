@@ -1,3 +1,4 @@
+/* this is card.js css */
 .card-container{
     display: flex;
     flex-wrap: wrap;
@@ -48,7 +49,7 @@ bottom: 20px;
     
 }
 
-.icons{
+.card-price .icons{
     display: flex;
     gap: 10px;
     align-items: center;

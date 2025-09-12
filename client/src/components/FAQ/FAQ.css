@@ -8,7 +8,14 @@
 .icons a:hover {
   color: #6a0dad;
 }
+.faq{
+  font-size: 20px;
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 7px;
+font-weight: normal;
 
+}
 .look{
   font-size: 28px;  
   color: #141414;
@@ -26,12 +33,12 @@
   margin-top: 20px;
   margin-bottom: 50px;
 }
-.image-grid img{
+/* .image-grid img{
   width: 100%;
   height: auto;
   border-radius: 20px;
   margin-left: 20px;
-}
+} */
 .image-item{
   width: 400px;
   height: 340px;
@@ -280,10 +287,7 @@ right: 15px;
     align-items: center;
   }
   
-  .info-card {
-    width: 80%;
-    margin-bottom: 20px;
-  }
+ 
 }
 
 @media (min-width: 768px) {
@@ -328,7 +332,7 @@ right: 15px;
   padding: 16px;
   margin-bottom: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.6s ease-in-out;
 }
 
 .faq-item:hover {
