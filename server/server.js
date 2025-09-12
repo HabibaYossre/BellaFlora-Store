@@ -28,8 +28,7 @@ app.use(cors({
     // credentials: true   
     //          
 
-      origin: `true || https://flower-store-front.vercel.app`, 
-
+      origin: true || "https://flower-store-front.vercel.app" ,
       credentials: true
   }));
 
