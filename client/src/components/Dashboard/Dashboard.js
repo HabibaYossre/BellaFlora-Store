@@ -17,7 +17,14 @@ function Dashboard() {
       <main className="main-content">
         <header className="header">
           <h3 className="hh">Welcome in Admin Dashboard</h3>
-          <button className="logout-btn">Logout</button>
+           <div className="buttons">
+          <button className="add-flower" onClick={handleAddFlower}>
+            Add Flower
+          </button>
+            <button className="logout-btn">Logout</button>
+        </div>
+        
+
         </header>
 
         {/* Stats Cards */}
@@ -41,11 +48,7 @@ function Dashboard() {
         </section>
 
         {/* زرار إضافة منتج */}
-        <div className="buttons">
-          <button className="add-flower" onClick={handleAddFlower}>
-            Add Flower
-          </button>
-        </div>
+       
 
         {/* Products in Cards */}
         <section className="product-list">
