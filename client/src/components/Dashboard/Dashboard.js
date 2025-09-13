@@ -21,19 +21,19 @@ function Dashboard() {
 
         {/* Stats Cards */}
         <section className="cards">
-          <div className="card">
+          <div className="card-d">
             <h3>Total Users</h3>
             <p>120</p>
           </div>
-          <div className="card">
+          <div className="card-d">
             <h3>Total Flowers</h3>
             <p>45</p>
           </div>
-          <div className="card">
+          <div className="card-d">
             <h3>Uploads Today</h3>
             <p>30</p>
           </div>
-          <div className="card">
+          <div className="card-d">
             <h3>Most Popular Flower</h3>
             <p>Tulip</p>
           </div>

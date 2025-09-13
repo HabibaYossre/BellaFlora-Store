@@ -24,7 +24,7 @@ function Login() {
     if (!password) return alert("Password is required!");
 
     if(email==="admin@gmail.com"&&password==="1234Admin"){
-      navigate("/Admin")
+      navigate("/Dashboard")
     }
     try {
       const res = await axios.post(

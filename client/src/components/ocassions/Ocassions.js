@@ -1,5 +1,5 @@
 import React from "react";
-// import "./Ocasions.css";
+import "./ocassions.css";
 import Occassion from "../ui/Occassion";
 import { Link } from "react-router-dom";
 import { GiBigDiamondRing } from "react-icons/gi";
