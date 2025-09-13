@@ -23,6 +23,7 @@ import Layout from "./components/Layout";
 import Ocassions from "./components/ocassions/Ocassions";
 import Admin from "./components/Admin/Admin";
 import KnowType from "./components/KnowType/KnowType";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 function App() {
   return (
@@ -47,6 +48,7 @@ function App() {
             <Route path="/track-order" element={<TrackOrder />} />
             <Route path="/TrackOrder" element={<TrackOrder />} />
             <Route path="/payment/:orderId" element={<Payment />} />
+              <Route path="/Dashboard" element={<Dashboard />} />
               <Route path="/KnowType" element={<KnowType />} />
             <Route path="/Payment" element={<Payment />} />
             <Route path="/profile" element={<Profile />} />
