@@ -41,7 +41,7 @@ export const ProductProvider = ({ children }) => {
   const editProduct = async (productId, updatedData) => {
     try {
       const { data } = await axios.put(
-        `${process.env.REACT_APP_BACKEND_URL}/product/${productId}`,
+        `${process.env.REACT_APP_BACKEND_URL}/product/update/${productId}`,
         updatedData,
         { withCredentials: true }
       );
@@ -56,7 +56,7 @@ export const ProductProvider = ({ children }) => {
   
   const deleteProduct = async (productId) => {
     try {
-      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/product/${productId}`, {
+      await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/product/delete/${productId}`, {
         withCredentials: true,
       });
       setProducts((prev) => prev.filter((p) => p._id !== productId));
