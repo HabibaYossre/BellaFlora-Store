@@ -21,6 +21,7 @@ import { WishlistProvider } from "./context/WishlistContext";
 import About from "./components/About/About";
 import Layout from "./components/Layout";
 import Ocassions from "./components/ocassions/Ocassions";
+import Admin from "./components/Admin/Admin";
 
 function App() {
   return (
@@ -50,6 +51,7 @@ function App() {
             <Route path="/Profile" element={<Profile />} />
             <Route path="/invoice/:orderId" element={<Invoice />} />
             <Route path="/Invoice" element={<Invoice />} />
+             <Route path="/Admin" element={<Admin />} />
             <Route path="/*" element={<ErrorPage />} />
             <Route path="/Ossciassions" element={<Ocassions />} />
           </Routes>

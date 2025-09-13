@@ -17,7 +17,7 @@ function About(){
        </div>
        <div className="characters-img">
 <div className="character">
-    <img src="/images/photo-1599698011977-c08128ff1652.avif" />
+    <img src="/images/istockphoto-843230322-612x612.jpg" />
     <p>
         Jenny Wilson
         <br/>
@@ -29,7 +29,7 @@ Founder
 </div>
 
 <div className="character">
-    <img src="/images/photo-1585598007006-2995ea95e22a.avif" />
+    <img src="/images/istockphoto-1196693233-612x612.jpg" />
     <p>
        Bassiey Coper
         <br/>
@@ -41,7 +41,7 @@ Store Maneger
 </div>
 
 <div className="character">
-    <img src="/images/photo-1597614456977-f8fdcb73e8a0.avif" />
+    <img src="/images/istockphoto-918209156-612x612.jpg" />
     <p>
        Robert Fox
         <br/>
@@ -53,7 +53,7 @@ Floral Designer
 </div>
 
 <div className="character">
-    <img src="/images/photo-1709980699771-955cea4ce1fc.avif" />
+    <img src="/images/istockphoto-523149033-1024x1024.jpg" />
     <p>
       Jane Cooper
         <br/>

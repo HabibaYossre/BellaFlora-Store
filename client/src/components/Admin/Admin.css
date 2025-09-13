@@ -1,0 +1,70 @@
+.dashboard-container {
+  max-width: 800px;
+  margin: auto;
+  padding: 20px;
+  background: #ffffff;
+  border-radius: 12px;
+  /* box-shadow: 0 4px 12px rgba(0,0,0,0.1); */
+}
+.hj {
+  text-align: center;
+  margin-bottom: 20px;
+   color: #6a0dad;
+}
+
+.flower-form {
+  display: grid;
+  gap: 15px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+input[type="file"] {
+  padding: 6px;
+}
+
+.error {
+  font-size: 0.9rem;
+  color: red;
+  margin-top: 5px;
+}
+
+.submit-btn {
+    background: #6a0dad;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.submit-btn:hover {
+    background: #6a0dad;
+}
+
+/* ✅ Responsive */
+@media (max-width: 600px) {
+  .dashboard-container {
+    padding: 15px;
+  }
+  .submit-btn {
+    width: 100%;
+  }
+}
