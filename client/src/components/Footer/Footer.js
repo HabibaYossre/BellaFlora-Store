@@ -13,8 +13,8 @@ function Footer() {
       
         <div className="footer-section">
           <div className="footer-logo">
-            <span className="logo-icon"><LuFlower /></span>
-            <h2>Flower Shop.</h2>
+            {/* <span className="logo-icon"><LuFlower /></span> */}
+            <h2>🌸 Bella Flora.</h2>
           </div>
           <p className="footer-text">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

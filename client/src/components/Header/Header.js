@@ -31,8 +31,8 @@ function Header() {
      
       <nav className="navbar">
         <div className="logo">
-          <span className="logo-icon"><LuFlower /></span>
-          <span className="logo-text">Flower Shop.</span>
+          {/* <span className="logo-icon"><LuFlower /></span> */}
+          <span className="logo-text">🌸 Bella Flora.</span>
         </div>
 
   

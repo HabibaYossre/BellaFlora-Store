@@ -6,7 +6,8 @@ function Recommended({handleRecommendedBtns, selectedRecommended}) {
     { value: "Dandelion", label: "Dandelion" },
     { value: "Rose", label: "Rose" },
     { value: "Sunflower", label: "Sunflowers" },
-    { value: "Tulip", label: "Tulip" }
+    { value: "Tulip", label: "Tulip" },
+    {value:"Know Type",label:"Know Type"}
   ];
 
   return (
