@@ -9,15 +9,16 @@ function Admin() {
   const [errorMessage, setErrorMessage] = useState("");
 
   const [formData, setFormData] = useState({
-    flowerName: "",
-    flowerType: "",
-    flowerDescription: "",
-    flowerImage: "", 
-    size: "",
-    category: "",
-    color: "",
-    material: "",
-    stock: "",
+    name:"",
+    type:"",
+    description:"",
+    category:"",
+    size:"",
+    color:"",
+    material:"",
+    price:"",
+    stock:"",
+    images:"",
   });
 
   // handle input change
@@ -54,7 +55,7 @@ function Admin() {
 
         if (res.status === 201) {
           alert("✅ Flower added successfully!");
-          navigate("/Allproducts");
+          navigate("/product/all");
         }
       } catch (err) {
         console.error(err.response?.data || err.message);
