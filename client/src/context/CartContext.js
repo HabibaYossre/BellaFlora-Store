@@ -9,9 +9,11 @@ export const CartProvider = ({ children }) => {
     subtotal: 0,
     tax: 0,
     shipping: 0,
+    discount: 0,
     totalPrice: 0,
   });
 
+  const [coupon, setCoupon] = useState({ code: null, discount: 0 });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -25,22 +27,38 @@ export const CartProvider = ({ children }) => {
     setIsAuthenticated(!!token);
   }, []);
 
-
-  const calculateTotals = useCallback((items) => {
-    const subtotal = items.reduce((sum, item) => {
-      const product = item.product || {};
-      return sum + (product.price || 0) * (item.quantity || 0);
-    }, 0);
-
-    const TAX_RATE = 0.1;
-    const SHIPPING_COST = subtotal > 0 ? 5 : 0;
-    const tax = +(subtotal * TAX_RATE).toFixed(2);
-    const shipping = SHIPPING_COST;
-    const totalPrice = subtotal + tax + shipping;
-
-    return { subtotal, tax, shipping, totalPrice };
-  }, []);
-
+  // ✅ Centralized totals calculation (applies coupon automatically)
+  const calculateTotals = useCallback(
+    (items, appliedCoupon = coupon) => {
+      const subtotal = items.reduce((sum, item) => {
+        const product = item.product || {};
+        return sum + (product.price || 0) * (item.quantity || 0);
+      }, 0);
+  
+      const TAX_RATE = 0.1;
+      const SHIPPING_COST = subtotal > 0 ? 5 : 0;
+  
+      // apply discount
+      const discountAmount = subtotal * (appliedCoupon?.discount || 0);
+      const discountedSubtotal = subtotal - discountAmount;
+  
+      // ✅ calculate tax on discounted subtotal
+      const tax = +(discountedSubtotal * TAX_RATE).toFixed(2);
+      const shipping = SHIPPING_COST;
+  
+      const totalPrice = discountedSubtotal + tax + shipping;
+  
+      return {
+        subtotal,
+        tax,
+        shipping,
+        discount: discountAmount,
+        totalPrice,
+      };
+    },
+    [coupon]
+  );
+  
   // ✅ Load cart from localStorage on mount
   useEffect(() => {
     const savedCart = localStorage.getItem("cart");
@@ -158,7 +176,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
- 
+  // ✅ Clear cart
   const clearCart = async () => {
     try {
       setLoading(true);
@@ -166,13 +184,45 @@ export const CartProvider = ({ children }) => {
         const res = await axios.delete(`${API_URL}/clear`);
         setCart(res.data.cart || res.data);
       } else {
-        setCart({ items: [], subtotal: 0, tax: 0, shipping: 0, totalPrice: 0 });
+        setCart({
+          items: [],
+          subtotal: 0,
+          tax: 0,
+          shipping: 0,
+          discount: 0,
+          totalPrice: 0,
+        });
       }
+      setCoupon({ code: null, discount: 0 });
     } catch (err) {
       setError("Failed to clear cart");
     } finally {
       setLoading(false);
     }
+  };
+
+  // ✅ Apply coupon
+  const applyCoupon = (code) => {
+    let discount = 0;
+
+    if (code === "FLOWER10") {
+      discount = 0.1;
+    } else if (code === "ROSE20") {
+      discount = 0.2;
+    } else {
+      setError("❌ Invalid coupon code");
+      return;
+    }
+
+    setCoupon({ code, discount });
+
+    setCart((prev) => {
+      const totals = calculateTotals(prev.items, { code, discount });
+      return {
+        ...prev,
+        ...totals,
+      };
+    });
   };
 
   return (
@@ -183,6 +233,8 @@ export const CartProvider = ({ children }) => {
         removeFromCart,
         updateQty,
         clearCart,
+        applyCoupon,
+        coupon,
         loading,
         error,
         isAuthenticated,
