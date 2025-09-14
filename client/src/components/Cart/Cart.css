@@ -300,7 +300,7 @@
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 768px) {
   .cart-row {
     display: flex;
     flex-direction: column;
@@ -310,8 +310,11 @@
     border-radius: 12px;
     padding: 15px;
     margin-bottom: 15px;
+    margin-left: 0px;
+    margin-right: 10px;
     
   }
+ 
 
   .cart-row img {
     margin-bottom: 10px;
@@ -334,4 +337,16 @@
     width: 30%;
     margin-left: 180px;
   }
+
+     .order-summary {
+        background: #fff;
+        padding: 0px;
+        border-radius: 12px;
+          width: 90%;
+          margin-left: 30px;
+          height: fit-content;
+          margin-top: 25px;
+    
+        /* border: 1px solid #eee; */
+    }
 }

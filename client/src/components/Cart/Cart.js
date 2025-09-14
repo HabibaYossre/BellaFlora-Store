@@ -138,37 +138,28 @@ const Cart = () => {
 
       
         {cart.items.length > 0 && (
-          <div className="order-summary">
-            <h3>Order Summary</h3>
-            <div className="summary-line">
-              <span>Items</span>
-              <span>{cart.items.reduce((sum, i) => sum + i.quantity, 0)}</span>
-            </div>
-
-            <div className="summary-line">
-              <span>Subtotal</span>
-              <span>${(cart.subtotal || 0).toFixed(2)}</span>
-            </div>
-            <div className="summary-line">
-              <span>Shipping</span>
-              <span>${(cart.shipping || 0).toFixed(2)}</span>
-            </div>
-            <div className="summary-line">
-              <span>Taxes</span>
-              <span>${(cart.tax || 0).toFixed(2)}</span>
-            </div>
-
-            <hr />
-
-            <div className="summary-line total">
-              <span>Total</span>
-              <span>${(cart.totalPrice || 0).toFixed(2)}</span>
-            </div>
-
-            <button className="checkout-btn" onClick={gotoorder}>
-              Proceed to Checkout
-            </button>
-          </div>
+         <div className="order-summary">
+          <h3>Order Summary</h3>
+          <p>
+            Items <span>{cart.items.reduce((sum, i) => sum + i.quantity, 0)}</span>
+          </p>
+          <p>
+            Subtotal <span>${(cart.subtotal || 0).toFixed(2)}</span>
+          </p>
+          <p>
+            Shipping <span>${(cart.shipping || 0).toFixed(2)}</span>
+          </p>
+          <p>
+            Taxes <span>${(cart.tax || 0).toFixed(2)}</span>
+          </p>
+          <hr />
+          <p className="total">
+            Total <span>${(cart.totalPrice || 0).toFixed(2)}</span>
+          </p>
+          <button className="checkout-btn" onClick={gotoorder} >
+            Proceed to Checkout
+          </button>
+        </div>
         )}
       </div>
 
