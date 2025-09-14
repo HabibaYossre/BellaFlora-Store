@@ -62,12 +62,7 @@ const proceddpayment = (e) => {
   };
   
 
-/*  const items = cart.items.map((item) => ({
-    productId: item.productId._id,  // only send the ObjectId
-    quantity: item.quantity,
-    price: item.productId.price,    // take price from product
-  }));
- */
+
   const items = cart.items.map((item) => ({
     productId: item.product._id,   //  take ID from nested product
     quantity: item.quantity,
@@ -82,7 +77,7 @@ const proceddpayment = (e) => {
        if (result.status === 201) {
         const newOrder = result.data;
         navigate(`/payment/${newOrder._id}`);
-        //navigate("/Payment");
+       
        } else {
          alert("Problem in Connection to DB");
        }
