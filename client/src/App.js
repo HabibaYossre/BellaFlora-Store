@@ -18,6 +18,7 @@ import TrackOrder from "./components/TrackOrder/TrackOrder";
 import Invoice from "./components/Invoice/Invoice";
 import { CartProvider } from "./context/CartContext";
 import { WishlistProvider } from "./context/WishlistContext";
+import { ProductProvider } from "./context/ProductContext";
 import About from "./components/About/About";
 import Layout from "./components/Layout";
 import Ocassions from "./components/ocassions/Ocassions";
@@ -29,6 +30,7 @@ function App() {
   return (
     <CartProvider>
       <WishlistProvider>
+        <ProductProvider>
         <Layout>
           <Routes>
             <Route path="/" element={<Home />} />
@@ -60,6 +62,7 @@ function App() {
             <Route path="/Ossciassions" element={<Ocassions />} />
           </Routes>
         </Layout>
+        </ProductProvider>
       </WishlistProvider>
     </CartProvider>
   );

@@ -1,22 +1,30 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Dashboard.css";
-import { FaUsers, FaLeaf, FaChartBar, FaCog, FaUpload } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
+import { ProductContext } from "../../context/ProductContext";
+
 function Dashboard() {
- const navigate = useNavigate();
-    const handleaddflower= (e) => {
+  const { products, deleteProduct, editProduct } = useContext(ProductContext);
+  const navigate = useNavigate();
 
-         e.preventDefault();
-         navigate("/Admin")
+  const handleAddFlower = (e) => {
+    e.preventDefault();
+    navigate("/Admin"); 
+  };
 
-    }
   return (
     <div className="dashboard">
-   
       <main className="main-content">
         <header className="header">
           <h3 className="hh">Welcome in Admin Dashboard</h3>
-          <button className="logout-btn">Logout</button>
+           <div className="buttons">
+          <button className="add-flower" onClick={handleAddFlower}>
+            Add Flower
+          </button>
+            <button className="logout-btn">Logout</button>
+        </div>
+        
+
         </header>
 
         {/* Stats Cards */}
@@ -27,7 +35,7 @@ function Dashboard() {
           </div>
           <div className="card-d">
             <h3>Total Flowers</h3>
-            <p>45</p>
+            <p>{products.length}</p>
           </div>
           <div className="card-d">
             <h3>Uploads Today</h3>
@@ -38,11 +46,50 @@ function Dashboard() {
             <p>Tulip</p>
           </div>
         </section>
-        <div className="buttons">
-            <button className="add-flower" onClick={handleaddflower}>Add Flower</button>
-            <button className="add-flower">Remove Flower</button>
-            <button className="add-flower">Update Flower</button>
-        </div>
+
+        {/* زرار إضافة منتج */}
+       
+
+        {/* Products in Cards */}
+        <section className="product-list">
+          <h3>Products</h3>
+          {products.length === 0 ? (
+            <p>No products available</p>
+          ) : (
+            <div className="product-grid">
+              {products.map((product) => (
+                <div key={product._id} className="product-card">
+                  <img
+                    src={product.images} 
+                    alt={product.name}
+                  />
+                  <h4>{product.name}</h4>
+                  <p>Price: {product.price} EGP</p>
+                  <p>Size: {product.size}</p>
+                  <div className="product-actions">
+                    <button
+                      className="remove-btn"
+                      onClick={() => deleteProduct(product._id)}
+                    >
+                      🗑 Remove
+                    </button>
+                    <button
+                      className="update-btn"
+                      onClick={() =>
+                        editProduct(product._id, {
+                          ...product,
+                          name: product.name + " (Updated)",
+                        })
+                      }
+                    >
+                      ✏ Update
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </section>
       </main>
     </div>
   );
