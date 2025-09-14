@@ -1,110 +1,3 @@
-// import React, { useContext } from "react";
-// import "./Cart.css";
-// import { CartContext } from "../../context/CartContext";
-// import Shipping from "../Shipping/Shipping";
-// import Subscribe from "../Subscribe/Subscribe";
-// import { useNavigate } from "react-router-dom";
-
-// const Cart = () => {
-//   const { cart, removeFromCart, updateQty, clearCart } = useContext(CartContext);
-//   const navigate=useNavigate();
-
-//   const gotoorder=()=>{
-//  navigate("/order");
-//   }
-//   const totalPrice = cart.reduce(
-//     (sum, item) => sum + item.price * item.qty,
-//     0
-
-//   );
-
-//   return (
-//     <div className="cart-page">
-//       <div className="car-container">
-//         <h2>Shopping Cart</h2>
-//         <span className="cart-items">Home / Shopping Cart</span>
-//       </div>
-
-//       <div className="cart-container">
-//         <div className="cart-items">
-//           {cart.length === 0 ? (
-//             <p>Your cart is empty 🛒</p>
-//           ) : (
-//             cart.map((item) => (
-//               <div className="cart-row" key={item._id}>
-
-//                 <span
-//                   className="remove"
-//                   onClick={() => removeFromCart(item._id)}
-//                 >
-//                   ✖
-//                 </span>
-
-//                 <img src={item.img} alt={item.title} className="cart-img" />
-
-//                 <div className="cart-info">
-//                   <h4>{item.title}</h4>
-//                   <p>{item.description?.slice(0, 40)}...</p>
-//                 </div>
-
-//                 <span>${item.price.toFixed(2)}</span>
-
-//                 <div className="qty-controls">
-//                   <button onClick={() => updateQty(item._id, -1)}>−</button>
-//                   <span>{item.qty}</span>
-//                   <button onClick={() => updateQty(item._id, 1)}>+</button>
-//                 </div>
-
-//                 <span>${(item.price * item.qty).toFixed(2)}</span>
-//               </div>
-//             ))
-//           )}
-//           <button className="clear-btn" onClick={clearCart}>
-//             Clear Cart
-//           </button>
-//         </div>
-//           {/* order summary */}
-//       {cart.length > 0 && (
-//         <div className="order-summary">
-//           <h3>Order Summary</h3>
-//           <p>
-//             Items <span>{cart.reduce((sum, i) => sum + i.qty, 0)}</span>
-//           </p>
-//           <p>
-//             Subtotal <span>${totalPrice.toFixed(2)}</span>
-//           </p>
-//           <p>
-//             Shipping <span>$00.00</span>
-//           </p>
-//           <p>
-//             Taxes <span>$0.00</span>
-//           </p>
-
-//           <hr />
-
-//           <p className="total">
-//             Total <span>${totalPrice.toFixed(2)}</span>
-//           </p>
-
-//           <button className="checkout-btn" onClick={gotoorder}>Proceed to Checkout</button> <br />
-
-//         </div>
-//       )}
-//       </div>
-
-//       {/* coupon form */}
-//       <div className="subscrib-form">
-//         <input type="email" placeholder="Coupon Code" />
-//         <button type="submit">Apply Coupon</button>
-//       </div>
-
-//       <Shipping />
-//       <Subscribe />
-//     </div>
-//   );
-// };
-
-// export default Cart;
 
 import React, { useContext } from "react";
 import "./Cart.css";
@@ -116,12 +9,12 @@ import { useNavigate } from "react-router-dom";
 const Cart = () => {
   const { cart, removeFromCart, updateQty, clearCart, loading, error, isAuthenticated } =
     useContext(CartContext);
-  console.log("🛒 [Cart.js] Current cart state:", cart);
+  // console.log(" [Cart.js] Current cart state:", cart);
 
   const navigate = useNavigate();
 
   const gotoorder = () => {
-    console.log("➡️ Navigating to order page...");
+    // console.log("Navigating to order page...");
     navigate("/order");
   };
 
@@ -180,7 +73,7 @@ const Cart = () => {
 
               return (
                 <div className="cart-row" key={productId || idx}>
-                  {/* remove */}
+         
                   <span
                     className="remove"
                     onClick={() => removeFromCart(productId)}
@@ -189,20 +82,19 @@ const Cart = () => {
                     ✖
                   </span>
 
-                  {/* product image (first image from array) */}
+          
                   <img
                     src={product.images?.[0] || product.img || "/placeholder.png"}
                     alt={product.name || product.title || "Product"}
                     className="cart-img"
                   />
 
-                  {/* info */}
                   <div className="cart-info">
                     <h4>{product.name || product.title || "Unnamed Product"}</h4>
                     <p>{product.description?.slice(0, 40) || ""}...</p>
                   </div>
 
-                  {/* price */}
+              
                   <span className="price">${(product.price || 0).toFixed(2)}</span>
 
                   {/* qty controls */}
@@ -223,7 +115,7 @@ const Cart = () => {
                     </button>
                   </div>
 
-                  {/* subtotal for this item */}
+               
                   <span className="subtotal">
                     ${((product.price || 0) * item.quantity).toFixed(2)}
                   </span>
@@ -244,7 +136,7 @@ const Cart = () => {
           )}
         </div>
 
-        {/* order summary */}
+      
         {cart.items.length > 0 && (
           <div className="order-summary">
             <h3>Order Summary</h3>
@@ -280,7 +172,7 @@ const Cart = () => {
         )}
       </div>
 
-      {/* coupon form */}
+    
       <div className="subscrib-form">
         <input type="text" placeholder="Coupon Code" />
         <button

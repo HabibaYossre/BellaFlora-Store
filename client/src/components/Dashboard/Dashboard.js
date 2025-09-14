@@ -92,7 +92,7 @@ function Dashboard() {
           )}
         </section>
 
-        {/* Popup Form */}
+    
         {showPopup && editingProduct && (
           <div className="popup-overlay">
             <div className="popup-content">

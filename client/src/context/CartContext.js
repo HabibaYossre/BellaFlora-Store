@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
     setIsAuthenticated(!!token);
   }, []);
 
-  // ✅ Calculate totals for local cart
+
   const calculateTotals = useCallback((items) => {
     const subtotal = items.reduce((sum, item) => {
       const product = item.product || {};
@@ -158,7 +158,7 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // ✅ Clear cart
+ 
   const clearCart = async () => {
     try {
       setLoading(true);

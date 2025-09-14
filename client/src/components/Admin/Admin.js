@@ -21,7 +21,7 @@ function Admin() {
     images:"",
   });
 
-  // handle input change
+
   const handleChange = (e) => {
     const { name, value } = e.target; 
     setFormData({
@@ -41,7 +41,7 @@ function Admin() {
     return newErrors;
   };
 
-  // submit form
+  
   const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
@@ -55,7 +55,7 @@ function Admin() {
 
         if (res.status === 201) {
           alert("✅ Flower added successfully!");
-          navigate("/product/all");
+           navigate("/Dashboard");
         }
       } catch (err) {
         console.error(err.response?.data || err.message);
@@ -95,17 +95,14 @@ function Admin() {
         </button>
       </form>
 
-      {/* ✅ Preview image if URL entered */}
-      {formData.flowerImage && (
-        <div className="preview">
-          <h3>Preview:</h3>
-          <img
-            src={formData.flowerImage}
-            alt="Flower Preview"
-            style={{ maxWidth: "200px", marginTop: "10px", borderRadius: "8px" }}
-          />
-        </div>
-      )}
+    
+    {formData.images && (
+  <div className="preview">
+    <h3>Preview:</h3>
+    <img src={formData.images} alt="Flower Preview" style={{maxWidth:"200px"}} />
+  </div>
+)}
+
     </div>
   );
 }
