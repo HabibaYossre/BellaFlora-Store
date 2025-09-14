@@ -40,7 +40,7 @@ app.use("/wishlist",wishlistRoutes)
 app.use("/review",reviewRouter)
 app.use("/order", orderRoutes);
 app.use("/userProfile",userRoutes);
-// app.use("/flower", flowerRoutes);
+app.use("/flower", flowerRoutes);
 
 
 const PORT = process.env.PORT || 3000;
