@@ -10,7 +10,7 @@ import reviewRouter from "./routes/reviewRoutes.js"
 import orderRoutes from "./routes/orderRoutes.js"
 import cookieParser from "cookie-parser";
 import userRoutes from "./routes/userRoutes.js"
-
+import flowerRoutes from "./routes/flower.js";
 
 
 // Load .env variables
@@ -40,6 +40,7 @@ app.use("/wishlist",wishlistRoutes)
 app.use("/review",reviewRouter)
 app.use("/order", orderRoutes);
 app.use("/userProfile",userRoutes);
+app.use("/flower", flowerRoutes);
 
 
 const PORT = process.env.PORT || 3000;
