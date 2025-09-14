@@ -269,7 +269,7 @@ export const addToWishlist = async (req, res) => {
   }
 };
 
-// 📤 Get wishlist
+// Get wishlist
 export const getWishlist = async (req, res) => {
   try {
     const userId = req.user._id;
@@ -289,7 +289,7 @@ export const getWishlist = async (req, res) => {
   }
 };
 
-// 🗑️ Remove item from wishlist
+// Remove item from wishlist
 export const removeFromWishlist = async (req, res) => {
   try {
     const userId = req.user._id;
