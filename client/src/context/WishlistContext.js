@@ -86,23 +86,26 @@ export const WishlistProvider = ({ children }) => {
     }
   };
 
-  // ✅ Clear wishlist
-  const clearWishlist = async () => {
-    try {
-      setError(null);
 
-      const res = await axios.delete(`${process.env.REACT_APP_BACKEND_URL}/wishlist/clear`, {
-        withCredentials: true,
-      });
+const clearWishlist = async () => {
+  try {
+    setError(null);
 
-      if (res.data.success) {
-        setWishlist([]);
-      }
-    } catch (err) {
-      console.error("❌ Clear wishlist error:", err);
-      setError("Failed to clear wishlist");
+    const res = await axios.delete(
+      `${process.env.REACT_APP_BACKEND_URL}/wishlist/clear`,
+      { withCredentials: true }
+    );
+
+    if (res.data.success) {
+    
+      setWishlist([]);
     }
-  };
+  } catch (err) {
+    console.error("❌ Clear wishlist error:", err);
+    setError("Failed to clear wishlist");
+  }
+};
+
 
   // Load wishlist on mount
   useEffect(() => {
