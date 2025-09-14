@@ -154,37 +154,46 @@ const proceddpayment = (e) => {
           </form>
           
         </div>
-<div className="order-summary">
-          <h3>Order Summary</h3>
-          <p>
-            Items{" "}
-            <span>
-              {cart.items.reduce((sum, i) => sum + i.quantity, 0)}
-            </span>
-          </p>
+        <div className="order-summary">
+  <h3>Order Summary</h3>
+  <p>
+    Items{" "}
+    <span>
+      {cart.items.reduce((sum, i) => sum + i.quantity, 0)}
+    </span>
+  </p>
 
-          <p>
-            Subtotal <span>${(cart.subtotal || 0).toFixed(2)}</span>
-          </p>
-          <p>
-            Shipping <span>${(cart.shipping || 0).toFixed(2)}</span>
-          </p>
-          <p>
-            Taxes <span>${(cart.tax || 0).toFixed(2)}</span>
-          </p>
+  <p>
+    Subtotal <span>${(cart.subtotal || 0).toFixed(2)}</span>
+  </p>
 
-          <hr />
+  {/* ✅ Add discount row */}
+  {cart.discount > 0 && (
+    <p>
+      Discount{" "}
+      <span>- ${((cart.discount || 0).toFixed(2))}</span>
+    </p>
+  )}
 
-          <p className="total">
-            Total <span>${(cart.totalPrice || 0).toFixed(2)}</span>
-          </p>
+  <p>
+    Shipping <span>${(cart.shipping || 0).toFixed(2)}</span>
+  </p>
+  <p>
+    Taxes <span>${(cart.tax || 0).toFixed(2)}</span>
+  </p>
 
-          <button className="checkout-btn" onClick={proceddpayment}>
-            Proceed to Checkout
-          </button>
-          <br />
-        </div>
-        
+  <hr />
+
+  <p className="total">
+    Total <span>${(cart.totalPrice || 0).toFixed(2)}</span>
+  </p>
+
+  <button className="checkout-btn" onClick={proceddpayment}>
+    Proceed to Checkout
+  </button>
+  <br />
+</div>
+
       </div>
 
       <Shipping />
