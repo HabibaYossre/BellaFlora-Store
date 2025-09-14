@@ -43,9 +43,12 @@ const orderSchema = new mongoose.Schema(
     },
 
     billingDetails: {
-      cardHolder: { type: String },
-      cardLast4: { type: String },
-      paymentMethod: { type: String, enum: ["COD", "PayPal", "CreditCard"] },
+      nameOnCard: { type: String },
+      cardNumber: { type: String },
+      ExpMonth: { type: String },
+      ExpYear: { type: String },
+      CVV: { type: String },
+      paymentMethod: { type: String, enum: ["GooglePay", "PayPal", "CreditCard","Visa"] },
     },
 
     paymentStatus: {

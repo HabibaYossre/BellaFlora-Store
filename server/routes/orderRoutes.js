@@ -8,7 +8,7 @@ router.post("/createOrder", authMiddleware, orderController.createOrder);
 // Get single order by ID (only if belongs to logged-in user)
 router.get("/:id", authMiddleware, orderController.getOrderById);
 router.get("/getOrder", authMiddleware, orderController.getUserOrders);
-//router.put("/:orderId/payment", authMiddleware, orderController.updatePaymentStatus);
+router.post("/:orderId/payment",  orderController.paymentMethod);
 //router.put("/:orderId/status", authMiddleware, orderController.updateOrderStatus);
 
 export default router;

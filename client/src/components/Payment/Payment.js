@@ -46,28 +46,68 @@ function Payment() {
     
    
   ];
+  const paymentroute = async (e) => {
+  e.preventDefault();
 
-  const paymentroute = (e) => {
+  try {
+    let paymentData = {
+      paymentMethod: "",
+      nameOnCard: cardname,
+      cardNumber: cardnumber,
+      ExpMonth: cardexm,
+      ExpYear: cardexy,
+      CVV: cardcvv
+    };
+    if (selected === "paypal") {
+      paymentData.paymentMethod = "PayPal";
+    } else if (selected === "googlepay") {
+      paymentData.paymentMethod = "GooglePay";
+    } else if (selected === "visa") {
+      paymentData.paymentMethod = "Visa";
+    } else if (selected === "add-card") {
+      paymentData.paymentMethod = "CreditCard";
+    } else {
+      alert("Please select a valid payment method.");
+      return;
+    }
+    const res = await axios.post(
+      `http://localhost:3000/order/${orderId}/payment`,
+      paymentData,
+      { withCredentials: true }
+    );
 
-    e.preventDefault();
-    // try {
-    //  const res= axios.post(
-    //     "http://localhost:3000/",
-    //     { cardname,cardnumber, cardexm,cardexy,cardcvv },
-    //     { withCredentials: true } 
-    //   );
+    if (res.data.Success) {
+    //  navigate(`/invoice/${orderId}`);
+    } else {
+      alert("Payment failed: " + res.data.message);
+    }
+  } catch (error) {
+    console.error(err.response?.data || error.message);
+    alert("Something went wrong during payment.");
+  }
+};
 
-    //   if (res.status === 200) {
+
+  // const paymentroute = (e) => {
+
+  //   e.preventDefault();
+  //   try {
+  //    const res= axios.put(
+  //       "http://localhost:3000/order/orderId/payment",
+  //       { cardname,cardnumber, cardexm,cardexy,cardcvv },
+  //       { withCredentials: true } 
+  //     );
+
+  //     if (res.status === 200) {
         
-    //     navigate("/Invoice");
-    //   }
-    // } catch (err) {
-    //   console.error(err.response?.data || err.message);
-    // alert("Habiba Something Went Wrong")
-    // }
-
-    navigate(`/invoice/${orderId}`);
-  };
+  //   //     navigate("/Invoice");
+  //     }
+  //   } catch (err) {
+  //     console.error(err.response?.data || err.message);
+  //   alert("Something Went Wrong")
+  //   }
+  //   navigate(`/invoice/${orderId}`);
+  // };
 
   return (
     <div>
