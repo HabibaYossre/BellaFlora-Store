@@ -5,48 +5,64 @@ import { useNavigate } from "react-router-dom";
 
 function KnowType() {
   const navigate = useNavigate();
+  const [file, setFile] = useState(null);
   const [preview, setPreview] = useState(null);
-  const [errors, setErrors] = useState({});
   const [errorMessage, setErrorMessage] = useState("");
+  const [result, setResult] = useState(null);
+
+  const flowerEmojis = {
+    daisy: "🌼",
+    dandelion: "🌿",
+    rose: "🌹",
+    sunflower: "🌻",
+    tulip: "🌷",
+  };
 
   const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setPreview(URL.createObjectURL(file));
+    const f = e.target.files[0];
+    if (f) {
+      setFile(f);
+      setPreview(URL.createObjectURL(f));
+      setResult(null); // reset old result if new file chosen
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!file) {
+      setErrorMessage("Please select an image first");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("file", file);
+
     try {
-        const res =  axios.post(
-          `${process.env.REACT_APP_BACKEND_URL}/product/add`, 
-           preview,
-           { withCredentials: true }
-        );
+      const res = await axios.post(
+        `${process.env.REACT_APP_BACKEND_URL}/flower/predict`,
+        formData,
+        { headers: { "Content-Type": "multipart/form-data" } }
+      );
 
-        if (res.status === 200) {
-          alert("✅ Flower Detected successfully!");
-          navigate("/product/all");
-        }
-      } catch (err) {
-        console.error(err.response?.data || err.message);
-        setErrorMessage(err.response?.data?.message || "Adding flower failed");
-      }
-    
-  
+      setResult({
+        flower: res.data.flower_type,
+        confidence: (res.data.confidence * 100).toFixed(1),
+      });
 
-    alert("Image uploaded successfully! 🚀 (You can now send it to backend)");
+      setErrorMessage("");
+    } catch (err) {
+      console.error("❌ API error:", err.response?.data || err.message);
+      setErrorMessage("Flower detection failed");
+    }
   };
 
   return (
     <div className="knowtype-container">
-      <h2 className="title">🌸 Upload a Flower Image</h2>
+      <h2 className="title">🌸 Upload a Flower Image 🌸</h2>
 
       <form className="upload-form" onSubmit={handleSubmit}>
-        <label htmlFor="fileInput" className="file-label">
-          Choose Image
-        </label>
+        <label htmlFor="fileInput" className="file-label">Choose Image</label>
         <input
           id="fileInput"
           type="file"
@@ -61,10 +77,24 @@ function KnowType() {
           </div>
         )}
 
-        <button type="submit" className="upload-btn">
-          Detect Flower Type
-        </button>
+        <button type="submit" className="upload-btn">Detect Flower Type</button>
       </form>
+
+      {errorMessage && <p className="error">{errorMessage}</p>}
+
+      {result && (
+        <div className="result-card">
+          <h3>✨ Flower Identified ✨</h3>
+          <p><strong>Type:</strong> {flowerEmojis[result.flower] || "🌸"} {result.flower}</p>
+          <p><strong>Confidence:</strong> {result.confidence}%</p>
+          <button 
+            className="shop-btn" 
+            onClick={() => navigate(`/product/filter/category/${result.flower}`)}
+          >
+            🌸 Shop {result.flower}
+          </button>
+        </div>
+      )}
     </div>
   );
 }
