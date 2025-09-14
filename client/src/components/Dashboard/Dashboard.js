@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Dashboard.css";
 import { useNavigate } from "react-router-dom";
 import { ProductContext } from "../../context/ProductContext";
@@ -7,9 +7,19 @@ function Dashboard() {
   const { products, deleteProduct, editProduct } = useContext(ProductContext);
   const navigate = useNavigate();
 
+  const [editingProduct, setEditingProduct] = useState(null);
+  const [formData, setFormData] = useState({});
+  const [showPopup, setShowPopup] = useState(false);
+
   const handleAddFlower = (e) => {
     e.preventDefault();
-    navigate("/Admin"); 
+    navigate("/Admin"); // صفحة إضافة منتج جديد
+  };
+
+  const handleSave = () => {
+    editProduct(editingProduct._id, formData); // تحديث المنتج في الـ Context
+    setShowPopup(false);
+    setEditingProduct(null);
   };
 
   return (
@@ -17,14 +27,12 @@ function Dashboard() {
       <main className="main-content">
         <header className="header">
           <h3 className="hh">Welcome in Admin Dashboard</h3>
-           <div className="buttons">
-          <button className="add-flower" onClick={handleAddFlower}>
-            Add Flower
-          </button>
+          <div className="buttons">
+            <button className="add-flower" onClick={handleAddFlower}>
+              Add Flower
+            </button>
             <button className="logout-btn">Logout</button>
-        </div>
-        
-
+          </div>
         </header>
 
         {/* Stats Cards */}
@@ -47,9 +55,6 @@ function Dashboard() {
           </div>
         </section>
 
-        {/* زرار إضافة منتج */}
-       
-
         {/* Products in Cards */}
         <section className="product-list">
           <h3>Products</h3>
@@ -59,10 +64,7 @@ function Dashboard() {
             <div className="product-grid">
               {products.map((product) => (
                 <div key={product._id} className="product-card">
-                  <img
-                    src={product.images} 
-                    alt={product.name}
-                  />
+                  <img src={product.images} alt={product.name} />
                   <h4>{product.name}</h4>
                   <p>Price: {product.price} EGP</p>
                   <p>Size: {product.size}</p>
@@ -75,12 +77,11 @@ function Dashboard() {
                     </button>
                     <button
                       className="update-btn"
-                      onClick={() =>
-                        editProduct(product._id, {
-                          ...product,
-                          name: product.name + " (Updated)",
-                        })
-                      }
+                      onClick={() => {
+                        setEditingProduct(product);
+                        setFormData({ ...product });
+                        setShowPopup(true);
+                      }}
                     >
                       ✏ Update
                     </button>
@@ -90,6 +91,67 @@ function Dashboard() {
             </div>
           )}
         </section>
+
+        {/* Popup Form */}
+        {showPopup && editingProduct && (
+          <div className="popup-overlay">
+            <div className="popup-content">
+              <h3>Edit Product</h3>
+              <label>
+                Name:
+                <input
+                  type="text"
+                  value={formData.name}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
+                />
+              </label>
+              <label>
+                Price:
+                <input
+                  type="number"
+                  value={formData.price}
+                  onChange={(e) =>
+                    setFormData({ ...formData, price: e.target.value })
+                  }
+                />
+              </label>
+              <label>
+                Size:
+                <input
+                  type="text"
+                  value={formData.size}
+                  onChange={(e) =>
+                    setFormData({ ...formData, size: e.target.value })
+                  }
+                />
+              </label>
+              <label>
+                Image URL:
+                <input
+                  type="text"
+                  value={formData.images}
+                  onChange={(e) =>
+                    setFormData({ ...formData, images: e.target.value })
+                  }
+                />
+              </label>
+
+              <div className="popup-buttons">
+                <button onClick={handleSave}>💾 Save</button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    setEditingProduct(null);
+                  }}
+                >
+                  ❌ Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
       </main>
     </div>
   );
