@@ -19,7 +19,11 @@ function Payment() {
     cardnumber: "",
     cardexm: "",
     cardexy: "",
-    cardcvv: ""
+    cardcvv: "",
+    paypalEmail: "",
+    googleEmail: "",
+    visaCard: "",
+    visaCvv: ""
   });
 
   const methods = [
@@ -48,24 +52,41 @@ function Payment() {
   const paymentroute = async (e) => {
     e.preventDefault();
 
-    let paymentData = {
-      paymentMethod: "",
-      nameOnCard: cardData.cardname,
-      cardNumber: cardData.cardnumber,
-      ExpMonth: cardData.cardexm,
-      ExpYear: cardData.cardexy,
-      CVV: cardData.cardcvv
-    };
+    let paymentData = { paymentMethod: "" };
 
-    // Assign payment method BEFORE API call
     if (selected === "paypal") {
-      paymentData.paymentMethod = "PayPal";
+      paymentData = {
+        paymentMethod: "PayPal",
+        nameOnCard: cardData.cardname,
+         cardNumber:cardData.cardnumber
+
+      };
     } else if (selected === "googlepay") {
-      paymentData.paymentMethod = "GooglePay";
+      paymentData = {
+        paymentMethod: "GooglePay",
+
+         nameOnCard: cardData.cardname,
+         cardNumber:cardData.cardnumber
+
+      };
     } else if (selected === "visa") {
-      paymentData.paymentMethod = "Visa";
+      paymentData = {
+        paymentMethod: "Visa",
+      nameOnCard: cardData.cardname,
+        cardNumber: cardData.cardnumber,
+        ExpMonth: cardData.cardexm,
+        ExpYear: cardData.cardexy,
+        CVV: cardData.cardcvv
+      };
     } else if (selected === "add-card") {
-      paymentData.paymentMethod = "CreditCard";
+      paymentData = {
+        paymentMethod: "CreditCard",
+        nameOnCard: cardData.cardname,
+        cardNumber: cardData.cardnumber,
+        ExpMonth: cardData.cardexm,
+        ExpYear: cardData.cardexy,
+        CVV: cardData.cardcvv
+      };
     } else {
       alert("Please select a valid payment method.");
       return;
@@ -117,86 +138,199 @@ function Payment() {
             ))}
           </div>
 
+          {/* PayPal */}
+          {selected === "paypal" && (
+            <form className="payment-form">
+                  <label htmlFor="cardname">Name on Card *</label>
+              <input
+                type="text"
+                id="cardname"
+                placeholder="John More Doe"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardname: e.target.value })
+                }
+              />
+
+              <label htmlFor="cardnumber">Credit card number *</label>
+              <input
+                type="text"
+                id="cardnumber"
+                placeholder="1111-2222-3333-4444"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardnumber: e.target.value })
+                }
+              />
+              <button type="button" className="Addcard-btn" onClick={paymentroute}>
+                Pay with PayPal
+              </button>
+            </form>
+          )}
+
+          {/* Google Pay */}
+          {selected === "googlepay" && (
+            <form className="payment-form">
+               <label htmlFor="cardname">Name on Card *</label>
+              <input
+                type="text"
+                id="cardname"
+                placeholder="John More Doe"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardname: e.target.value })
+                }
+              />
+
+              <label htmlFor="cardnumber">Credit card number *</label>
+              <input
+                type="text"
+                id="cardnumber"
+                placeholder="1111-2222-3333-4444"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardnumber: e.target.value })
+                }
+              />
+              <button type="button" className="Addcard-btn" onClick={paymentroute}>
+                Pay with Google Pay
+              </button>
+            </form>
+          )}
+
+          {/* Visa */}
+          {selected === "visa" && (
+            <form className="payment-form">
+             <label htmlFor="cardname">Name on Card *</label>
+              <input
+                type="text"
+                id="cardname"
+                placeholder="John More Doe"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardname: e.target.value })
+                }
+              />
+
+              <label htmlFor="cardnumber">Credit card number *</label>
+              <input
+                type="text"
+                id="cardnumber"
+                placeholder="1111-2222-3333-4444"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardnumber: e.target.value })
+                }
+              />
+
+              <label htmlFor="expmonth">Exp Month *</label>
+              <input
+                type="text"
+                id="expmonth"
+                placeholder="09"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardexm: e.target.value })
+                }
+              />
+
+              <label htmlFor="expyear">Exp Year *</label>
+              <input
+                type="text"
+                id="expyear"
+                placeholder="2024"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardexy: e.target.value })
+                }
+              />
+
+              <label htmlFor="cvv">CVV *</label>
+              <input
+                type="text"
+                id="cvv"
+                placeholder="352"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardcvv: e.target.value })
+                }
+              />
+
+              <button type="button" className="Addcard-btn" onClick={paymentroute}>
+                Pay with Visa
+              </button>
+            </form>
+          )}
+
+          {/* Add Card */}
           {selected === "add-card" && (
-            <div className="add-card-form">
-              <form className="payment-form">
-                <label htmlFor="cardname">Name on Card *</label>
-                <input
-                  type="text"
-                  id="cardname"
-                  name="cardname"
-                  placeholder="John More Doe"
-                  required
-                  onChange={(e) =>
-                    setFormData({ ...cardData, cardname: e.target.value })
-                  }
-                />
+            <form className="payment-form">
+              <label htmlFor="cardname">Name on Card *</label>
+              <input
+                type="text"
+                id="cardname"
+                placeholder="John More Doe"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardname: e.target.value })
+                }
+              />
 
-                <label htmlFor="cardnumber">Credit card number *</label>
-                <input
-                  type="text"
-                  id="cardnumber"
-                  name="cardnumber"
-                  placeholder="1111-2222-3333-4444"
-                  required
-                  onChange={(e) =>
-                    setFormData({ ...cardData, cardnumber: e.target.value })
-                  }
-                />
+              <label htmlFor="cardnumber">Credit card number *</label>
+              <input
+                type="text"
+                id="cardnumber"
+                placeholder="1111-2222-3333-4444"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardnumber: e.target.value })
+                }
+              />
 
-                <label htmlFor="expmonth">Exp Month *</label>
-                <input
-                  type="text"
-                  id="expmonth"
-                  name="expmonth"
-                  placeholder="09"
-                  required
-                  onChange={(e) =>
-                    setFormData({ ...cardData, cardexm: e.target.value })
-                  }
-                />
+              <label htmlFor="expmonth">Exp Month *</label>
+              <input
+                type="text"
+                id="expmonth"
+                placeholder="09"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardexm: e.target.value })
+                }
+              />
 
-                <label htmlFor="expyear">Exp Year *</label>
-                <input
-                  type="text"
-                  id="expyear"
-                  name="expyear"
-                  placeholder="2024"
-                  required
-                  onChange={(e) =>
-                    setFormData({ ...cardData, cardexy: e.target.value })
-                  }
-                />
+              <label htmlFor="expyear">Exp Year *</label>
+              <input
+                type="text"
+                id="expyear"
+                placeholder="2024"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardexy: e.target.value })
+                }
+              />
 
-                <label htmlFor="cvv">CVV *</label>
-                <input
-                  type="text"
-                  id="cvv"
-                  name="cvv"
-                  placeholder="352"
-                  required
-                  onChange={(e) =>
-                    setFormData({ ...cardData, cardcvv: e.target.value })
-                  }
-                />
+              <label htmlFor="cvv">CVV *</label>
+              <input
+                type="text"
+                id="cvv"
+                placeholder="352"
+                required
+                onChange={(e) =>
+                  setFormData({ ...cardData, cardcvv: e.target.value })
+                }
+              />
 
-                <button
-                  type="button"
-                  className="Addcard-btn"
-                  onClick={paymentroute}
-                >
-                  Add Card & Proceed
-                </button>
-              </form>
-            </div>
+              <button type="button" className="Addcard-btn" onClick={paymentroute}>
+                Add Card & Proceed
+              </button>
+            </form>
           )}
         </div>
 
         <div className="order-summary">
           <h3>Order Summary</h3>
           <p>
-            Items{" "}
-            <span>{cart.items.reduce((sum, i) => sum + i.quantity, 0)}</span>
+            Items <span>{cart.items.reduce((sum, i) => sum + i.quantity, 0)}</span>
           </p>
           <p>
             Subtotal <span>${(cart.subtotal || 0).toFixed(2)}</span>
