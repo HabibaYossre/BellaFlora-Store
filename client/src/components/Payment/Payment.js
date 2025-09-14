@@ -94,7 +94,7 @@ function Payment() {
 
     try {
       const res = await axios.post(
-        `http://localhost:3000/order/${orderId}/payment`,
+        `${process.env.REACT_APP_BACKEND_URL}/order/${orderId}/payment`,
         paymentData,
         { withCredentials: true }
       );

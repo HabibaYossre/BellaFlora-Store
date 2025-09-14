@@ -17,7 +17,7 @@ router.post("/predict", upload.single("file"), async (req, res) => {
     const formData = new FormData();
     formData.append("file", req.file.buffer, req.file.originalname);
 
-    const response = await axios.post("http://localhost:8000/predict", formData, {
+    const response = await axios.post("https://flower-store-docker.vercel.app", formData, {
       headers: formData.getHeaders(),
     });
 
