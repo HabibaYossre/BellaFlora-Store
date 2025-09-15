@@ -11,11 +11,11 @@ function KnowType() {
   const [result, setResult] = useState(null);
 
   const flowerEmojis = {
-    daisy: "🌼",
-    dandelion: "🌿",
-    rose: "🌹",
-    sunflower: "🌻",
-    tulip: "🌷",
+    Daisy: "🌼",
+    Dandelion: "🌿",
+    Rose: "🌹",
+    Sunflower: "🌻",
+    Tulip: "🌷",
   };
 
   const handleFileChange = (e) => {
@@ -45,8 +45,13 @@ function KnowType() {
         { headers: { "Content-Type": "multipart/form-data" } }
       );
 
+      // normalize flower name (capitalize first letter only)
+      const flowerName =
+        res.data.flower_type.charAt(0).toUpperCase() +
+        res.data.flower_type.slice(1).toLowerCase();
+
       setResult({
-        flower: res.data.flower_type,
+        flower: flowerName,
         confidence: (res.data.confidence * 100).toFixed(1),
       });
 
@@ -85,11 +90,16 @@ function KnowType() {
       {result && (
         <div className="result-card">
           <h3>✨ Flower Identified ✨</h3>
-          <p><strong>Type:</strong> {flowerEmojis[result.flower] || "🌸"} {result.flower}</p>
+          <p>
+            <strong>Type:</strong>{" "}
+            {flowerEmojis[result.flower] || "🌸"} {result.flower}
+          </p>
           <p><strong>Confidence:</strong> {result.confidence}%</p>
-          <button 
-            className="shop-btn" 
-            onClick={() => navigate(`/product/filter/category/${result.flower}`)}
+          <button
+            className="shop-btn"
+            onClick={() =>
+              navigate(`/product/all`)
+            }
           >
             🌸 Shop {result.flower}
           </button>

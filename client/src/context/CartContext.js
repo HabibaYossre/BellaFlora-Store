@@ -27,7 +27,7 @@ export const CartProvider = ({ children }) => {
     setIsAuthenticated(!!token);
   }, []);
 
-  // ✅ Centralized totals calculation (applies coupon automatically)
+ 
   const calculateTotals = useCallback(
     (items, appliedCoupon = coupon) => {
       const subtotal = items.reduce((sum, item) => {
