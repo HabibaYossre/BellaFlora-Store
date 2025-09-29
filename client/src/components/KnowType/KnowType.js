@@ -95,14 +95,14 @@ function KnowType() {
             {flowerEmojis[result.flower] || "🌸"} {result.flower}
           </p>
           <p><strong>Confidence:</strong> {result.confidence}%</p>
-          <button
+          {/* <button
             className="shop-btn"
             onClick={() =>
               navigate(`/product/all`)
             }
           >
             🌸 Shop {result.flower}
-          </button>
+          </button> */}
         </div>
       )}
     </div>

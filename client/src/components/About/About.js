@@ -5,6 +5,7 @@ import Subscribe from "../Subscribe/Subscribe";
 import FollowUs from "../followUs/FollowUs";
 import AboutUs from "../aboutUs/AboutUs";
 import Marquee from "../Marquee/Marquee";
+import { NavLink } from "react-router-dom";
 function About(){
     return(
         <>
@@ -16,53 +17,63 @@ function About(){
       <p className='look'>Meet The Passionate<span> <br/>Team Behind Our Successes</span></p>
        </div>
        <div className="characters-img">
-<div className="character">
-    <img src="/images/istockphoto-843230322-612x612.jpg" />
+        <div className="character">
+    <img src="/images/88f541e7-565d-4dbd-9e37-1f8ab86cf166.jpg" />
     <p>
-        Jenny Wilson
+      Fatma El Zahraa
         <br/>
     <span>
-Founder
+Front End Developer 
     </span>
+     <br/>
+    <NavLink to="https://github.com/FatmmaELZahraa">https://github.com/FatmmaELZahraa</NavLink>
+    </p>
+    <div className="character">
+    <img src="/images/15dd8908-5436-4dad-9bf2-471ff63464ce.jpg" />
+    <p>
+     Zeina Waddy
+        <br/>
+    <span>
+Front End Developer 
+    </span>
+    <br/>
+          <NavLink to="https://github.com/zeinawady">https://github.com/zeinawady</NavLink>
     </p>
 
 </div>
 
+</div>
+
 <div className="character">
-    <img src="/images/istockphoto-1196693233-612x612.jpg" />
+    <img src="/images/9510eae3-5ad1-4d02-9817-90e42ae9c315.jpg" />
     <p>
-       Bassiey Coper
+        Eman Khaled
         <br/>
     <span>
-Store Maneger
+Back End Developer
     </span>
+        <br/>
+          <NavLink to="https://github.com/EmanK888">https://github.com/EmanK888</NavLink>
     </p>
 
 </div>
 
+
 <div className="character">
-    <img src="/images/istockphoto-918209156-612x612.jpg" />
+    <img src="/images/4ce94f2b-370f-4a51-b37c-1103e9538005.jpg" />
     <p>
-       Robert Fox
+      Habiba Yousry
         <br/>
     <span>
-Floral Designer
+Back End Developer
     </span>
+     <br/>
+    <NavLink to="https://github.com/HabibaYossre">https://github.com/HabibaYossre</NavLink>
     </p>
 
 </div>
 
-<div className="character">
-    <img src="/images/istockphoto-523149033-1024x1024.jpg" />
-    <p>
-      Jane Cooper
-        <br/>
-    <span>
-Floral Designer
-    </span>
-    </p>
 
-</div>
 
        </div>
 <Marquee />

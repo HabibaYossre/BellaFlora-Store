@@ -6,14 +6,19 @@
     cursor: pointer;
     transition: transform 0.3s ease;
 }
-
+NavLink{
+    text-decoration: none;
+    color: rgb(113, 7, 7);
+}
 .character img:hover {
     transform: scale(1.05); /* small hover effect */
 }
 
 .character {
-    margin: 50px 20px; /* reduces side margin on smaller screens */
+    margin: 30px 10px; /* reduces side margin on smaller screens */
     text-align: center;
+    flex: 1 1 200px; /* allows flexibility in sizing */
+    font-size: small;
 }
 
 .character p {
@@ -29,7 +34,7 @@
 .characters-img {
     display: flex;
     flex-wrap: wrap; /* allows wrapping on smaller screens */
-    gap: 40px;       /* smaller gap for smaller screens */
+    gap: 20px;       /* smaller gap for smaller screens */
     align-items: center;
     justify-content: center;
 }
